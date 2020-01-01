@@ -1,16 +1,28 @@
 <template>
-  <section>
-    <div>
-      <h1 class="title">Journey into the Ironlands</h1>
+  <section class="flex flex-col justify-center items-center h-screen">
+    <div class="flex-shrink container">
+      <h1
+        class="title text-center font-display text-accent-700 text-5xl leading-snug max-w-sm mx-auto"
+      >Journey into the Ironlands</h1>
       <SwordIcon class="icon--sword"/>
       <hr>
-      <h2 class="subtitle">
+      <h2 class="subtitle text-center font-display uppercase text-xl max-w-sm mx-auto mb-10">
         A Journal for Solo
-        <a href="https://www.ironswornrpg.com/" target="_blank">Ironsworn</a> play
+        <a
+          class="underline hover:no-underline"
+          href="https://www.ironswornrpg.com/"
+          target="_blank"
+        >Ironsworn</a> play
       </h2>
-      <div class="links">
-        <NLink to="/app" class="button--green">Begin</NLink>
-        <NLink to="/about" class="button--grey">About this app</NLink>
+      <div class="links text-center">
+        <NLink
+          to="/app"
+          class="bg-accent-500 text-white font-bold uppercase text-sm rounded py-2 px-4 tracking-wide"
+        >Begin</NLink>
+        <NLink
+          to="/about"
+          class="text-gray-600 border-gray-600 font-bold uppercase text-sm rounded py-2 px-4 border border-1 tracking-wide"
+        >About this app</NLink>
       </div>
     </div>
   </section>
@@ -27,26 +39,6 @@ export default {
 </script>
 
 <style scoped>
-.title {
-  font-family: "Inknut Antiqua", serif;
-  color: rgba(55, 79, 83, 1);
-  font-size: 4em;
-  line-height: 1.3;
-  /* margin-bottom: -1rem; */
-}
-
-.subtitle {
-  font-family: "PT Sans", sans-serif;
-  font-weight: 300;
-  font-size: 2em;
-  color: rgba(55, 79, 83, 1);
-  padding-bottom: 1.5rem;
-}
-
-.links {
-  padding-top: 15px;
-}
-
 .icon--sword {
   width: 6rem;
   height: 6rem;

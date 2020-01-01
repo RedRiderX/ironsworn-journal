@@ -22,7 +22,11 @@ export default {
         href:
           "https://fonts.googleapis.com/css?family=Inknut+Antiqua:700|PT+Sans:400,700&display=swap"
       }
-    ]
+    ],
+    htmlAttrs: {
+      class: "font-body",
+      lang: "en"
+    }
   },
 
   /*

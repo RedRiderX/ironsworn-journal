@@ -1,7 +1,7 @@
 {
-  "name": "ironsworn-journal",
+  "name": "ironsworn-journal-gh",
   "version": "1.0.0",
-  "description": "",
+  "description": "Now with more Git",
   "author": "Nuxt.js Team",
   "private": true,
   "scripts": {
