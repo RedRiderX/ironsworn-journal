@@ -1,10 +1,12 @@
-# codesandbox-nuxt
+# A Journey into the Ironlands
 
-> Nuxt starter for CodeSandBox (used for https://template.nuxtjs.org)
+A Journal for Solo Ironsworn play
 
 ## Build Setup
 
-``` bash
+Using Nuxt, tailwind css, and tiptap for content editing.
+
+```bash
 # install dependencies
 $ yarn install
 
