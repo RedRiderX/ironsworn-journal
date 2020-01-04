@@ -16,7 +16,6 @@ export default {
       { name: "viewport", content: "width=device-width, initial-scale=1" }
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       {
         rel: "stylesheet",
         href:
@@ -39,7 +38,7 @@ export default {
    ** Plugins to load before mounting the App
    ** Doc: https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+  plugins: ["~/plugins/vue-youtube"],
 
   /*
    ** Nuxt.js modules
@@ -49,7 +48,8 @@ export default {
     // Doc: https://http.nuxtjs.org
     "@nuxt/http",
     // TODO: Remove it if you want to eject from codeSandbox
-    "./codesandbox"
+    "./codesandbox",
+    "@nuxtjs/pwa"
   ],
   buildModules: ["@nuxtjs/tailwindcss"],
 
