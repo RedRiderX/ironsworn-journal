@@ -4,7 +4,8 @@
       <h1
         class="title text-center font-display text-accent-700 text-5xl leading-snug max-w-sm mx-auto"
       >Journey into the Ironlands</h1>
-      <SwordIcon class="icon--sword"/>
+      <!-- <SwordIcon class="icon--sword"/> -->
+      <TreasureMapIcon class="icon--logo"/>
       <hr>
       <h2 class="subtitle text-center font-display uppercase text-xl max-w-sm mx-auto mb-10">
         A Journal for Solo
@@ -29,21 +30,23 @@
 </template>
 
 <script>
-import SwordIcon from "~/assets/icons/sword.svg?1";
+// import SwordIcon from "~/assets/icons/sword.svg";
+import TreasureMapIcon from "~/assets/logos/treasure-map.svg";
 
 export default {
   components: {
-    SwordIcon
+    // SwordIcon,
+    TreasureMapIcon
   }
 };
 </script>
 
 <style scoped>
-.icon--sword {
-  width: 6rem;
-  height: 6rem;
+.icon--logo {
+  width: 5rem;
+  height: 5rem;
   margin: auto;
-  margin-bottom: -6.25rem;
+  margin-bottom: -5.75rem;
   position: relative;
   background: white;
   padding: 0.5rem;
@@ -51,6 +54,7 @@ export default {
 
 hr {
   max-width: 40rem;
+  width: calc(100vw - 4rem);
   border: 2px solid rgba(51, 51, 51, 1);
   margin: 3rem auto;
 }

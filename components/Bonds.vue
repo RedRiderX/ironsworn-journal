@@ -12,10 +12,12 @@
 
 <script>
 import ReferenceSection from "~/components/ReferenceSection";
+import ProgressTrack from "~/components/ProgressTrack.vue";
 
 export default {
   components: {
-    ReferenceSection
+    ReferenceSection,
+    ProgressTrack
   }
 };
 </script>

@@ -21,5 +21,6 @@
     "vue-svg-loader": "0.15.0",
     "vue-youtube": "1.4.0"
   },
-  "keywords": []
+  "keywords": [],
+  "license": "GPL-3.0-or-later"
 }

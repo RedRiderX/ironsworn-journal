@@ -53,6 +53,18 @@ export default {
   ],
   buildModules: ["@nuxtjs/tailwindcss"],
 
+  pwa: {
+    manifest: {
+      name: "Journey into the Ironlands",
+      short_name: "Ironsworn Journal",
+      description: "A Journal for Solo Ironsworn play",
+      theme_color: "#BBD0D4",
+      categories: ["games", "entertainment"],
+      display: "standalone",
+      background_color: "#BBD0D4"
+    }
+  },
+
   /*
    ** HTTP module configuration
    */

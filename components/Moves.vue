@@ -68,11 +68,13 @@
 <script>
 import ReferenceSection from "~/components/ReferenceSection";
 import DiceRoller from "~/components/DiceRoller.vue";
+import CollapseIcon from "~/assets/icons/expand_less.svg";
 
 export default {
   components: {
     ReferenceSection,
-    DiceRoller
+    DiceRoller,
+    CollapseIcon
   }
 };
 </script>

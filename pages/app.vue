@@ -1,7 +1,11 @@
 <template>
-  <div class="flex h-screen">
-    <main class="flex-1 bg-gray-100 order-2 flex flex-col items-center">
-      <section class="activity-log flex-1 overflow-y-auto py-4 max-w-2xl">
+  <div class="flex h-screen flex-col md:flex-row">
+    <main
+      class="flex-1 bg-gray-100 order-2 md:flex flex-col items-center"
+      style="height: calc(100vh - 3.5rem)"
+      :class="[activeView === 'log' ? 'flex' : 'hidden']"
+    >
+      <section class="activity-log flex-shrink overflow-y-auto p-4 max-w-2xl">
         <TextLogItem/>
         <hr>
         <MetaLogItem/>
@@ -16,7 +20,10 @@
         </div>
       </section>
     </main>
-    <aside class="max-w-sm bg-gray-200 order-1 p-2 overflow-y-scroll">
+    <aside
+      class="flex-1 md:block md:flex-initial md:max-w-sm bg-gray-200 order-1 p-2 overflow-y-scroll"
+      :class="{'hidden': activeView !== 'stats'}"
+    >
       <h1 class="font-display text-3xl mb-1" contenteditable="true">Character Name</h1>
       <div class="main-stats bg-gray-300 -mx-2 mb-3 p-3 pb-4 flex justify-around items-start">
         <div class="main-stat main-stat--edge flex flex-col items-center">
@@ -99,7 +106,10 @@
       <Vows/>
       <Assets/>
     </aside>
-    <aside class="max-w-sm bg-gray-200 order-3 overflow-y-scroll">
+    <aside
+      class="flex-1 md:block md:flex-initial md:max-w-sm bg-gray-200 order-3 overflow-y-scroll"
+      :class="{'hidden': activeView !== 'reference'}"
+    >
       <Map/>
       <YourWorld/>
       <Moves/>
@@ -108,6 +118,20 @@
       <Rules/>
       <Music/>
     </aside>
+    <nav class="mobile-menu flex justify-around order-4 md:hidden">
+      <button class="flex flex-col items-center p-2" @click="activeView = 'stats'">
+        <PersonIcon class="w-6 h-6 fill-current"/>
+        <span class="uppercase text-xs tracking-wider leading-none">Stats</span>
+      </button>
+      <button class="flex flex-col items-center p-2" @click="activeView = 'log'">
+        <MessagesIcon class="w-6 h-6 fill-current"/>
+        <span class="uppercase text-xs tracking-wider leading-none">Log</span>
+      </button>
+      <button class="flex flex-col items-center p-2" @click="activeView = 'reference'">
+        <BookIcon class="w-6 h-6 fill-current"/>
+        <span class="uppercase text-xs tracking-wider leading-none">Reference</span>
+      </button>
+    </nav>
   </div>
 </template>
 
@@ -126,6 +150,9 @@ import Rules from "~/components/Rules.vue";
 import Music from "~/components/Music.vue";
 import DiceRoller from "~/components/DiceRoller.vue";
 import BasicEditor from "~/components/BasicEditor.vue";
+import PersonIcon from "~/assets/icons/person.svg";
+import MessagesIcon from "~/assets/icons/messages.svg";
+import BookIcon from "~/assets/icons/book.svg";
 
 export default {
   name: "App",
@@ -143,7 +170,15 @@ export default {
     Rules,
     Music,
     DiceRoller,
-    BasicEditor
+    BasicEditor,
+    PersonIcon,
+    MessagesIcon,
+    BookIcon
+  },
+  data() {
+    return {
+      activeView: "log"
+    };
   }
 };
 </script>
