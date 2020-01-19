@@ -4,6 +4,7 @@
  ** Docs: https://tailwindcss.com/docs/configuration
  ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
  */
+/*global module*/
 module.exports = {
   theme: {
     fontFamily: {
@@ -20,6 +21,6 @@ module.exports = {
       }
     }
   },
-  variants: {},
+  variants: { display: ["responsive", "group-hover"] },
   plugins: []
 };

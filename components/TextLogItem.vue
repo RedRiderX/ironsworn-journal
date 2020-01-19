@@ -1,6 +1,6 @@
 <template>
   <LogItem class="log-item--text" canEdit canDelete>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro consectetur tempora suscipit aperiam et eum earum dolor rem distinctio dolorum cupiditate, reiciendis incidunt possimus, obcaecati repellat omnis! Inventore, suscipit hic.</p>
+    <div class="rich-text" v-html="html"></div>
   </LogItem>
 </template>
 
@@ -10,6 +10,9 @@ import LogItem from "~/components/LogItem";
 export default {
   components: {
     LogItem
+  },
+  props: {
+    html: String
   }
 };
 </script>

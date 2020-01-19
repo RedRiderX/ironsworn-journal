@@ -2,6 +2,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* other vendor stuff */
+@import "animate.css/animate";
+
 html {
   font-size: 18px;
 }

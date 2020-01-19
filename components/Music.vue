@@ -1,7 +1,7 @@
 <template>
   <ReferenceSection class="music" title="Music">
     <template v-slot:headerExtra>
-      <button @click="toggleMusic" class="bg-gray-600 text-white rounded py-1 px-2 leading-none">⏯</button>
+      <button @click.stop="toggleMusic" class="py-1 px-2 leading-none">⏯</button>
     </template>
     <youtube ref="musicEmbed" :playerVars="playerVars" resize fitParent class="w-full"/>
   </ReferenceSection>
@@ -12,7 +12,7 @@ import ReferenceSection from "~/components/ReferenceSection";
 
 export default {
   components: {
-    ReferenceSection
+    ReferenceSection,
   },
   data() {
     return {
@@ -20,14 +20,14 @@ export default {
         listType: "playlist",
         list: "PLczb7TC-cuxeP9Mwj7uSE47UTq4PERFb9",
         loop: 1,
-        shuffle: 1
-      }
+        shuffle: 1,
+      },
     };
   },
   computed: {
     player() {
       return this.$refs.musicEmbed.player;
-    }
+    },
   },
   methods: {
     async toggleMusic() {
@@ -36,8 +36,8 @@ export default {
         .then(state =>
           state === 1 ? this.player.pauseVideo() : this.player.playVideo()
         );
-    }
-  }
+    },
+  },
 };
 </script>
 

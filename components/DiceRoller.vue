@@ -8,21 +8,55 @@
       <span class="tracking-wide">Make A Roll</span>
     </h1>
     <div class="roll-options">
-      <select name="main-stat mx-2" id>
+      <select v-model="rollStat" class="mx-1">
         <option value="heart">+Heart</option>
         <option value="edge">+Edge</option>
       </select>
-      <label class="mx-2" for="modifier">
+      <label class="mx-1" for="modifier">
         Add
-        <input type="number" name="modifier" class="w-10">
+        <input v-model.number="addNum" type="number" class="w-8">
       </label>
     </div>
-    <button class="bg-gray-600 text-white font-bold uppercase text-sm rounded py-1 px-4">Roll</button>
+
+    <button
+      class="bg-gray-600 py-1 px-2 text-white font-bold uppercase text-sm rounded self-center flex items-center"
+      @click="makeRoll"
+    >
+      <span class="leading-none mx-1 inline-block">Roll</span>
+      <RollIcon class="w-5 h-5 fill-current"/>
+    </button>
   </div>
 </template>
 
 <script>
-export default {};
+import RollIcon from "~/assets/icons/die.svg";
+
+export default {
+  components: {
+    RollIcon,
+  },
+  props: {
+    move: {
+      type: Object,
+      default: null,
+    },
+  },
+  data() {
+    return {
+      rollStat: "heart",
+      addNum: 0,
+    };
+  },
+  methods: {
+    makeRoll() {
+      this.$store.commit("activityLog/addRoll", {
+        rollStat: this.rollStat,
+        addNum: this.addNum,
+        move: this.move,
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>

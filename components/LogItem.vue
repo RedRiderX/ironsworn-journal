@@ -1,8 +1,8 @@
 <template>
-  <article class="log-item py-4 relative">
+  <article class="log-item group py-4 relative border-t border-gray-400">
     <slot></slot>
     <div
-      class="log-item__meta absolute top-0 right-0 bg-gray-200 flex flex-col items-end overflow-hidden"
+      class="log-item__meta absolute top-0 right-0 bg-gray-200 flex flex-col items-end overflow-hidden md:hidden md:group-hover:flex"
       :class="{expanded: menuExpanded}"
     >
       <button @click="menuExpanded = !menuExpanded" class="py-1 px-2">
@@ -28,7 +28,7 @@
 <script>
 import MoreIcon from "~/assets/icons/more-menu.svg";
 import EditIcon from "~/assets/icons/edit.svg";
-import RerollIcon from "~/assets/icons/reroll.svg";
+import RerollIcon from "~/assets/icons/die.svg";
 import DeleteIcon from "~/assets/icons/delete.svg";
 
 export default {
