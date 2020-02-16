@@ -9,15 +9,15 @@
         <span class="sr-only">More</span>
         <MoreIcon class="w-5 h-5 fill-current text-gray-500 inline-block align-middle"/>
       </button>
-      <button v-if="canEdit" @click="$emit('edit-log')" class="py-1 px-2">
+      <button v-if="canEdit" @click="action('edit')" class="py-1 px-2">
         <span class="align-middle">Edit</span>
         <EditIcon class="w-5 h-5 fill-current text-gray-500 inline-block align-middle"/>
       </button>
-      <button v-if="canReroll" @click="$emit('reroll-log')" class="py-1 px-2">
+      <button v-if="canReroll" @click="action('reroll')" class="py-1 px-2">
         <span class="align-middle">Reroll</span>
         <RerollIcon class="w-5 h-5 fill-current text-gray-500 inline-block align-middle"/>
       </button>
-      <button v-if="canDelete" @click="$emit('delete-log')" class="py-1 px-2">
+      <button v-if="canDelete" @click="action('delete')" class="py-1 px-2">
         <span class="align-middle">Delete</span>
         <DeleteIcon class="w-5 h-5 fill-current text-gray-500 inline-block align-middle"/>
       </button>
@@ -36,18 +36,24 @@ export default {
     EditIcon,
     RerollIcon,
     DeleteIcon,
-    MoreIcon
+    MoreIcon,
   },
   props: {
     canEdit: Boolean,
     canReroll: Boolean,
-    canDelete: Boolean
+    canDelete: Boolean,
   },
   data() {
     return {
-      menuExpanded: false
+      menuExpanded: false,
     };
-  }
+  },
+  methods: {
+    action(actionType) {
+      this.menuExpanded = false;
+      this.$emit(`${actionType}-log`);
+    },
+  },
 };
 </script>
 

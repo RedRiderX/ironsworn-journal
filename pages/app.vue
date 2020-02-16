@@ -14,7 +14,13 @@
         class="activity-log flex-auto h-0 overflow-y-scroll p-4 max-w-xl border-b border-gray-400"
         style="box-shadow: inset 0 -20px 20px -28px #0000004d, inset 0 20px 20px -28px #0000004d"
       >
-        <component v-for="log in logs" :is="log.logType" :key="log.uuid" v-bind="log.data"></component>
+        <component
+          v-for="log in logs"
+          :is="log.logType"
+          :key="log.uuid"
+          :uuid="log.uuid"
+          v-bind="log.data"
+        ></component>
       </transition-group>
       <section class="flex-none w-full max-w-xl p-2">
         <DiceRoller/>
@@ -158,21 +164,21 @@
 </template>
 
 <script>
-import Editable from "~/components/Editable.vue";
-import TextLogItem from "~/components/TextLogItem.vue";
-import MetaLogItem from "~/components/MetaLogItem.vue";
-import LogInput from "~/components/LogInput.vue";
-import Debilities from "~/components/Debilities.vue";
-import Vows from "~/components/Vows.vue";
-import Assets from "~/components/Assets.vue";
-import Map from "~/components/Map.vue";
-import YourWorld from "~/components/YourWorld.vue";
-import Moves from "~/components/Moves.vue";
-import Bonds from "~/components/Bonds.vue";
-import Oracles from "~/components/Oracles.vue";
-import Rules from "~/components/Rules.vue";
-import Music from "~/components/Music.vue";
-import DiceRoller from "~/components/DiceRoller.vue";
+import Editable from "~/components/editor/Editable";
+import TextLogItem from "~/components/log/ItemText";
+import MetaLogItem from "~/components/log/ItemMeta";
+import LogInput from "~/components/editor/LogInput";
+import Debilities from "~/components/character/TheDebilities";
+import Vows from "~/components/character/TheVows";
+import Assets from "~/components/character/TheAssets";
+import Map from "~/components/reference/TheMap";
+import YourWorld from "~/components/reference/TheWorld";
+import Moves from "~/components/reference/TheMoves";
+import Bonds from "~/components/reference/TheBonds";
+import Oracles from "~/components/reference/TheOracles";
+import Rules from "~/components/reference/TheRules";
+import Music from "~/components/reference/TheMusic";
+import DiceRoller from "~/components/editor/DiceRoller";
 import PersonIcon from "~/assets/icons/person.svg";
 import MessagesIcon from "~/assets/icons/messages.svg";
 import BookIcon from "~/assets/icons/book.svg";

@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import LogItem from "~/components/LogItem";
+import LogItem from "~/components/log/BaseItem";
 import CheckIcon from "~/assets/icons/check.svg";
 import CrossIcon from "~/assets/icons/cross.svg";
 import dieRoll from "~/plugins/dice";

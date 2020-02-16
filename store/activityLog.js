@@ -48,6 +48,10 @@ export const mutations = {
       data: data,
     });
   },
+  updateTextLog(state, payload) {
+    let logItem = state.list.find(el => el.uuid === payload.uuid);
+    logItem.data.html = payload.html;
+  },
   // remove(state, { log }) {
   //   state.list.splice(state.list.indexOf(log), 1);
   // }

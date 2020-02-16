@@ -4,7 +4,7 @@ A Journal for Solo Ironsworn play
 
 ## Build Setup
 
-Using Nuxt, tailwind css, and tiptap for content editing.
+Using Nuxt, tailwind css, and [tiptap](https://tiptap.scrumpy.io/) for content editing.
 
 ```bash
 # install dependencies
@@ -21,4 +21,4 @@ $ yarn start
 $ yarn run generate
 ```
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+For a detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
