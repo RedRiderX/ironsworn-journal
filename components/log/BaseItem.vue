@@ -17,7 +17,7 @@
         <span class="align-middle">Reroll</span>
         <RerollIcon class="w-5 h-5 fill-current text-gray-500 inline-block align-middle"/>
       </button>
-      <button v-if="canDelete" @click="action('delete')" class="py-1 px-2">
+      <button v-if="canDelete" @click="remove()" class="py-1 px-2">
         <span class="align-middle">Delete</span>
         <DeleteIcon class="w-5 h-5 fill-current text-gray-500 inline-block align-middle"/>
       </button>
@@ -39,6 +39,7 @@ export default {
     MoreIcon,
   },
   props: {
+    uuid: String,
     canEdit: Boolean,
     canReroll: Boolean,
     canDelete: Boolean,
@@ -52,6 +53,11 @@ export default {
     action(actionType) {
       this.menuExpanded = false;
       this.$emit(`${actionType}-log`);
+    },
+    remove() {
+      this.menuExpanded = false;
+      this.$emit(`delete-log`);
+      this.$store.commit("activityLog/removeLog", this.uuid);
     },
   },
 };

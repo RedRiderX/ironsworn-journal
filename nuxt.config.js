@@ -13,19 +13,19 @@ export default {
     title: "Journey into the Ironlands",
     meta: [
       { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" }
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
     ],
     link: [
       {
         rel: "stylesheet",
         href:
-          "https://fonts.googleapis.com/css?family=Inknut+Antiqua:700|PT+Sans:400,700&display=swap"
-      }
+          "https://fonts.googleapis.com/css?family=Inknut+Antiqua:700|PT+Sans:400,700&display=swap",
+      },
     ],
     htmlAttrs: {
       class: "font-body",
-      lang: "en"
-    }
+      lang: "en",
+    },
   },
 
   /*
@@ -38,7 +38,10 @@ export default {
    ** Plugins to load before mounting the App
    ** Doc: https://nuxtjs.org/guide/plugins
    */
-  plugins: ["~/plugins/vue-youtube"],
+  plugins: [
+    "~/plugins/vue-youtube",
+    { src: "~/plugins/localStorage", ssr: false },
+  ],
 
   /*
    ** Nuxt.js modules
@@ -49,7 +52,7 @@ export default {
     "@nuxt/http",
     // TODO: Remove it if you want to eject from codeSandbox
     "./codesandbox",
-    "@nuxtjs/pwa"
+    "@nuxtjs/pwa",
   ],
   buildModules: ["@nuxtjs/tailwindcss"],
 
@@ -61,8 +64,8 @@ export default {
       theme_color: "#BBD0D4",
       categories: ["games", "entertainment"],
       display: "standalone",
-      background_color: "#BBD0D4"
-    }
+      background_color: "#BBD0D4",
+    },
   },
 
   /*
@@ -88,8 +91,8 @@ export default {
 
       config.module.rules.push({
         test: /\.svg$/,
-        use: ["babel-loader", "vue-svg-loader"]
+        use: ["babel-loader", "vue-svg-loader"],
       });
-    }
-  }
+    },
+  },
 };

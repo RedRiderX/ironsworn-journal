@@ -22,7 +22,8 @@
     "tiptap-extensions": "1.28.6",
     "uuid": "3.4.0",
     "vue-svg-loader": "0.15.0",
-    "vue-youtube": "1.4.0"
+    "vue-youtube": "1.4.0",
+    "vuex-persistedstate": "2.7.1"
   },
   "keywords": [],
   "license": "GPL-3.0-or-later"

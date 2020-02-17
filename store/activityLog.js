@@ -6,8 +6,6 @@ export const state = () => ({
       uuid: "5e30160a-8208-4c01-9e93-35c7173b4ebb",
       logType: "TextLogItem",
       data: {
-        // html:
-        //   "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro consectetur tempora suscipit aperiam et eum earum dolor rem distinctio dolorum cupiditate, reiciendis incidunt possimus, obcaecati repellat omnis! Inventore, suscipit hic.</p>",
         html:
           "<h1>Start Your Journey</h1><p>Describe your adventure below with Rolls and Text posts </p>",
       },
@@ -19,6 +17,11 @@ export const state = () => ({
     //     rollStat: "heart",
     //     addNum: 1,
     //     move: null,
+    //     // result: null,
+    //     result: {
+    //       actionScore: null,
+    //       challengeDice: [null, null],
+    //     },
     //   },
     // },
     // {
@@ -30,6 +33,11 @@ export const state = () => ({
     // },
   ],
 });
+export const getters = {
+  getLog: state => uuid => {
+    return state.list.find(el => el.uuid === uuid);
+  },
+};
 
 export const mutations = {
   addTextLog(state, html) {
@@ -45,14 +53,26 @@ export const mutations = {
     state.list.push({
       uuid: uuidv1(),
       logType: "MetaLogItem",
-      data: data,
+      data: {
+        rollStat: data.rollStat,
+        addNum: data.addNum,
+        move: data.move,
+        actionScore: null,
+        challengeDice: [null, null],
+      },
     });
+  },
+  updateRollResult(state, payload) {
+    let logItem = state.list.find(el => el.uuid === payload.uuid);
+    logItem.data.actionScore = payload.actionScore;
+    logItem.data.challengeDice = payload.challengeDice;
   },
   updateTextLog(state, payload) {
     let logItem = state.list.find(el => el.uuid === payload.uuid);
     logItem.data.html = payload.html;
   },
-  // remove(state, { log }) {
-  //   state.list.splice(state.list.indexOf(log), 1);
-  // }
+  removeLog(state, uuid) {
+    let logItemIndex = state.list.findIndex(el => el.uuid === uuid);
+    state.list.splice(logItemIndex, 1);
+  },
 };

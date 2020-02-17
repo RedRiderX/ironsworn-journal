@@ -1,5 +1,5 @@
 <template>
-  <LogItem class="log-item--meta" canReroll canDelete @reroll-log="reroll">
+  <LogItem class="log-item--meta" canReroll canDelete :uuid="uuid" @reroll-log="reroll">
     <div class="log-item__wrapper mx-auto">
       <h1 class="text-xl font-display text-center mb-2">{{ moveTitle }}</h1>
       <div class="dice-roll bg-gray-500 flex justify-around p-2">
@@ -92,14 +92,22 @@ export default {
     CrossIcon,
   },
   props: {
-    rollStat: String,
-    addNum: Number,
-    move: Object,
+    uuid: String,
   },
   data() {
+    // Get initial state from store
+    let initialState = this.$store.getters["activityLog/getLog"](this.uuid)
+      .data;
+
     return {
-      actionScore: null,
-      challengeDice: [null, null],
+      rollStat: initialState.rollStat,
+      addNum: initialState.addNum,
+      move: initialState.move,
+      actionScore: initialState.actionScore,
+      challengeDice: [
+        initialState.challengeDice[0],
+        initialState.challengeDice[1],
+      ],
     };
   },
   computed: {
@@ -161,6 +169,11 @@ export default {
     reroll() {
       this.rollActionScore();
       this.rollChallengeDice();
+      this.$store.commit("activityLog/updateRollResult", {
+        uuid: this.uuid,
+        actionScore: this.actionScore,
+        challengeDice: this.challengeDice,
+      });
     },
   },
 };
