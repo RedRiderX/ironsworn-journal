@@ -17,7 +17,7 @@
         <span class="align-middle">Reroll</span>
         <RerollIcon class="w-5 h-5 fill-current text-gray-500 inline-block align-middle"/>
       </button>
-      <button v-if="canDelete" @click="remove()" class="py-1 px-2">
+      <button v-if="canDelete" @click="remove" class="py-1 px-2">
         <span class="align-middle">Delete</span>
         <DeleteIcon class="w-5 h-5 fill-current text-gray-500 inline-block align-middle"/>
       </button>

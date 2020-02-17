@@ -9,8 +9,12 @@
     </h1>
     <div class="roll-options">
       <select v-model="rollStat" class="mx-1">
-        <option value="heart">+Heart</option>
         <option value="edge">+Edge</option>
+        <option value="heart">+Heart</option>
+        <option value="iron">+Iron</option>
+        <option value="shadow">+Shadow</option>
+        <option value="wits">+Wits</option>
+        <option value="nothing">+Nothing</option>
       </select>
       <label class="mx-1" for="modifier">
         Add

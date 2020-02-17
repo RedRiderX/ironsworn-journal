@@ -35,30 +35,42 @@
         class="font-display text-3xl mb-1"
         contenteditable="true"
         @input="$store.commit('character/updateName', $event.target.innerText)"
-      >Character Name</h1>
+      >{{ this.$store.state.character.name }}</h1>
       <div class="main-stats bg-gray-300 -mx-2 mb-3 p-3 pb-4 flex justify-around items-start">
         <div class="main-stat main-stat--edge flex flex-col items-center">
           <div class="main-stat__label uppercase text-sm tracking-wide">Edge</div>
-          <Editable
+          <EditableStat
             class="main-stat__value font-display text-2xl leading-none"
-            :content.sync="this.$store.state.character.stats.edge"
-          ></Editable>
+            stat-name="edge"
+          />
         </div>
         <div class="main-stat main-stat--heart flex flex-col items-center">
           <div class="main-stat__label uppercase text-sm tracking-wide">Heart</div>
-          <div class="main-stat__value font-display text-2xl leading-none">2</div>
+          <EditableStat
+            class="main-stat__value font-display text-2xl leading-none"
+            stat-name="heart"
+          />
         </div>
         <div class="main-stat main-stat--iron flex flex-col items-center">
           <div class="main-stat__label uppercase text-sm tracking-wide">Iron</div>
-          <div class="main-stat__value font-display text-2xl leading-none">3</div>
+          <EditableStat
+            class="main-stat__value font-display text-2xl leading-none"
+            stat-name="iron"
+          />
         </div>
         <div class="main-stat main-stat--shadow flex flex-col items-center">
           <div class="main-stat__label uppercase text-sm tracking-wide">Shadow</div>
-          <div class="main-stat__value font-display text-2xl leading-none">1</div>
+          <EditableStat
+            class="main-stat__value font-display text-2xl leading-none"
+            stat-name="shadow"
+          />
         </div>
         <div class="main-stat main-stat--wits flex flex-col items-center">
           <div class="main-stat__label uppercase text-sm tracking-wide">Wits</div>
-          <div class="main-stat__value font-display text-2xl leading-none">2</div>
+          <EditableStat
+            class="main-stat__value font-display text-2xl leading-none"
+            stat-name="wits"
+          />
         </div>
       </div>
       <div class="resource-stats flex justify-around">
@@ -68,7 +80,10 @@
           <div
             class="main-stat__label uppercase text-sm tracking-wide bg-gray-300 self-stretch text-center"
           >Health</div>
-          <div class="main-stat__value font-display text-2xl leading-none p-2 pb-3">+5</div>
+          <EditableResource
+            class="main-stat__value font-display text-2xl leading-none p-2 pb-3"
+            resource-name="health"
+          />
         </div>
         <div
           class="resource-spirit resource-stat--health w-20 my-3 bg-white border-gray-300 border flex flex-col items-center"
@@ -76,7 +91,10 @@
           <div
             class="main-stat__label uppercase text-sm tracking-wide bg-gray-300 self-stretch text-center"
           >Spirit</div>
-          <div class="main-stat__value font-display text-2xl leading-none p-2 pb-3">+3</div>
+          <EditableResource
+            class="main-stat__value font-display text-2xl leading-none p-2 pb-3"
+            resource-name="spirit"
+          />
         </div>
         <div
           class="resource-supply resource-stat--health w-20 my-3 bg-white border-gray-300 border flex flex-col items-center"
@@ -84,7 +102,10 @@
           <div
             class="main-stat__label uppercase text-sm tracking-wide bg-gray-300 self-stretch text-center"
           >Supply</div>
-          <div class="main-stat__value font-display text-2xl leading-none p-2 pb-3">+2</div>
+          <EditableResource
+            class="main-stat__value font-display text-2xl leading-none p-2 pb-3"
+            resource-name="supply"
+          />
         </div>
       </div>
       <h2 class="text-center -mb-3 uppercase">
@@ -94,7 +115,9 @@
         <div
           class="momentum-stat momentum-stat--total w-20 my-3 bg-white border-gray-300 border flex flex-col items-center"
         >
-          <div class="main-stat__value font-display text-2xl leading-none p-2 pb-3">+7</div>
+          <EditableMomentumTotal
+            class="main-stat__value font-display text-2xl leading-none p-2 pb-3"
+          />
           <div
             class="main-stat__label uppercase text-sm tracking-wide bg-gray-300 self-stretch text-center"
           >Total</div>
@@ -102,7 +125,10 @@
         <div
           class="momentum-stat momentum-stat--max w-20 my-3 bg-white border-gray-300 border flex flex-col items-center"
         >
-          <div class="main-stat__value font-display text-2xl leading-none p-2 pb-3">9</div>
+          <EditableMomentum
+            class="main-stat__value font-display text-2xl leading-none p-2 pb-3"
+            stat-name="max"
+          />
           <div
             class="main-stat__label uppercase text-sm tracking-wide bg-gray-300 self-stretch text-center"
           >Max</div>
@@ -110,7 +136,10 @@
         <div
           class="momentum-stat momentum-stat--reset w-20 my-3 bg-white border-gray-300 border flex flex-col items-center"
         >
-          <div class="main-stat__value font-display text-2xl leading-none p-2 pb-3">1</div>
+          <EditableMomentum
+            class="main-stat__value font-display text-2xl leading-none p-2 pb-3"
+            stat-name="reset"
+          />
           <div
             class="main-stat__label uppercase text-sm tracking-wide bg-gray-300 self-stretch text-center"
           >Reset</div>
@@ -165,6 +194,10 @@
 
 <script>
 import Editable from "~/components/editor/Editable";
+import EditableStat from "~/components/editor/EditableStat";
+import EditableResource from "~/components/editor/EditableResource";
+import EditableMomentum from "~/components/editor/EditableMomentum";
+import EditableMomentumTotal from "~/components/editor/EditableMomentumTotal";
 import TextLogItem from "~/components/log/ItemText";
 import MetaLogItem from "~/components/log/ItemMeta";
 import LogInput from "~/components/editor/LogInput";
@@ -187,6 +220,10 @@ export default {
   name: "App",
   components: {
     Editable,
+    EditableStat,
+    EditableResource,
+    EditableMomentum,
+    EditableMomentumTotal,
     TextLogItem,
     MetaLogItem,
     LogInput,
