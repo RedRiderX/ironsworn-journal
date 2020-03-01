@@ -53,14 +53,14 @@
 </template>
 
 <script>
-import CharacterSection from "~/components/CharacterSection";
-import CharacterArticle from "~/components/CharacterArticle";
+import CharacterSection from "~/components/character/CharacterSection";
+import CharacterArticle from "~/components/character/CharacterArticle";
 
 export default {
   components: {
     CharacterSection,
-    CharacterArticle
-  }
+    CharacterArticle,
+  },
 };
 </script>
 

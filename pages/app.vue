@@ -4,24 +4,7 @@
       class="flex-1 bg-gray-100 order-2 lg:flex flex-col items-center"
       :class="[activeView === 'log' ? 'flex' : 'hidden']"
     >
-      <transition-group
-        ref="activityLog"
-        tag="section"
-        name="activity-log-transition"
-        @enter="logEnter"
-        enter-active-class="animated fast fadeInUp"
-        leave-active-class="animated fast fadeOut"
-        class="activity-log flex-auto h-0 overflow-y-scroll p-4 max-w-xl border-b border-gray-400"
-        style="box-shadow: inset 0 -20px 20px -28px #0000004d, inset 0 20px 20px -28px #0000004d"
-      >
-        <component
-          v-for="log in logs"
-          :is="log.logType"
-          :key="log.uuid"
-          :uuid="log.uuid"
-          v-bind="log.data"
-        ></component>
-      </transition-group>
+      <TheActivityLog/>
       <section class="flex-none w-full max-w-xl p-2">
         <DiceRoller/>
         <LogInput/>
@@ -36,117 +19,11 @@
         contenteditable="true"
         @input="$store.commit('character/updateName', $event.target.innerText)"
       >{{ this.$store.state.character.name }}</h1>
-      <div class="main-stats bg-gray-300 -mx-2 mb-3 p-3 pb-4 flex justify-around items-start">
-        <div class="main-stat main-stat--edge flex flex-col items-center">
-          <div class="main-stat__label uppercase text-sm tracking-wide">Edge</div>
-          <EditableStat
-            class="main-stat__value font-display text-2xl leading-none"
-            stat-name="edge"
-          />
-        </div>
-        <div class="main-stat main-stat--heart flex flex-col items-center">
-          <div class="main-stat__label uppercase text-sm tracking-wide">Heart</div>
-          <EditableStat
-            class="main-stat__value font-display text-2xl leading-none"
-            stat-name="heart"
-          />
-        </div>
-        <div class="main-stat main-stat--iron flex flex-col items-center">
-          <div class="main-stat__label uppercase text-sm tracking-wide">Iron</div>
-          <EditableStat
-            class="main-stat__value font-display text-2xl leading-none"
-            stat-name="iron"
-          />
-        </div>
-        <div class="main-stat main-stat--shadow flex flex-col items-center">
-          <div class="main-stat__label uppercase text-sm tracking-wide">Shadow</div>
-          <EditableStat
-            class="main-stat__value font-display text-2xl leading-none"
-            stat-name="shadow"
-          />
-        </div>
-        <div class="main-stat main-stat--wits flex flex-col items-center">
-          <div class="main-stat__label uppercase text-sm tracking-wide">Wits</div>
-          <EditableStat
-            class="main-stat__value font-display text-2xl leading-none"
-            stat-name="wits"
-          />
-        </div>
-      </div>
-      <div class="resource-stats flex justify-around">
-        <div
-          class="resource-stat resource-stat--health w-20 my-3 bg-white border-gray-300 border flex flex-col items-center"
-        >
-          <div
-            class="main-stat__label uppercase text-sm tracking-wide bg-gray-300 self-stretch text-center"
-          >Health</div>
-          <EditableResource
-            class="main-stat__value font-display text-2xl leading-none p-2 pb-3"
-            resource-name="health"
-          />
-        </div>
-        <div
-          class="resource-spirit resource-stat--health w-20 my-3 bg-white border-gray-300 border flex flex-col items-center"
-        >
-          <div
-            class="main-stat__label uppercase text-sm tracking-wide bg-gray-300 self-stretch text-center"
-          >Spirit</div>
-          <EditableResource
-            class="main-stat__value font-display text-2xl leading-none p-2 pb-3"
-            resource-name="spirit"
-          />
-        </div>
-        <div
-          class="resource-supply resource-stat--health w-20 my-3 bg-white border-gray-300 border flex flex-col items-center"
-        >
-          <div
-            class="main-stat__label uppercase text-sm tracking-wide bg-gray-300 self-stretch text-center"
-          >Supply</div>
-          <EditableResource
-            class="main-stat__value font-display text-2xl leading-none p-2 pb-3"
-            resource-name="supply"
-          />
-        </div>
-      </div>
-      <h2 class="text-center -mb-3 uppercase">
-        <span class="inline-block px-2 bg-gray-200">Momentum</span>
-      </h2>
-      <div class="momentum-stats flex justify-around border-gray-500 border pt-1 mb-3">
-        <div
-          class="momentum-stat momentum-stat--total w-20 my-3 bg-white border-gray-300 border flex flex-col items-center"
-        >
-          <EditableMomentumTotal
-            class="main-stat__value font-display text-2xl leading-none p-2 pb-3"
-          />
-          <div
-            class="main-stat__label uppercase text-sm tracking-wide bg-gray-300 self-stretch text-center"
-          >Total</div>
-        </div>
-        <div
-          class="momentum-stat momentum-stat--max w-20 my-3 bg-white border-gray-300 border flex flex-col items-center"
-        >
-          <EditableMomentum
-            class="main-stat__value font-display text-2xl leading-none p-2 pb-3"
-            stat-name="max"
-          />
-          <div
-            class="main-stat__label uppercase text-sm tracking-wide bg-gray-300 self-stretch text-center"
-          >Max</div>
-        </div>
-        <div
-          class="momentum-stat momentum-stat--reset w-20 my-3 bg-white border-gray-300 border flex flex-col items-center"
-        >
-          <EditableMomentum
-            class="main-stat__value font-display text-2xl leading-none p-2 pb-3"
-            stat-name="reset"
-          />
-          <div
-            class="main-stat__label uppercase text-sm tracking-wide bg-gray-300 self-stretch text-center"
-          >Reset</div>
-        </div>
-      </div>
-      <Debilities/>
-      <Vows/>
+      <TheMainStats/>
+      <TheResourceStats/>
+      <TheMomentumStats/>
+      <TheDebilities/>
+      <TheVows/>
       <Assets/>
     </aside>
     <aside
@@ -193,16 +70,13 @@
 </template>
 
 <script>
-import Editable from "~/components/editor/Editable";
-import EditableStat from "~/components/editor/EditableStat";
-import EditableResource from "~/components/editor/EditableResource";
-import EditableMomentum from "~/components/editor/EditableMomentum";
-import EditableMomentumTotal from "~/components/editor/EditableMomentumTotal";
-import TextLogItem from "~/components/log/ItemText";
-import MetaLogItem from "~/components/log/ItemMeta";
+import TheActivityLog from "~/components/TheActivityLog";
 import LogInput from "~/components/editor/LogInput";
-import Debilities from "~/components/character/TheDebilities";
-import Vows from "~/components/character/TheVows";
+import TheMainStats from "~/components/character/TheMainStats";
+import TheResourceStats from "~/components/character/TheResourceStats";
+import TheMomentumStats from "~/components/character/TheMomentumStats";
+import TheDebilities from "~/components/character/TheDebilities";
+import TheVows from "~/components/character/TheVows";
 import Assets from "~/components/character/TheAssets";
 import Map from "~/components/reference/TheMap";
 import YourWorld from "~/components/reference/TheWorld";
@@ -219,16 +93,13 @@ import BookIcon from "~/assets/icons/book.svg";
 export default {
   name: "App",
   components: {
-    Editable,
-    EditableStat,
-    EditableResource,
-    EditableMomentum,
-    EditableMomentumTotal,
-    TextLogItem,
-    MetaLogItem,
+    TheActivityLog,
+    TheMainStats,
+    TheResourceStats,
+    TheMomentumStats,
     LogInput,
-    Debilities,
-    Vows,
+    TheDebilities,
+    TheVows,
     Assets,
     Map,
     YourWorld,
@@ -246,25 +117,6 @@ export default {
     return {
       activeView: "log",
     };
-  },
-  computed: {
-    logs() {
-      return this.$store.state.activityLog.list;
-    },
-  },
-  methods: {
-    logEnter(el, done) {
-      // some dumb math here:
-      // When a new log is added I want to scroll to the bottom of the log
-      // BUT the bottom will shift because of the entrance transition
-      // So I want to scroll down to what will be the bottom eventually
-      // This calculation assumes the animated element starts out
-      // at twice its normal height
-      this.$refs.activityLog.$el.scrollTop =
-        this.$refs.activityLog.$el.scrollHeight -
-        this.$refs.activityLog.$el.clientHeight -
-        el.offsetHeight;
-    },
   },
 };
 </script>

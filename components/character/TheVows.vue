@@ -1,30 +1,48 @@
 <template>
-  <CharacterSection class="vows" title="Vows">
-    <CharacterArticle class="vow">
-      <template v-slot:title>Found the City of Hope</template>
-      <template v-slot:subtitle>Epic Vow</template>
-      <ProgressTrack class="-mx-2"/>
+  <CharacterSection class="vows" title="Vows" @add-article="$store.commit('activityLog/addVow')">
+    <CharacterArticle class="vow" v-for="vow in vows" :key="vow.uuid">
+      <template #title>{{ vow.name }}</template>
+      <template #subtitle>{{ vow.rank }} Vow</template>
+      <ProgressTrack class="-mx-2" :progress="vow.progress"/>
       <div class="vow__notes">
         <h3 class="vow-notes__title font-bold uppercase text-sm">Notes</h3>
-        <div class="vow-notes__content" contenteditable="true">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro consectetur tempora suscipit aperiam</p>
-        </div>
+        <div
+          class="vow-notes__content"
+          contenteditable="true"
+          v-html="vow.notes"
+          @input="$store.commit('character/vows/updateNotes', {uuid: vow.uuid, value: $event.target.innerHTML})"
+        ></div>
       </div>
     </CharacterArticle>
   </CharacterSection>
 </template>
 
 <script>
-import CharacterSection from "~/components/CharacterSection";
-import CharacterArticle from "~/components/CharacterArticle";
+import { mapGetters } from "vuex";
+import CharacterSection from "~/components/character/CharacterSection";
+import CharacterArticle from "~/components/character/CharacterArticle";
 import ProgressTrack from "~/components/ProgressTrack.vue";
 
 export default {
   components: {
     CharacterSection,
     CharacterArticle,
-    ProgressTrack
-  }
+    ProgressTrack,
+  },
+  computed: mapGetters({
+    vows: "character/vows/get",
+  }),
+  methods: {
+    // addVow() {
+    //   console.log("add article handled");
+    //   this.$store.commit("activityLog/addVow");
+    // },
+    // toTitleCase(str) {
+    //   return str.replace(/\w\S*/g, function(txt) {
+    //     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    //   });
+    // },
+  },
 };
 </script>
 

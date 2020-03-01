@@ -1,6 +1,6 @@
 <template>
   <article
-    class="character-article bg-white border border-gray-500 p-2"
+    class="character-article bg-white border border-gray-500 p-2 mb-2"
     :class="{ collapsed: isCollapsed, 'no-subtitle': hideSubtitle }"
   >
     <header class="flex justify-between mb-2">
@@ -28,17 +28,17 @@ import CollapseIcon from "~/assets/icons/expand_less.svg";
 export default {
   components: {
     CollapseIcon,
-    ExpandIcon
+    ExpandIcon,
   },
   props: {
     title: String,
-    hideSubtitle: Boolean
+    hideSubtitle: Boolean,
   },
   data() {
     return {
-      isCollapsed: true
+      isCollapsed: true,
     };
-  }
+  },
 };
 </script>
 

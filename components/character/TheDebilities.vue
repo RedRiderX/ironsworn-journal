@@ -8,19 +8,27 @@
           <em>Endure Harm (page 91)</em>. You are severely injured and need treatment to recover.
         </p>
       </div>
+      <div class="debility__actions mt-2">
+        <!-- <button
+          class="debility-action bg-gray-600 text-white font-bold uppercase text-sm rounded py-1 px-4"
+        >Clear Debility</button>-->
+        <button
+          class="debility-action border border-gray-600 font-bold uppercase text-sm rounded py-1 px-4"
+        >Clear Debility</button>
+      </div>
     </CharacterArticle>
   </CharacterSection>
 </template>
 
 <script>
-import CharacterSection from "~/components/CharacterSection";
-import CharacterArticle from "~/components/CharacterArticle";
+import CharacterSection from "~/components/character/CharacterSection";
+import CharacterArticle from "~/components/character/CharacterArticle";
 
 export default {
   components: {
     CharacterSection,
-    CharacterArticle
-  }
+    CharacterArticle,
+  },
 };
 </script>
 

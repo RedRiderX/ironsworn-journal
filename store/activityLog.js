@@ -4,15 +4,25 @@ export const state = () => ({
   list: [
     {
       uuid: "5e30160a-8208-4c01-9e93-35c7173b4ebb",
-      logType: "TextLogItem",
+      logType: "ItemText",
       data: {
         html:
           "<h1>Start Your Journey</h1><p>Describe your adventure below with Rolls and Text posts </p>",
       },
     },
     // {
+    //   uuid: "61a4e4b6-ee78-4eda-b119-df7a7b637432",
+    //   logType: "ItemVowNew",
+    //   data: {
+    //     name: "Found the City of Hope",
+    //     rank: "epic",
+    //     bond: null,
+    //     collapsed: true,
+    //   },
+    // },
+    // {
     //   uuid: "eb987b6d-0974-4246-ad99-72c001a4141e",
-    //   logType: "MetaLogItem",
+    //   logType: "ItemRoll",
     //   data: {
     //     rollStat: "heart",
     //     addNum: 1,
@@ -33,7 +43,11 @@ export const state = () => ({
     // },
   ],
 });
+
 export const getters = {
+  logs(state) {
+    return state.list;
+  },
   getLog: state => uuid => {
     return state.list.find(el => el.uuid === uuid);
   },
@@ -43,7 +57,7 @@ export const mutations = {
   addTextLog(state, html) {
     state.list.push({
       uuid: uuidv1(),
-      logType: "TextLogItem",
+      logType: "ItemText",
       data: {
         html,
       },
@@ -52,13 +66,25 @@ export const mutations = {
   addRoll(state, data) {
     state.list.push({
       uuid: uuidv1(),
-      logType: "MetaLogItem",
+      logType: "ItemRoll",
       data: {
         rollStat: data.rollStat,
         addNum: data.addNum,
         move: data.move,
         actionScore: null,
         challengeDice: [null, null],
+      },
+    });
+  },
+  addVow(state) {
+    state.list.push({
+      uuid: uuidv1(),
+      logType: "ItemVowNew",
+      data: {
+        name: null,
+        rank: null,
+        bond: null,
+        collapsed: false,
       },
     });
   },
@@ -70,6 +96,12 @@ export const mutations = {
   updateTextLog(state, payload) {
     let logItem = state.list.find(el => el.uuid === payload.uuid);
     logItem.data.html = payload.html;
+  },
+  updateNewVow(state, payload) {
+    let logItem = state.list.find(el => el.uuid === payload.uuid);
+    logItem.data.name = payload.name;
+    logItem.data.rank = payload.rank;
+    logItem.data.collapsed = payload.collapsed;
   },
   removeLog(state, uuid) {
     let logItemIndex = state.list.findIndex(el => el.uuid === uuid);

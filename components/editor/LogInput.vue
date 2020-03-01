@@ -1,7 +1,7 @@
 <template>
   <div class="log-input relative">
     <editor-content
-      class="basic-editor rich-text bg-white border border-gray-400 p-2 main-editor pr-24"
+      class="basic-editor rich-text bg-white border border-gray-400 p-2 main-editor pr-24 focus:border-black"
       style="min-height: 2rem;"
       :editor="editor"
     />
