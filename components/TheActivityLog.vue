@@ -1,10 +1,8 @@
 <template>
   <transition-group
     tag="section"
-    name="activity-log-transition"
+    name="activity-log"
     @enter="logEnter"
-    enter-active-class="animated fast fadeInUp"
-    leave-active-class="animated fast fadeOut"
     class="activity-log flex-auto h-0 overflow-y-scroll p-4 max-w-xl border-b border-gray-400"
     style="box-shadow: inset 0 -20px 20px -28px #0000004d, inset 0 20px 20px -28px #0000004d"
   >
@@ -14,6 +12,7 @@
       :key="log.uuid"
       :uuid="log.uuid"
       v-bind="log.data"
+      class="activity-log-item"
     ></component>
   </transition-group>
 </template>
@@ -47,3 +46,31 @@ export default {
   },
 };
 </script>
+
+<style>
+.activity-log-item {
+  /* position: relative; */
+  /* transition: opacity 600ms; */
+  transition: all 500ms;
+}
+.activity-log-enter {
+  opacity: 0;
+  transform: translateY(100%);
+}
+.activity-log-enter-to,
+.activity-log-leave {
+  opacity: 1;
+  /* transform: translateY(0); */
+}
+.activity-log-leave-to {
+  opacity: 0;
+  /* height: 0; */
+  /* padding: 0; */
+  /* transform: translateY(0); */
+}
+.activity-log-leave-active {
+  /* overflow: hidden; */
+  /* position: absolute; */
+  /* transform: translateY(0); */
+}
+</style>

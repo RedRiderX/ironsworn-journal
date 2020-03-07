@@ -13,6 +13,14 @@
           @input="$store.commit('character/vows/updateNotes', {uuid: vow.uuid, value: $event.target.innerHTML})"
         ></div>
       </div>
+      <div class="vow__actions mt-2">
+        <button
+          class="vow-action border border-gray-600 font-bold uppercase text-sm rounded py-1 px-4"
+        >Mark Progress</button>
+        <button
+          class="vow-action border border-gray-600 font-bold uppercase text-sm rounded py-1 px-4"
+        >Clear Progress</button>
+      </div>
     </CharacterArticle>
   </CharacterSection>
 </template>

@@ -9,13 +9,13 @@ export const state = () => ({
       progress: 5,
       notes: "<p>foo</p>",
     },
-    {
-      uuid: "7d950f60-4c8c-4748-90d8-be0a6ee2e2a8",
-      name: "foo",
-      rank: "epic",
-      progress: 2,
-      notes: "<p>bar</p>",
-    },
+    // {
+    //   uuid: "7d950f60-4c8c-4748-90d8-be0a6ee2e2a8",
+    //   name: "foo",
+    //   rank: "epic",
+    //   progress: 2,
+    //   notes: "<p>bar</p>",
+    // },
   ],
 });
 

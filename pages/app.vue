@@ -89,6 +89,7 @@ import DiceRoller from "~/components/editor/DiceRoller";
 import PersonIcon from "~/assets/icons/person.svg";
 import MessagesIcon from "~/assets/icons/messages.svg";
 import BookIcon from "~/assets/icons/book.svg";
+import { mapGetters } from "vuex";
 
 export default {
   name: "App",
@@ -117,6 +118,14 @@ export default {
     return {
       activeView: "log",
     };
+  },
+  computed: mapGetters({
+    logsCount: "activityLog/logsCount",
+  }),
+  watch: {
+    logsCount() {
+      this.activeView = "log";
+    },
   },
 };
 </script>

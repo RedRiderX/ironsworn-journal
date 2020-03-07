@@ -48,6 +48,9 @@ export const getters = {
   logs(state) {
     return state.list;
   },
+  logsCount(state) {
+    return state.list.length;
+  },
   getLog: state => uuid => {
     return state.list.find(el => el.uuid === uuid);
   },

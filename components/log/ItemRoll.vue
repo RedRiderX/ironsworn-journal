@@ -142,11 +142,27 @@ export default {
     moveResult() {
       if (this.move) {
         // TODO: Pull this from move reference
-        return `<p>
-            On a
-            <strong>weak hit</strong>, you are determined but begin your quest with more questions than answers. 
-            Take +1 momentum, and envision what you do to find a path forward.
-          </p>`;
+        if (this.rollResult === "Strong Hit") {
+          return `<p>
+              On a <strong>strong hit</strong>, you are emboldened and it is clear what you must do
+              next (<em>Ask the Oracle</em> if unsure). Take +2 momentum.
+            </p>`;
+        } else if (this.rollResult === "Weak Hit") {
+          return `<p>
+              On a
+              <strong>weak hit</strong>, you are determined but begin your quest with more questions than answers. 
+              Take +1 momentum, and envision what you do to find a path forward.
+            </p>`;
+        } else if (this.rollResult === "Miss") {
+          return `<p>
+            On a <strong>miss</strong>, you face a significant obstacle before you can begin your
+            quest. Envision what stands in your way (<em>Ask the Oracle</em> if unsure), and
+            choose one.</p>
+            <ul>
+            <li>You press on: Suffer -2 momentum, and do what you must to
+            overcome this obstacle</li>
+            <li>You give up: <em>Forsake Your Vow</em>.</li></ul>`;
+        }
       } else {
         return null;
       }
