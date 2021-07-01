@@ -2,7 +2,7 @@
   <ReferenceSection class="rules" title="Rules Reference">
     <p>
       TODO
-      <a href="https://www.ironswornrpg.com/">just go here</a>.
+      <a href="https://www.ironswornrpg.com/" class="underline">just go here</a>.
     </p>
   </ReferenceSection>
 </template>
@@ -12,8 +12,8 @@ import ReferenceSection from "~/components/ReferenceSection";
 
 export default {
   components: {
-    ReferenceSection
-  }
+    ReferenceSection,
+  },
 };
 </script>
 
