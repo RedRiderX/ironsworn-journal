@@ -85,7 +85,9 @@ export default {
      */
     extend(config, ctx) {
       // Stuff for inlineing svgs
-      const svgRule = config.module.rules.find(rule => rule.test.test(".svg"));
+      const svgRule = config.module.rules.find((rule) =>
+        rule.test.test(".svg")
+      );
 
       svgRule.test = /\.(png|jpe?g|gif|webp)$/;
 

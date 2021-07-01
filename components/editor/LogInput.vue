@@ -2,7 +2,7 @@
   <div class="log-input relative">
     <editor-content
       class="basic-editor rich-text bg-white border border-gray-400 p-2 main-editor pr-24 focus:border-black"
-      style="min-height: 2rem;"
+      style="min-height: 2rem"
       :editor="editor"
     />
     <button
@@ -10,7 +10,7 @@
       @click="makeTextLog"
     >
       <span class="leading-none mx-1 inline-block">Post</span>
-      <AddPostIcon class="w-6 h-6 fill-current" style="margin-top: -3px"/>
+      <AddPostIcon class="w-6 h-6 fill-current" style="margin-top: -3px" />
     </button>
   </div>
 </template>
@@ -76,7 +76,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="postcss">
 .main-editor {
   & p.is-editor-empty:first-child::before {
     content: attr(data-empty-text);

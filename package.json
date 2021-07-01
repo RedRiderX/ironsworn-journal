@@ -1,8 +1,8 @@
 {
   "name": "ironsworn-journal-gh",
   "version": "1.0.0",
-  "description": "Now with more Git",
-  "author": "Nuxt.js Team",
+  "description": "A Journal for Solo Ironsworn play",
+  "author": "Red",
   "private": true,
   "scripts": {
     "dev": "MINIMAL=1 CSB=1 nuxt",
@@ -12,18 +12,19 @@
     "post-update": "yarn upgrade --latest"
   },
   "dependencies": {
-    "@nuxt/http": "^0.3.0",
-    "@nuxtjs/pwa": "3.0.0-beta.19",
-    "@nuxtjs/tailwindcss": "1.2.0",
+    "@nuxt/http": "0.6.4",
+    "@nuxtjs/pwa": "3.3.5",
+    "@nuxtjs/tailwindcss": "4.2.0",
     "animate.css": "3.7.2",
-    "nuxt": "^2.5.1",
+    "nuxt": "2.15.7",
+    "postcss": "8.3.5",
     "reqlim": "^0.0.0",
     "tiptap": "1.26.6",
     "tiptap-extensions": "1.28.6",
     "uuid": "3.4.0",
-    "vue-svg-loader": "0.15.0",
+    "vue-svg-loader": "0.16.0",
     "vue-youtube": "1.4.0",
-    "vuex-persistedstate": "2.7.1"
+    "vuex-persistedstate": "3.2.0"
   },
   "keywords": [],
   "license": "GPL-3.0-or-later"
