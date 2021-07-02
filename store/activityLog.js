@@ -51,8 +51,8 @@ export const getters = {
   logsCount(state) {
     return state.list.length;
   },
-  getLog: state => uuid => {
-    return state.list.find(el => el.uuid === uuid);
+  getLog: (state) => (uuid) => {
+    return state.list.find((el) => el.uuid === uuid);
   },
 };
 
@@ -74,8 +74,10 @@ export const mutations = {
         rollStat: data.rollStat,
         addNum: data.addNum,
         move: data.move,
+        actionDie: null,
         actionScore: null,
         challengeDice: [null, null],
+        challengeDiceBurned: [false, false],
       },
     });
   },
@@ -92,22 +94,23 @@ export const mutations = {
     });
   },
   updateRollResult(state, payload) {
-    let logItem = state.list.find(el => el.uuid === payload.uuid);
+    let logItem = state.list.find((el) => el.uuid === payload.uuid);
     logItem.data.actionScore = payload.actionScore;
     logItem.data.challengeDice = payload.challengeDice;
+    logItem.data.challengeDiceBurned = payload.challengeDiceBurned;
   },
   updateTextLog(state, payload) {
-    let logItem = state.list.find(el => el.uuid === payload.uuid);
+    let logItem = state.list.find((el) => el.uuid === payload.uuid);
     logItem.data.html = payload.html;
   },
   updateNewVow(state, payload) {
-    let logItem = state.list.find(el => el.uuid === payload.uuid);
+    let logItem = state.list.find((el) => el.uuid === payload.uuid);
     logItem.data.name = payload.name;
     logItem.data.rank = payload.rank;
     logItem.data.collapsed = payload.collapsed;
   },
   removeLog(state, uuid) {
-    let logItemIndex = state.list.findIndex(el => el.uuid === uuid);
+    let logItemIndex = state.list.findIndex((el) => el.uuid === uuid);
     state.list.splice(logItemIndex, 1);
   },
 };

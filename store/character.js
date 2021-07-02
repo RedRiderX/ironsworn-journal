@@ -61,4 +61,7 @@ export const mutations = {
       state.momentum.total = value;
     }
   },
+  resetMomentum(state) {
+    state.momentum.total = state.momentum.reset;
+  },
 };

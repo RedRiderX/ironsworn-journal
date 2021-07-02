@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     amd: true,
-    node: true
-  }
+    node: true,
+  },
+  noInlineConfig: false,
 };

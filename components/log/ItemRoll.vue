@@ -15,7 +15,7 @@
             class="action-score__value relative bg-gray-100 font-display text-3xl w-16 h-16 m-1 flex items-center justify-center border-gray-800 border-4 rounded-full"
           >
             <span class="leading-none">{{ actionScore }}</span>
-            <div v-show="showNegativeMomentumAlert" class="status status--burn">
+            <div v-show="negativeMomentumActive" class="status status--burn">
               <BurnIcon class="w-6 h-6 p-1 fill-current text-orange-500" />
             </div>
           </div>
@@ -42,7 +42,7 @@
               >
                 <CrossIcon class="w-6 h-6 fill-current text-red-600" />
               </div>
-              <div v-show="challengeDice0Burned" class="status status--burn">
+              <div v-show="challengeDiceBurned[0]" class="status status--burn">
                 <BurnIcon class="w-6 h-6 p-1 fill-current text-orange-500" />
               </div>
             </div>
@@ -65,7 +65,7 @@
               >
                 <CrossIcon class="w-6 h-6 fill-current text-red-600" />
               </div>
-              <div v-show="challengeDice1Burned" class="status status--burn">
+              <div v-show="challengeDiceBurned[1]" class="status status--burn">
                 <BurnIcon class="w-6 h-6 p-1 fill-current text-orange-500" />
               </div>
             </div>
@@ -73,13 +73,13 @@
         </div>
       </div>
       <div
-        v-if="showNegativeMomentumAlert"
+        v-if="negativeMomentumActive"
         class="negative-momentum-alert bg-gray-600 text-white uppercase tracking-wide text-center p-1"
       >
         Action Die <strong>Cancelled</strong>
       </div>
       <div
-        v-show="challengeDice0Burned || challengeDice1Burned"
+        v-show="challengeDiceBurned[0] || challengeDiceBurned[1]"
         class="burned-momentum-alert bg-gray-600 text-white uppercase tracking-wide text-center p-1"
       >
         Challenge Dice <strong>Cancelled</strong>
@@ -118,10 +118,13 @@
       ></div>
     </div>
     <div
+      v-show="momentumBurnPossible"
       class="burn-momentum-prompt flex items-center justify-between border border-gray-400 p-1 bg-gray-200 mb-2 mt-4"
     >
       <span
-        ><strong>Burn Momentum</strong> for a <strong>Weak Hit</strong>?</span
+        ><strong>Burn Momentum</strong> for a
+        <strong>{{ burnPotential }}</strong
+        >?</span
       >
       <button
         class="bg-gray-600 py-1 px-2 text-white font-bold uppercase text-sm rounded self-center flex items-center"
@@ -160,31 +163,51 @@ export default {
       rollStat: initialState.rollStat,
       addNum: initialState.addNum,
       move: initialState.move,
+      actionDie: initialState.actionDie,
       actionScore: initialState.actionScore,
       challengeDice: [
         initialState.challengeDice[0],
         initialState.challengeDice[1],
       ],
-      showNegativeMomentumAlert: false,
-      challengeDice0Burned: false,
-      challengeDice1Burned: false,
+      momentum: this.$store.state.character.momentum.total,
+      challengeDiceBurned: [
+        initialState.challengeDiceBurned[0],
+        initialState.challengeDiceBurned[1],
+      ],
     };
   },
   computed: {
     rollResult() {
-      if (this.actionScore > this.challengeDice[0]) {
-        if (this.actionScore > this.challengeDice[1]) {
-          return "Strong Hit";
-        } else {
-          return "Weak Hit";
-        }
-      } else {
-        if (this.actionScore > this.challengeDice[1]) {
-          return "Weak Hit";
-        } else {
-          return "Miss";
-        }
+      let didChallengeDie0Hit = false;
+      let didChallengeDie1Hit = false;
+
+      if (this.challengeDiceBurned[0]) {
+        didChallengeDie0Hit = true;
+      } else if (this.actionScore > this.challengeDice[0]) {
+        didChallengeDie0Hit = true;
       }
+
+      if (this.challengeDiceBurned[1]) {
+        didChallengeDie1Hit = true;
+      } else if (this.actionScore > this.challengeDice[1]) {
+        didChallengeDie1Hit = true;
+      }
+
+      if (didChallengeDie0Hit && didChallengeDie1Hit) {
+        return "Strong Hit";
+      }
+
+      // eslint-disable-next-line eqeqeq -- Mimic XOR
+      if (didChallengeDie0Hit != didChallengeDie1Hit) {
+        return "Weak Hit";
+      }
+
+      if (!didChallengeDie0Hit && !didChallengeDie1Hit) {
+        return "Miss";
+      }
+
+      // idk how you got here
+      return "Miss";
     },
     rollStatNum() {
       if (this.rollStat === "heart") {
@@ -226,6 +249,40 @@ export default {
       }
       return null;
     },
+    negativeMomentumActive() {
+      return this.momentum < 0 && this.actionDie === Math.abs(this.momentum);
+    },
+    burnPotential() {
+      let potential = "";
+      if (
+        this.challengeDice[0] < this.momentum ||
+        this.challengeDice[1] < this.momentum
+      ) {
+        potential = "Weak Hit";
+      }
+      if (
+        this.challengeDice[0] < this.momentum &&
+        this.challengeDice[1] < this.momentum
+      ) {
+        potential = "Strong Hit";
+      }
+      return potential;
+    },
+    momentumBurnPossible() {
+      if (this.challengeDiceBurned[0] || this.challengeDiceBurned[0]) {
+        return false;
+      }
+
+      if (
+        (this.challengeDice[0] < this.momentum &&
+          this.challengeDice[0] > this.actionScore) ||
+        (this.challengeDice[1] < this.momentum &&
+          this.challengeDice[1] > this.actionScore)
+      ) {
+        return true;
+      }
+      return false;
+    },
   },
   created() {
     // if it doesn't already have a state roll it?
@@ -236,10 +293,16 @@ export default {
   methods: {
     rollActionScore() {
       // d6 + stat + mod
-      this.actionScore = dieRoll() + this.rollStatNum + this.addNum;
+      this.actionDie = dieRoll();
+      if (this.negativeMomentumActive) {
+        this.actionScore = this.rollStatNum + this.addNum;
+      } else {
+        this.actionScore = this.actionDie + this.rollStatNum + this.addNum;
+      }
     },
     rollChallengeDice() {
       this.challengeDice = [dieRoll(10), dieRoll(10)];
+      this.challengeDiceBurned = [false, false];
     },
     reroll() {
       this.rollActionScore();
@@ -248,10 +311,22 @@ export default {
         uuid: this.uuid,
         actionScore: this.actionScore,
         challengeDice: this.challengeDice,
+        challengeDiceBurned: this.challengeDiceBurned,
       });
     },
     burnMomentum() {
-      // do something?
+      // arrays are a little wierd reactivity-wise, be sure to set the whole array at once
+      this.challengeDiceBurned = [
+        this.challengeDice[0] < this.momentum,
+        this.challengeDice[1] < this.momentum,
+      ];
+      this.$store.commit("activityLog/updateRollResult", {
+        uuid: this.uuid,
+        actionScore: this.actionScore,
+        challengeDice: this.challengeDice,
+        challengeDiceBurned: this.challengeDiceBurned,
+      });
+      this.$store.commit("character/resetMomentum");
     },
   },
 };
