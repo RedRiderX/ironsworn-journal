@@ -1,11 +1,5 @@
 export default {
   /*
-   ** Rendering mode
-   ** Doc: https://nuxtjs.org/api/configuration-mode
-   */
-  mode: "universal",
-
-  /*
    ** Headers of the page
    ** Doc: https://vue-meta.nuxtjs.org/api/#metainfo-properties
    */
@@ -57,6 +51,9 @@ export default {
   buildModules: ["@nuxtjs/tailwindcss"],
 
   pwa: {
+    // icon: {
+    //   fileName: "treasure-map.png",
+    // },
     manifest: {
       name: "Journey into the Ironlands",
       short_name: "Ironsworn Journal",

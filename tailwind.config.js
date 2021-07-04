@@ -6,7 +6,7 @@
  */
 /*global module*/
 module.exports = {
-  mode: "jit",
+  // mode: "jit",
   theme: {
     fontFamily: {
       display: ['"Inknut Antiqua"', "serif"],
