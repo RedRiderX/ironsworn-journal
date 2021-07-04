@@ -4,7 +4,10 @@
     name="activity-log"
     @enter="logEnter"
     class="activity-log flex-auto h-0 overflow-y-scroll p-4 max-w-xl border-b border-gray-400"
-    style="box-shadow: inset 0 -20px 20px -28px #0000004d, inset 0 20px 20px -28px #0000004d"
+    style="
+      box-shadow: inset 0 -20px 20px -28px #0000004d,
+        inset 0 20px 20px -28px #0000004d;
+    "
   >
     <component
       v-for="log in logs"
@@ -22,12 +25,14 @@ import { mapGetters } from "vuex";
 import ItemText from "~/components/log/ItemText";
 import ItemRoll from "~/components/log/ItemRoll";
 import ItemVowNew from "~/components/log/ItemVowNew";
+import ItemOracleResult from "~/components/log/ItemOracleResult";
 
 export default {
   components: {
     ItemText,
     ItemRoll,
     ItemVowNew,
+    ItemOracleResult,
   },
   computed: mapGetters({
     logs: "activityLog/logs",

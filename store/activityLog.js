@@ -11,6 +11,14 @@ export const state = () => ({
       },
     },
     // {
+    //   uuid: "e3699091-a374-43ca-b792-eab38510ef13",
+    //   logType: "ItemOracleResult",
+    //   data: {
+    //     name: "Action",
+    //     result: "Risky",
+    //   },
+    // },
+    // {
     //   uuid: "61a4e4b6-ee78-4eda-b119-df7a7b637432",
     //   logType: "ItemVowNew",
     //   data: {
@@ -32,13 +40,6 @@ export const state = () => ({
     //       actionScore: null,
     //       challengeDice: [null, null],
     //     },
-    //   },
-    // },
-    // {
-    //   uuid: "a77179ba-5371-4130-95a8-7e81fe5d693d",
-    //   logType: "TextLogItem",
-    //   data: {
-    //     html: "<p>foo bar</p>",
     //   },
     // },
   ],
@@ -90,6 +91,16 @@ export const mutations = {
         rank: null,
         bond: null,
         collapsed: false,
+      },
+    });
+  },
+  addOracleLog(state, data) {
+    state.list.push({
+      uuid: uuidv1(),
+      logType: "ItemOracleResult",
+      data: {
+        name: data.name,
+        result: data.result,
       },
     });
   },
