@@ -1,25 +1,44 @@
 <template>
-  <CharacterSection class="vows" title="Vows" @add-article="$store.commit('activityLog/addVow')">
+  <CharacterSection
+    class="vows"
+    title="Vows"
+    @add-article="$store.commit('activityLog/addVow')"
+  >
     <CharacterArticle class="vow" v-for="vow in vows" :key="vow.uuid">
       <template #title>{{ vow.name }}</template>
       <template #subtitle>{{ vow.rank }} Vow</template>
-      <ProgressTrack class="-mx-2" :progress="vow.progress"/>
+      <ProgressTrack class="-mx-2" :progress="vow.progress" />
       <div class="vow__notes">
         <h3 class="vow-notes__title font-bold uppercase text-sm">Notes</h3>
         <div
           class="vow-notes__content"
           contenteditable="true"
           v-html="vow.notes"
-          @input="$store.commit('character/vows/updateNotes', {uuid: vow.uuid, value: $event.target.innerHTML})"
+          @input="
+            $store.commit('character/vows/updateNotes', {
+              uuid: vow.uuid,
+              value: $event.target.innerHTML,
+            })
+          "
         ></div>
       </div>
       <div class="vow__actions mt-2">
         <button
           class="vow-action border border-gray-600 font-bold uppercase text-sm rounded py-1 px-4"
-        >Mark Progress</button>
+        >
+          Mark Progress
+        </button>
         <button
           class="vow-action border border-gray-600 font-bold uppercase text-sm rounded py-1 px-4"
-        >Clear Progress</button>
+        >
+          Clear Progress
+        </button>
+        <button
+          class="vow-action border border-red-600 font-bold uppercase text-sm rounded py-1 px-4"
+          @click="$store.commit('character/vows/remove', vow.uuid)"
+        >
+          Delete Vow
+        </button>
       </div>
     </CharacterArticle>
   </CharacterSection>

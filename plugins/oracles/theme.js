@@ -1,709 +1,726 @@
 import Oracle from "./Oracle";
 
 export default new Oracle(
-  "Action",
+  "Theme",
   `<p>
-  Use this table to inspire a discovery, event, character goal, or
-  situation. A roll on this table can be combined with a Theme (see
-  below) to provide an actionand a subject. Then, interpret the result
-  based on the context of the questionand your current situation.
-</p>`,
+  As with the Action oracle, this is an interpretative table which you can use
+  to answer questions or generate new situations. Combined, the Action and
+  Theme tables provide creative prompts suitable for most situations and
+  questions. In fact, with some creative interpretations, it’s entirely possible to
+  play with only these two tables
+</p>
+<blockquote>
+  <p>
+    You are sworn to recover a stolen artifact which is sacred to a community.
+    In your search for suspects, you make a <em>Gather Information</em> move as
+    you question the village leader.
+  </p>
+  <p>
+    You roll a strong hit, but where do the clues lead? You <em>Ask the Oracle</em>
+    and, roll against the Action and Theme tables. “Leave mysticism,” the
+    oracle responds.
+  </p>
+  <p>
+    Interpreting this result, you decide the likely suspect is a traveling
+    mystic who left shortly before the theft was discovered.
+  </p>
+</blockquote>`,
   [
     {
-      text: "Scheme",
+      text: "Risk",
       range: {
         min: 1,
         max: 1,
       },
     },
     {
-      text: "Clash",
+      text: "Ability",
       range: {
         min: 2,
         max: 2,
       },
     },
     {
-      text: "Weaken",
+      text: "Price",
       range: {
         min: 3,
         max: 3,
       },
     },
     {
-      text: "Initiate",
+      text: "Ally",
       range: {
         min: 4,
         max: 4,
       },
     },
     {
-      text: "Create",
+      text: "Battle",
       range: {
         min: 5,
         max: 5,
       },
     },
     {
-      text: "Swear",
+      text: "Safety",
       range: {
         min: 6,
         max: 6,
       },
     },
     {
-      text: "Avenge",
+      text: "Survival",
       range: {
         min: 7,
         max: 7,
       },
     },
     {
-      text: "Guard",
+      text: "Weapon",
       range: {
         min: 8,
         max: 8,
       },
     },
     {
-      text: "Defeat",
+      text: "Wound",
       range: {
         min: 9,
         max: 9,
       },
     },
     {
-      text: "Control",
+      text: "Shelter",
       range: {
         min: 10,
         max: 10,
       },
     },
     {
-      text: "Break",
+      text: "Leader",
       range: {
         min: 11,
         max: 11,
       },
     },
     {
-      text: "Risk",
+      text: "Fear",
       range: {
         min: 12,
         max: 12,
       },
     },
     {
-      text: "Surrender",
+      text: "Time",
       range: {
         min: 13,
         max: 13,
       },
     },
     {
-      text: "Inspect",
+      text: "Duty",
       range: {
         min: 14,
         max: 14,
       },
     },
     {
-      text: "Raid",
+      text: "Secret",
       range: {
         min: 15,
         max: 15,
       },
     },
     {
-      text: "Evade",
+      text: "Innocence",
       range: {
         min: 16,
         max: 16,
       },
     },
     {
-      text: "Assault",
+      text: "Renown",
       range: {
         min: 17,
         max: 17,
       },
     },
     {
-      text: "Deflect",
+      text: "Direction",
       range: {
         min: 18,
         max: 18,
       },
     },
     {
-      text: "Threaten",
+      text: "Death",
       range: {
         min: 19,
         max: 19,
       },
     },
     {
-      text: "Attack",
+      text: "Honor",
       range: {
         min: 20,
         max: 20,
       },
     },
     {
-      text: "Leave",
+      text: "Labor",
       range: {
         min: 21,
         max: 21,
       },
     },
     {
-      text: "Preserve",
+      text: "Solution",
       range: {
         min: 22,
         max: 22,
       },
     },
     {
-      text: "Manipulate",
+      text: "Tool",
       range: {
         min: 23,
         max: 23,
       },
     },
     {
-      text: "Remove",
+      text: "Balance",
       range: {
         min: 24,
         max: 24,
       },
     },
     {
-      text: "Eliminate",
+      text: "Love",
       range: {
         min: 25,
         max: 25,
       },
     },
     {
-      text: "Withdraw",
+      text: "Barrier",
       range: {
         min: 26,
         max: 26,
       },
     },
     {
-      text: "Abandon",
+      text: "Creation",
       range: {
         min: 27,
         max: 27,
       },
     },
     {
-      text: "Investigate",
+      text: "Decay",
       range: {
         min: 28,
         max: 28,
       },
     },
     {
-      text: "Hold",
+      text: "Trade",
       range: {
         min: 29,
         max: 29,
       },
     },
     {
-      text: "Focus",
+      text: "Bond",
       range: {
         min: 30,
         max: 30,
       },
     },
     {
-      text: "Uncover",
+      text: "Hope",
       range: {
         min: 31,
         max: 31,
       },
     },
     {
-      text: "Breach",
+      text: "Superstition",
       range: {
         min: 32,
         max: 32,
       },
     },
     {
-      text: "Aid",
+      text: "Peace",
       range: {
         min: 33,
         max: 33,
       },
     },
     {
-      text: "Uphold",
+      text: "Deception",
       range: {
         min: 34,
         max: 34,
       },
     },
     {
-      text: "Falter",
+      text: "History",
       range: {
         min: 35,
         max: 35,
       },
     },
     {
-      text: "Suppress",
+      text: "World",
       range: {
         min: 36,
         max: 36,
       },
     },
     {
-      text: "Hunt",
+      text: "Vow",
       range: {
         min: 37,
         max: 37,
       },
     },
     {
-      text: "Share",
+      text: "Protection",
       range: {
         min: 38,
         max: 38,
       },
     },
     {
-      text: "Destroy",
+      text: "Nature",
       range: {
         min: 39,
         max: 39,
       },
     },
     {
-      text: "Avoid",
+      text: "Opinion",
       range: {
         min: 40,
         max: 40,
       },
     },
     {
-      text: "Reject",
+      text: "Burden",
       range: {
         min: 41,
         max: 41,
       },
     },
     {
-      text: "Demand",
+      text: "Vengeance",
       range: {
         min: 42,
         max: 42,
       },
     },
     {
-      text: "Explore",
+      text: "Opportunity",
       range: {
         min: 43,
         max: 43,
       },
     },
     {
-      text: "Bolster",
+      text: "Faction",
       range: {
         min: 44,
         max: 44,
       },
     },
     {
-      text: "Seize",
+      text: "Danger",
       range: {
         min: 45,
         max: 45,
       },
     },
     {
-      text: "Mourn",
+      text: "Corruption",
       range: {
         min: 46,
         max: 46,
       },
     },
     {
-      text: "Reveal",
+      text: "Freedom",
       range: {
         min: 47,
         max: 47,
       },
     },
     {
-      text: "Gather",
+      text: "Debt",
       range: {
         min: 48,
         max: 48,
       },
     },
     {
-      text: "Defy",
+      text: "Hate",
       range: {
         min: 49,
         max: 49,
       },
     },
     {
-      text: "Transform",
+      text: "Possession",
       range: {
         min: 50,
         max: 50,
       },
     },
     {
-      text: "Persevere",
+      text: "Stranger",
       range: {
         min: 51,
         max: 51,
       },
     },
     {
-      text: "Serve",
+      text: "Passage",
       range: {
         min: 52,
         max: 52,
       },
     },
     {
-      text: "Begin",
+      text: "Land",
       range: {
         min: 53,
         max: 53,
       },
     },
     {
-      text: "Move",
+      text: "Creature",
       range: {
         min: 54,
         max: 54,
       },
     },
     {
-      text: "Coordinate",
+      text: "Disease",
       range: {
         min: 55,
         max: 55,
       },
     },
     {
-      text: "Resist",
+      text: "Advantage",
       range: {
         min: 56,
         max: 56,
       },
     },
     {
-      text: "Await",
+      text: "Blood",
       range: {
         min: 57,
         max: 57,
       },
     },
     {
-      text: "Impress",
+      text: "Language",
       range: {
         min: 58,
         max: 58,
       },
     },
     {
-      text: "Take",
+      text: "Rumor",
       range: {
         min: 59,
         max: 59,
       },
     },
     {
-      text: "Oppose",
+      text: "Weakness",
       range: {
         min: 60,
         max: 60,
       },
     },
     {
-      text: "Capture",
+      text: "Greed",
       range: {
         min: 61,
         max: 61,
       },
     },
     {
-      text: "Overwhelm",
+      text: "Family",
       range: {
         min: 62,
         max: 62,
       },
     },
     {
-      text: "Challenge",
+      text: "Resource",
       range: {
         min: 63,
         max: 63,
       },
     },
     {
-      text: "Acquire",
+      text: "Structure",
       range: {
         min: 64,
         max: 64,
       },
     },
     {
-      text: "Protect",
+      text: "Dream",
       range: {
         min: 65,
         max: 65,
       },
     },
     {
-      text: "Finish",
+      text: "Community",
       range: {
         min: 66,
         max: 66,
       },
     },
     {
-      text: "Strengthen",
+      text: "War",
       range: {
         min: 67,
         max: 67,
       },
     },
     {
-      text: "Restore",
+      text: "Portent",
       range: {
         min: 68,
         max: 68,
       },
     },
     {
-      text: "Advance",
+      text: "Prize",
       range: {
         min: 69,
         max: 69,
       },
     },
     {
-      text: "Command",
+      text: "Destiny",
       range: {
         min: 70,
         max: 70,
       },
     },
     {
-      text: "Refuse",
+      text: "Momentum",
       range: {
         min: 71,
         max: 71,
       },
     },
     {
-      text: "Find",
+      text: "Power",
       range: {
         min: 72,
         max: 72,
       },
     },
     {
-      text: "Deliver",
+      text: "Memory",
       range: {
         min: 73,
         max: 73,
       },
     },
     {
-      text: "Hide",
+      text: "Ruin",
       range: {
         min: 74,
         max: 74,
       },
     },
     {
-      text: "Fortify",
+      text: "Mysticism",
       range: {
         min: 75,
         max: 75,
       },
     },
     {
-      text: "Betray",
+      text: "Rival",
       range: {
         min: 76,
         max: 76,
       },
     },
     {
-      text: "Secure",
+      text: "Problem",
       range: {
         min: 77,
         max: 77,
       },
     },
     {
-      text: "Arrive",
+      text: "Idea",
       range: {
         min: 78,
         max: 78,
       },
     },
     {
-      text: "Affect",
+      text: "Revenge",
       range: {
         min: 79,
         max: 79,
       },
     },
     {
-      text: "Change",
+      text: "Health",
       range: {
         min: 80,
         max: 80,
       },
     },
     {
-      text: "Defend",
+      text: "Fellowship",
       range: {
         min: 81,
         max: 81,
       },
     },
     {
-      text: "Debate",
+      text: "Enemy",
       range: {
         min: 82,
         max: 82,
       },
     },
     {
-      text: "Support",
+      text: "Religion",
       range: {
         min: 83,
         max: 83,
       },
     },
     {
-      text: "Follow",
+      text: "Spirit",
       range: {
         min: 84,
         max: 84,
       },
     },
     {
-      text: "Construct",
+      text: "Fame",
       range: {
         min: 85,
         max: 85,
       },
     },
     {
-      text: "Locate",
+      text: "Desolation",
       range: {
         min: 86,
         max: 86,
       },
     },
     {
-      text: "Endure",
+      text: "Strength",
       range: {
         min: 87,
         max: 87,
       },
     },
     {
-      text: "Release",
+      text: "Knowledge",
       range: {
         min: 88,
         max: 88,
       },
     },
     {
-      text: "Lose",
+      text: "Truth",
       range: {
         min: 89,
         max: 89,
       },
     },
     {
-      text: "Reduce",
+      text: "Quest",
       range: {
         min: 90,
         max: 90,
       },
     },
     {
-      text: "Escalate",
+      text: "Pride",
       range: {
         min: 91,
         max: 91,
       },
     },
     {
-      text: "Distract",
+      text: "Loss",
       range: {
         min: 92,
         max: 92,
       },
     },
     {
-      text: "Journey",
+      text: "Law",
       range: {
         min: 93,
         max: 93,
       },
     },
     {
-      text: "Escort",
+      text: "Path",
       range: {
         min: 94,
         max: 94,
       },
     },
     {
-      text: "Learn",
+      text: "Warning",
       range: {
         min: 95,
         max: 95,
       },
     },
     {
-      text: "Communicate",
+      text: "Relationship",
       range: {
         min: 96,
         max: 96,
       },
     },
     {
-      text: "Depart",
+      text: "Wealth",
       range: {
         min: 97,
         max: 97,
       },
     },
     {
-      text: "Search",
+      text: "Home",
       range: {
         min: 98,
         max: 98,
       },
     },
     {
-      text: "Charge",
+      text: "Strategy",
       range: {
         min: 99,
         max: 99,
       },
     },
     {
-      text: "Summon",
+      text: "Supply",
       range: {
         min: 100,
         max: 100,

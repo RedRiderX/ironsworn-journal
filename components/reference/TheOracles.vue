@@ -3,13 +3,13 @@
     <input
       class="border-2 border-gray-300 bg-white mb-2 px-5 rounded-lg text-sm focus:outline-none w-full leading-loose inline-block"
       type="search"
-      name="search"
       placeholder="Search"
+      v-model="searchTerm"
     />
 
     <article
       class="oracle oracle--action pb-2 border-b border-gray-600 mb-2"
-      v-for="oracle in oracles"
+      v-for="oracle in filteredOraclesList"
       :key="oracle.name"
     >
       <header class="mb-1">
@@ -28,55 +28,16 @@
         </button>
       </div>
     </article>
-
-    <article class="oracle oracle--action pb-2 border-b border-gray-600 mb-2">
-      <header class="mb-1">
-        <h1 class="font-bold font-display font-xl uppercase">ACTION</h1>
-      </header>
-
-      <div class="oracle__description mb-1">
-        <p>
-          Use this table to inspire a discovery, event, character goal, or
-          situation. A roll on this table can be combined with a Theme (see
-          below) to provide an actionand a subject. Then, interpret the result
-          based on the context of the questionand your current situation.
-        </p>
-      </div>
-      <div class="oracle__rolls">
-        <button
-          class="oracle-roll bg-gray-600 text-white font-bold uppercase text-sm rounded py-1 px-4"
-        >
-          Roll an Action
-        </button>
-      </div>
-    </article>
-    <article class="oracle oracle--theme">
-      <header class="mb-1">
-        <h1 class="font-bold font-display font-xl uppercase">Theme</h1>
-      </header>
-      <div class="oracle__description mb-1">
-        <p>
-          As with the Action oracle, this is an interpretative table which you
-          can use to answer questions or generate new situations. Combined, the
-          Action and Theme tables provide creative prompts suitable for most
-          situations and questions. In fact, with some creative interpretations,
-          it’s entirely possible to play with only these two tables.
-        </p>
-      </div>
-      <div class="oracle__rolls">
-        <button
-          class="oracle-roll bg-gray-600 text-white font-bold uppercase text-sm rounded py-1 px-4"
-        >
-          Roll a Theme
-        </button>
-      </div>
-    </article>
   </ReferenceSection>
 </template>
 
 <script>
+// import debounce from 'lodash.debounce';
 import ReferenceSection from "~/components/ReferenceSection";
 import ActionOracle from "~/plugins/oracles/action.js";
+import ThemeOracle from "~/plugins/oracles/theme.js";
+import RegionOracle from "~/plugins/oracles/region.js";
+import LocationOracle from "~/plugins/oracles/location.js";
 
 export default {
   components: {
@@ -85,8 +46,16 @@ export default {
   data() {
     return {
       // each oracle needs a name, description, and roll function
-      oracles: [ActionOracle],
+      oracles: [ActionOracle, ThemeOracle, RegionOracle, LocationOracle],
+      searchTerm: "",
     };
+  },
+  computed: {
+    filteredOraclesList() {
+      return this.oracles.filter((oracle) => {
+        return oracle.name.toLowerCase().includes(this.searchTerm);
+      });
+    },
   },
   methods: {
     commitRoll(oracleRollHandler) {
@@ -96,5 +65,14 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="postcss">
+.oracle__description {
+  & * + * {
+    @apply mt-2;
+  }
+
+  & blockquote {
+    @apply border-l-2 border-gray-500 border-solid p-3 bg-gray-100;
+  }
+}
 </style>

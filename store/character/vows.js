@@ -23,8 +23,8 @@ export const getters = {
   get(state) {
     return state.list;
   },
-  getVow: state => uuid => {
-    return state.list.find(el => el.uuid === uuid);
+  getVow: (state) => (uuid) => {
+    return state.list.find((el) => el.uuid === uuid);
   },
 };
 
@@ -39,8 +39,12 @@ export const mutations = {
     });
   },
   updateNotes(state, payload) {
-    let vowItem = state.list.find(el => el.uuid === payload.uuid);
+    let vowItem = state.list.find((el) => el.uuid === payload.uuid);
     vowItem.notes = payload.notes;
+  },
+  remove(state, uuid) {
+    let vowIndex = state.list.findIndex((el) => el.uuid === uuid);
+    state.list.splice(vowIndex, 1);
   },
   // incrementProgress(state, payload) {
   //   let vowItem = state.list.find(el => el.uuid === payload.uuid);
