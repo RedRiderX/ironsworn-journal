@@ -126,13 +126,7 @@
         <strong>{{ burnPotential }}</strong
         >?</span
       >
-      <button
-        class="bg-gray-600 py-1 px-2 text-white font-bold uppercase text-sm rounded self-center flex items-center"
-        @click="burnMomentum"
-      >
-        <span class="leading-none mx-1 inline-block">Burn</span>
-        <BurnIcon class="w-5 h-5 fill-current" />
-      </button>
+      <BaseButton @click="burnMomentum" label="Burn" icon="BurnIcon" />
     </div>
   </LogItem>
 </template>
@@ -141,7 +135,7 @@
 import LogItem from "~/components/log/BaseItem";
 import CheckIcon from "~/assets/icons/check.svg";
 import CrossIcon from "~/assets/icons/cross.svg";
-import BurnIcon from "~/assets/icons/burn.svg";
+import BaseButton from "~/components/BaseButton";
 import dieRoll from "~/plugins/dice";
 
 export default {
@@ -149,7 +143,7 @@ export default {
     LogItem,
     CheckIcon,
     CrossIcon,
-    BurnIcon,
+    BaseButton,
   },
   props: {
     uuid: String,

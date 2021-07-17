@@ -12,36 +12,56 @@
               type="text"
               placeholder="Found the City of Hope"
               v-model="name"
-            >
+            />
           </div>
           <div class="mb-3">
             <label class="block font-bold mb-1">Challenge Rank</label>
             <div class="radio-group">
               <label class="radio-group-item block my-1">
-                <input class="mr-1" type="radio" v-model="rank" value="troublesome">
+                <input
+                  class="mr-1"
+                  type="radio"
+                  v-model="rank"
+                  value="troublesome"
+                />
                 Troublesome
               </label>
               <label class="radio-group-item block my-1">
-                <input class="mr-1" type="radio" v-model="rank" value="dangerous">
+                <input
+                  class="mr-1"
+                  type="radio"
+                  v-model="rank"
+                  value="dangerous"
+                />
                 Dangerous
               </label>
               <label class="radio-group-item block my-1">
-                <input class="mr-1" type="radio" v-model="rank" value="formidable">
+                <input
+                  class="mr-1"
+                  type="radio"
+                  v-model="rank"
+                  value="formidable"
+                />
                 Formidable
               </label>
               <label class="radio-group-item block my-1">
-                <input class="mr-1" type="radio" v-model="rank" value="extreme">
+                <input
+                  class="mr-1"
+                  type="radio"
+                  v-model="rank"
+                  value="extreme"
+                />
                 Extreme
               </label>
               <label class="radio-group-item block my-1">
-                <input class="mr-1" type="radio" v-model="rank" value="epic">
+                <input class="mr-1" type="radio" v-model="rank" value="epic" />
                 Epic
               </label>
             </div>
           </div>
           <div class="mb-3">
             <label class="block font-bold mb-1">
-              <input class="mr-1" type="checkbox" v-model="bond">
+              <input class="mr-1" type="checkbox" v-model="bond" />
               Do you share a bond?
             </label>
           </div>
@@ -55,18 +75,17 @@
           </div>
         </div>
         <div class="form-actions">
-          <button
-            class="bg-gray-600 py-1 px-2 text-white font-bold uppercase text-sm rounded self-center flex items-center"
+          <BaseButton
             @click="makeRoll"
-          >
-            <span class="leading-none mx-1 inline-block">Swear an Iron Vow</span>
-            <RollIcon class="w-5 h-5 fill-current"/>
-          </button>
+            label="Swear an Iron Vow"
+            icon="RollIcon"
+          />
         </div>
       </div>
       <div class="collapsed-view" v-show="collapsed">
-        <h1 class="text-lg font-display text-center">New Vow
-          <br>
+        <h1 class="text-lg font-display text-center">
+          New Vow
+          <br />
           {{ name }} - {{ rank }}
         </h1>
       </div>
@@ -76,12 +95,12 @@
 
 <script>
 import LogItem from "~/components/log/BaseItem";
-import RollIcon from "~/assets/icons/die.svg";
+import BaseButton from "~/components/BaseButton";
 
 export default {
   components: {
     LogItem,
-    RollIcon,
+    BaseButton,
   },
   props: {
     uuid: String,

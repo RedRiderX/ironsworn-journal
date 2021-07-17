@@ -5,13 +5,12 @@
       style="min-height: 2rem"
       :editor="editor"
     />
-    <button
-      class="bg-gray-600 py-1 px-2 text-white font-bold uppercase text-sm rounded self-center flex items-center absolute bottom-0 right-0 m-1"
+    <BaseButton
+      class="absolute bottom-0 right-0 m-1"
       @click="makeTextLog"
-    >
-      <span class="leading-none mx-1 inline-block">Post</span>
-      <AddPostIcon class="w-6 h-6 fill-current" style="margin-top: -3px" />
-    </button>
+      label="Post"
+      icon="AddPostIcon"
+    />
   </div>
 </template>
 
@@ -26,12 +25,12 @@ import {
   History,
   Placeholder,
 } from "tiptap-extensions";
-import AddPostIcon from "~/assets/icons/add-post.svg";
+import BaseButton from "~/components/BaseButton";
 
 export default {
   components: {
     EditorContent,
-    AddPostIcon,
+    BaseButton,
   },
   data() {
     return {

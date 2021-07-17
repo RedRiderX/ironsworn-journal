@@ -20,12 +20,11 @@
 
       <div class="oracle__description mb-1" v-html="oracle.description"></div>
       <div class="oracle__rolls">
-        <button
+        <BaseButton
           @click="commitRoll(oracle.roll)"
-          class="oracle-roll bg-gray-600 text-white font-bold uppercase text-sm rounded py-1 px-4"
-        >
-          Roll {{ oracle.name }}
-        </button>
+          :label="'Roll ' + oracle.name"
+          icon="RollIcon"
+        />
       </div>
     </article>
   </ReferenceSection>
@@ -38,10 +37,12 @@ import ActionOracle from "~/plugins/oracles/action.js";
 import ThemeOracle from "~/plugins/oracles/theme.js";
 import RegionOracle from "~/plugins/oracles/region.js";
 import LocationOracle from "~/plugins/oracles/location.js";
+import BaseButton from "~/components/BaseButton";
 
 export default {
   components: {
     ReferenceSection,
+    BaseButton,
   },
   data() {
     return {

@@ -2,16 +2,15 @@
   <div class="log-input relative">
     <EditorContent
       class="basic-editor rich-text bg-white border border-gray-400 p-2 main-editor pr-24"
-      style="min-height: 2rem;"
+      style="min-height: 2rem"
       :editor="editor"
     />
-    <button
-      class="bg-gray-600 py-1 px-2 text-white font-bold uppercase text-sm rounded self-center flex items-center absolute bottom-0 right-0 m-1"
+    <BaseButton
+      class="absolute bottom-0 right-0 m-1"
       @click="updateTextLog"
-    >
-      <span class="leading-none mx-1 inline-block">Save</span>
-      <AddPostIcon class="w-6 h-6 fill-current" style="margin-top: -3px"/>
-    </button>
+      label="Save"
+      icon="AddPostIcon"
+    />
   </div>
 </template>
 
@@ -19,12 +18,12 @@
 // Import the basic building blocks
 import { Editor, EditorContent } from "tiptap";
 import { Blockquote, Heading, Bold, Italic, History } from "tiptap-extensions";
-import AddPostIcon from "~/assets/icons/add-post.svg";
+import BaseButton from "~/components/BaseButton";
 
 export default {
   components: {
     EditorContent,
-    AddPostIcon,
+    BaseButton,
   },
   props: {
     uuid: String,
@@ -33,7 +32,7 @@ export default {
     return {
       editor: null,
       htmlDoc: this.$store.state.activityLog.list.find(
-        el => el.uuid === this.uuid
+        (el) => el.uuid === this.uuid
       ).data.html,
     };
   },

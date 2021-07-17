@@ -18,26 +18,20 @@
       </select>
       <label class="mx-1" for="modifier">
         Add
-        <input v-model.number="addNum" type="number" class="w-8">
+        <input v-model.number="addNum" type="number" class="w-8" />
       </label>
     </div>
 
-    <button
-      class="bg-gray-600 py-1 px-2 text-white font-bold uppercase text-sm rounded self-center flex items-center"
-      @click="makeRoll"
-    >
-      <span class="leading-none mx-1 inline-block">Roll</span>
-      <RollIcon class="w-5 h-5 fill-current"/>
-    </button>
+    <BaseButton @click="makeRoll" label="Roll" icon="RollIcon" />
   </div>
 </template>
 
 <script>
-import RollIcon from "~/assets/icons/die.svg";
+import BaseButton from "~/components/BaseButton";
 
 export default {
   components: {
-    RollIcon,
+    BaseButton,
   },
   props: {
     move: {
