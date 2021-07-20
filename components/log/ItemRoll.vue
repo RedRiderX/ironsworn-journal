@@ -135,6 +135,7 @@
 import LogItem from "~/components/log/BaseItem";
 import CheckIcon from "~/assets/icons/check.svg";
 import CrossIcon from "~/assets/icons/cross.svg";
+import BurnIcon from "~/assets/icons/burn.svg";
 import BaseButton from "~/components/BaseButton";
 import dieRoll from "~/plugins/dice";
 
@@ -143,6 +144,7 @@ export default {
     LogItem,
     CheckIcon,
     CrossIcon,
+    BurnIcon,
     BaseButton,
   },
   props: {

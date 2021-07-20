@@ -42,6 +42,15 @@ export const state = () => ({
     //     },
     //   },
     // },
+    // {
+    //   uuid: "a001e869-e109-4fd7-a1de-30f23180fc27",
+    //   logType: "ItemPOINew",
+    //   data: {
+    //     title: "Goodlanding (Wild, Rough, Withered)",
+    // description: `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    //     Porro consectetur tempora suscipit aperiam</p>`
+    //   },
+    // },
   ],
 });
 
@@ -104,6 +113,17 @@ export const mutations = {
       },
     });
   },
+  addPOI(state) {
+    state.list.push({
+      uuid: uuidv1(),
+      logType: "ItemPOINew",
+      data: {
+        title: null,
+        description: null,
+        collapsed: false,
+      },
+    });
+  },
   updateRollResult(state, payload) {
     let logItem = state.list.find((el) => el.uuid === payload.uuid);
     logItem.data.actionScore = payload.actionScore;
@@ -118,6 +138,12 @@ export const mutations = {
     let logItem = state.list.find((el) => el.uuid === payload.uuid);
     logItem.data.name = payload.name;
     logItem.data.rank = payload.rank;
+    logItem.data.collapsed = payload.collapsed;
+  },
+  updateNewPOI(state, payload) {
+    let logItem = state.list.find((el) => el.uuid === payload.uuid);
+    logItem.data.title = payload.title;
+    logItem.data.description = payload.description;
     logItem.data.collapsed = payload.collapsed;
   },
   removeLog(state, uuid) {

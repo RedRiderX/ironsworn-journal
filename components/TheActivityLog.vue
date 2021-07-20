@@ -26,6 +26,7 @@ import ItemText from "~/components/log/ItemText";
 import ItemRoll from "~/components/log/ItemRoll";
 import ItemVowNew from "~/components/log/ItemVowNew";
 import ItemOracleResult from "~/components/log/ItemOracleResult";
+import ItemPOINew from "~/components/log/ItemPOINew";
 
 export default {
   components: {
@@ -33,6 +34,7 @@ export default {
     ItemRoll,
     ItemVowNew,
     ItemOracleResult,
+    ItemPOINew,
   },
   computed: mapGetters({
     logs: "activityLog/logs",
