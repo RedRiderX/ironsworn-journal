@@ -35,6 +35,7 @@ export default {
   plugins: [
     "~/plugins/vue-youtube",
     { src: "~/plugins/localStorage", ssr: false },
+    // "~/plugins/lodash.js",
   ],
 
   /*

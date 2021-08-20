@@ -16,7 +16,6 @@
     "@nuxtjs/pwa": "3.3.5",
     "@nuxtjs/tailwindcss": "4.2.0",
     "animate.css": "3.7.2",
-    "lodash.debounce": "4.0.8",
     "nuxt": "2.15.7",
     "postcss": "8.3.5",
     "reqlim": "^0.0.0",

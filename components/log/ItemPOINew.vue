@@ -29,7 +29,15 @@
               placeholder="Enter Notes Here"
             ></textarea>
           </div>
-          Map
+
+          <label class="block font-bold mb-1"
+            >Map Pin (Click the map to add)</label
+          >
+          <MapCanvas
+            canPreview
+            :poi="$store.state.map.poi"
+            @update-poi-position="setPOIPosition"
+          />
         </div>
         <div class="form-actions">
           <BaseButton @click="makePOI" label="Add Location" icon="RollIcon" />
@@ -49,11 +57,13 @@
 <script>
 import LogItem from "~/components/log/BaseItem";
 import BaseButton from "~/components/BaseButton";
+import MapCanvas from "~/components/editor/MapCanvas";
 
 export default {
   components: {
     LogItem,
     BaseButton,
+    MapCanvas,
   },
   props: {
     uuid: String,
@@ -67,13 +77,15 @@ export default {
       title: initialState.title,
       description: initialState.description,
       collapsed: initialState.collapsed,
+      x: null,
+      y: null,
     };
   },
   methods: {
     makePOI() {
       this.$store.commit("map/addPOI", {
-        x: 50,
-        y: 50,
+        x: this.x,
+        y: this.y,
         title: this.title,
         description: this.description,
       });
@@ -85,6 +97,10 @@ export default {
         description: this.description,
         collapsed: true,
       });
+    },
+    setPOIPosition(newPos) {
+      this.x = newPos.x;
+      this.y = newPos.y;
     },
   },
 };

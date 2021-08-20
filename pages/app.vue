@@ -4,65 +4,73 @@
       class="flex-1 bg-gray-100 order-2 lg:flex flex-col items-center"
       :class="[activeView === 'log' ? 'flex' : 'hidden']"
     >
-      <TheActivityLog/>
+      <TheActivityLog />
       <section class="flex-none w-full max-w-xl p-2">
-        <DiceRoller/>
-        <LogInput/>
+        <DiceRoller />
+        <LogInput />
       </section>
     </main>
     <aside
       class="flex-1 lg:block lg:flex-initial lg:max-w-sm bg-gray-200 order-1 p-2 overflow-y-scroll"
-      :class="{'hidden': activeView !== 'stats'}"
+      :class="{ hidden: activeView !== 'stats' }"
     >
       <h1
         class="font-display text-3xl mb-1"
         contenteditable="true"
-        @input="$store.commit('character/updateName', $event.target.innerText)"
-      >{{ this.$store.state.character.name }}</h1>
-      <TheMainStats/>
-      <TheResourceStats/>
-      <TheMomentumStats/>
-      <TheDebilities/>
-      <TheVows/>
-      <Assets/>
+        @blur="$store.commit('character/updateName', $event.target.innerText)"
+      >
+        {{ this.$store.state.character.name }}
+      </h1>
+      <TheMainStats />
+      <TheResourceStats />
+      <TheMomentumStats />
+      <TheDebilities />
+      <TheVows />
+      <Assets />
     </aside>
     <aside
       class="flex-1 lg:block lg:flex-initial lg:max-w-sm bg-gray-200 order-3 overflow-y-scroll"
-      :class="{'hidden': activeView !== 'reference'}"
+      :class="{ hidden: activeView !== 'reference' }"
     >
-      <Map/>
-      <YourWorld/>
-      <Moves/>
-      <Bonds/>
-      <Oracles/>
-      <Rules/>
-      <Music/>
+      <Map />
+      <YourWorld />
+      <Moves />
+      <Bonds />
+      <Oracles />
+      <Rules />
+      <Music />
     </aside>
-    <nav class="mobile-menu flex-none flex justify-center order-4 lg:hidden bg-gray-600 text-white">
+    <nav
+      class="mobile-menu flex-none flex justify-center order-4 lg:hidden bg-gray-600 text-white"
+    >
       <div class="mobile-menu__wrapper max-w-xs w-full flex">
         <button
           class="flex flex-1 flex-col items-center py-2 px-4"
           @click="activeView = 'stats'"
-          :class="{'bg-gray-500': activeView === 'stats'}"
+          :class="{ 'bg-gray-500': activeView === 'stats' }"
         >
-          <PersonIcon class="w-6 h-6 fill-current"/>
-          <span class="uppercase text-xs tracking-wider leading-none">Stats</span>
+          <PersonIcon class="w-6 h-6 fill-current" />
+          <span class="uppercase text-xs tracking-wider leading-none"
+            >Stats</span
+          >
         </button>
         <button
           class="flex flex-1 flex-col items-center py-2 px-4"
           @click="activeView = 'log'"
-          :class="{'bg-gray-500': activeView === 'log'}"
+          :class="{ 'bg-gray-500': activeView === 'log' }"
         >
-          <MessagesIcon class="w-6 h-6 fill-current"/>
+          <MessagesIcon class="w-6 h-6 fill-current" />
           <span class="uppercase text-xs tracking-wider leading-none">Log</span>
         </button>
         <button
           class="flex flex-1 flex-col items-center py-2 px-4"
           @click="activeView = 'reference'"
-          :class="{'bg-gray-500': activeView === 'reference'}"
+          :class="{ 'bg-gray-500': activeView === 'reference' }"
         >
-          <BookIcon class="w-6 h-6 fill-current"/>
-          <span class="uppercase text-xs tracking-wider leading-none">Reference</span>
+          <BookIcon class="w-6 h-6 fill-current" />
+          <span class="uppercase text-xs tracking-wider leading-none"
+            >Reference</span
+          >
         </button>
       </div>
     </nav>
