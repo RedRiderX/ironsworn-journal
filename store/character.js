@@ -17,6 +17,7 @@ export const state = () => ({
     max: 9,
     reset: 1,
   },
+  bonds: 3,
 });
 
 const minMomentum = -6;
@@ -63,5 +64,11 @@ export const mutations = {
   },
   resetMomentum(state) {
     state.momentum.total = state.momentum.reset;
+  },
+  addBond(state) {
+    state.bonds = Math.min(state.bonds + 1, 40);
+  },
+  removeBond(state) {
+    state.bonds = Math.max(state.bonds - 1, 0);
   },
 };

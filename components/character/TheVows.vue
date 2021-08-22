@@ -7,7 +7,7 @@
     <CharacterArticle class="vow" v-for="vow in vows" :key="vow.uuid">
       <template #title>{{ vow.name }}</template>
       <template #subtitle>{{ vow.rank }} Vow</template>
-      <ProgressTrack class="-mx-2" :progress="vow.progress" />
+      <ProgressTrack class="-mx-2" :progress="vow.progress" :rank="vow.rank" />
       <div class="vow__notes">
         <h3 class="vow-notes__title font-bold uppercase text-sm">Notes</h3>
         <div
@@ -32,6 +32,11 @@
           class="vow-action border border-gray-600 font-bold uppercase text-sm rounded py-1 px-4"
         >
           Clear Progress
+        </button>
+        <button
+          class="vow-action border border-gray-600 font-bold uppercase text-sm rounded py-1 px-4"
+        >
+          Change Rank
         </button>
         <button
           class="vow-action border border-red-600 font-bold uppercase text-sm rounded py-1 px-4"
