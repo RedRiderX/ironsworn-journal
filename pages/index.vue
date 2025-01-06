@@ -7,7 +7,7 @@
         Journey into the Ironlands
       </h1>
       <!-- <SwordIcon class="icon--sword"/> -->
-      <TreasureMapIcon class="icon--logo" />
+      <IconTreasureMap class="icon--logo" />
       <hr />
       <h2
         class="subtitle text-center font-display uppercase text-xl max-w-sm mx-auto mb-10"
@@ -22,31 +22,24 @@
         play
       </h2>
       <div class="links text-center">
-        <NLink
+        <NuxtLink
           to="/app"
           class="bg-accent-500 text-white font-bold uppercase text-sm rounded py-2 px-4 tracking-wide"
-          >Begin</NLink
+          >Begin</NuxtLink
         >
-        <NLink
+        <NuxtLink
           to="/about"
           class="text-gray-600 border-gray-600 font-bold uppercase text-sm rounded py-2 px-4 border border-1 tracking-wide"
-          >About this app</NLink
+          >About this app</NuxtLink
         >
       </div>
     </div>
   </section>
 </template>
 
-<script>
+<script setup lang="ts">
 // import SwordIcon from "~/assets/icons/sword.svg";
-import TreasureMapIcon from "~/assets/logos/treasure-map.svg";
-
-export default {
-  components: {
-    // SwordIcon,
-    TreasureMapIcon,
-  },
-};
+import IconTreasureMap from "~/assets/logos/treasure-map.svg";
 </script>
 
 <style scoped>

@@ -1,10 +1,12 @@
 <template>
   <div class="log-input relative">
-    <editor-content
-      class="basic-editor rich-text bg-white border border-gray-400 p-2 main-editor pr-24 focus:border-black"
-      style="min-height: 2rem"
-      :editor="editor"
-    />
+    <client-only>
+      <editor-content
+        class="basic-editor rich-text bg-white border border-gray-400 p-2 main-editor pr-24 focus:border-black"
+        style="min-height: 2rem"
+        :editor="editor"
+      />
+    </client-only>
     <BaseButton
       class="absolute bottom-0 right-0 m-1"
       @click="makeTextLog"
@@ -16,15 +18,19 @@
 
 <script>
 // Import the basic building blocks
-import { Editor, EditorContent } from "tiptap";
-import {
-  Blockquote,
-  Heading,
-  Bold,
-  Italic,
-  History,
-  Placeholder,
-} from "tiptap-extensions";
+import { Editor, EditorContent } from "@tiptap/vue-2";
+import StarterKit from "@tiptap/starter-kit";
+// import Document from '@tiptap/extension-document'
+// import Paragraph from '@tiptap/extension-paragraph'
+// import Text from '@tiptap/extension-text'
+// import {
+//   Blockquote,
+//   Heading,
+//   Bold,
+//   Italic,
+//   History,
+//   Placeholder,
+// } from "tiptap-extensions";
 import BaseButton from "~/components/BaseButton";
 
 export default {
@@ -49,18 +55,22 @@ export default {
     // then passed to the `EditorContent` component as a `prop`
     this.editor = new Editor({
       extensions: [
-        new Blockquote(),
-        new Heading({ levels: [1] }),
-        new Bold(),
-        new Italic(),
-        new History(),
-        new Placeholder({
-          emptyEditorClass: "is-editor-empty",
-          emptyNodeClass: "is-empty",
-          emptyNodeText: "Describe Your Journey ...",
-          showOnlyWhenEditable: true,
-          showOnlyCurrent: true,
-        }),
+        StarterKit,
+        // Document,
+        // Paragraph,
+        // Text,
+        // new Blockquote(),
+        // new Heading({ levels: [1] }),
+        // new Bold(),
+        // new Italic(),
+        // new History(),
+        // new Placeholder({
+        //   emptyEditorClass: "is-editor-empty",
+        //   emptyNodeClass: "is-empty",
+        //   emptyNodeText: "Describe Your Journey ...",
+        //   showOnlyWhenEditable: true,
+        //   showOnlyCurrent: true,
+        // }),
       ],
       onUpdate: ({ getJSON, getHTML }) => {
         this.htmlDoc = getHTML();

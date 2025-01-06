@@ -1,4 +1,4 @@
-const uuidv1 = require("uuid/v1");
+import { v1 as uuidv1 } from "uuid";
 
 export const state = () => ({
   list: [

@@ -17,7 +17,8 @@
 <script>
 // Import the basic building blocks
 import { Editor, EditorContent } from "tiptap";
-import { Blockquote, Heading, Bold, Italic, History } from "tiptap-extensions";
+import StarterKit from "@tiptap/starter-kit";
+// import { Blockquote, Heading, Bold, Italic, History } from "tiptap-extensions";
 import BaseButton from "~/components/BaseButton";
 
 export default {

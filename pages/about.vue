@@ -37,10 +37,10 @@
         <p></p>
       </div>
       <div>
-        <NLink
+        <NuxtLink
           to="/"
           class="bg-accent-500 text-white font-bold uppercase text-sm rounded py-2 px-4 tracking-wide"
-          >Back home</NLink
+          >Back home</NuxtLink
         >
       </div>
     </div>

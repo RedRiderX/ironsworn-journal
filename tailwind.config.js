@@ -1,12 +1,4 @@
-/*
- ** TailwindCSS Configuration File
- **
- ** Docs: https://tailwindcss.com/docs/configuration
- ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
- */
-/*global module*/
-module.exports = {
-  // mode: "jit",
+export default {
   theme: {
     fontFamily: {
       display: ['"Inknut Antiqua"', "serif"],
@@ -165,6 +157,5 @@ module.exports = {
       "6xl": "4rem",
     },
   },
-  variants: { display: ["responsive", "group-hover"] },
   plugins: [],
 };

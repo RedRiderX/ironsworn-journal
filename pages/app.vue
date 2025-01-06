@@ -17,9 +17,9 @@
       <h1
         class="font-display text-3xl mb-1"
         contenteditable="true"
-        @blur="$store.commit('character/updateName', $event.target.innerText)"
+        @blur="characterStore.updateName(($event.target as HTMLElement).innerText)"
       >
-        {{ this.$store.state.character.name }}
+        {{ characterStore.name }}
       </h1>
       <TheMainStats />
       <TheResourceStats />
@@ -77,65 +77,22 @@
   </div>
 </template>
 
-<script>
-import TheActivityLog from "~/components/TheActivityLog";
-import LogInput from "~/components/editor/LogInput";
-import TheMainStats from "~/components/character/TheMainStats";
-import TheResourceStats from "~/components/character/TheResourceStats";
-import TheMomentumStats from "~/components/character/TheMomentumStats";
-import TheDebilities from "~/components/character/TheDebilities";
-import TheVows from "~/components/character/TheVows";
-import Assets from "~/components/character/TheAssets";
-import Map from "~/components/reference/TheMap";
-import YourWorld from "~/components/reference/TheWorld";
-import Moves from "~/components/reference/TheMoves";
-import Bonds from "~/components/reference/TheBonds";
-import Oracles from "~/components/reference/TheOracles";
-import Rules from "~/components/reference/TheRules";
-import Music from "~/components/reference/TheMusic";
-import DiceRoller from "~/components/editor/DiceRoller";
-import PersonIcon from "~/assets/icons/person.svg";
-import MessagesIcon from "~/assets/icons/messages.svg";
-import BookIcon from "~/assets/icons/book.svg";
-import { mapGetters } from "vuex";
+<script setup lang="ts">
+const activityLogStore = useActivityLogStore()
+const characterStore = useCharacterStore()
+const activeView = ref("log");
+const { logsCount } = storeToRefs(activityLogStore)
 
-export default {
-  name: "App",
-  components: {
-    TheActivityLog,
-    TheMainStats,
-    TheResourceStats,
-    TheMomentumStats,
-    LogInput,
-    TheDebilities,
-    TheVows,
-    Assets,
-    Map,
-    YourWorld,
-    Moves,
-    Bonds,
-    Oracles,
-    Rules,
-    Music,
-    DiceRoller,
-    PersonIcon,
-    MessagesIcon,
-    BookIcon,
+watch(logsCount, () => {
+  activeView.value = "log";
+});
+
+useHead({
+  bodyAttrs: {
+    class: 'font-body',
   },
-  data() {
-    return {
-      activeView: "log",
-    };
-  },
-  computed: mapGetters({
-    logsCount: "activityLog/logsCount",
-  }),
-  watch: {
-    logsCount() {
-      this.activeView = "log";
-    },
-  },
-};
+})
+
 </script>
 
 <style scoped>

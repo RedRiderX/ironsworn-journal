@@ -1,18 +1,18 @@
 <template>
   <BaseItem class="log-item--text" canEdit canDelete :uuid="uuid" @edit-log="editing = true">
     <div class="rich-text" v-html="html" v-show="!editing"></div>
-    <LogEditor v-if="editing" :uuid="uuid" @update-done="editing = false"/>
+    <!-- <LogEditor v-if="editing" :uuid="uuid" @update-done="editing = false"/> -->
   </BaseItem>
 </template>
 
 <script>
 import BaseItem from "~/components/log/BaseItem";
-import LogEditor from "~/components/editor/LogEditor";
+// import LogEditor from "~/components/editor/LogEditor";
 
 export default {
   components: {
     BaseItem,
-    LogEditor,
+    // LogEditor,
   },
   props: {
     uuid: String,
