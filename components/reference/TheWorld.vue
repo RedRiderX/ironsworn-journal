@@ -18,13 +18,6 @@
 </template>
 
 <script>
-import ReferenceSection from "~/components/ReferenceSection";
-
-export default {
-  components: {
-    ReferenceSection
-  }
-};
 </script>
 
 <style scoped>

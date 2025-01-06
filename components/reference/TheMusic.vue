@@ -3,12 +3,12 @@
     <template v-slot:headerExtra>
       <button @click.stop="toggleMusic" class="py-1 px-2 leading-none">⏯</button>
     </template>
-    <youtube ref="musicEmbed" :playerVars="playerVars" resize fitParent class="w-full"/>
+    <!-- <youtube ref="musicEmbed" :playerVars="playerVars" resize fitParent class="w-full"/> -->
     <LiteYouTubeEmbed
       ref="iframe"
       id="PLczb7TC-cuxeP9Mwj7uSE47UTq4PERFb9"
       title="Background Music Playlist"
-      playlist="true"
+      :playlist="true"
       playerClass="w-full"
       params="suffle=1&loop=1"
     />

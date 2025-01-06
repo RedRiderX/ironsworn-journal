@@ -2,9 +2,9 @@
   <CharacterSection
     class="vows"
     title="Vows"
-    @add-article="$store.commit('activityLog/addVow')"
+    @add-article="activityLogStore.addVow()"
   >
-    <CharacterArticle class="vow" v-for="vow in vows" :key="vow.uuid">
+    <CharacterArticle class="vow" v-for="vow in characterVowsStore.list" :key="vow.uuid">
       <template #title>{{ vow.name }}</template>
       <template #subtitle>{{ vow.rank }} Vow</template>
       <ProgressTrack class="-mx-2" :progress="vow.progress" :rank="vow.rank" />
@@ -15,7 +15,7 @@
           contenteditable="true"
           v-html="vow.notes"
           @input="
-            $store.commit('character/vows/updateNotes', {
+            characterVowsStore.updateNotes({
               uuid: vow.uuid,
               value: $event.target.innerHTML,
             })
@@ -40,7 +40,7 @@
         </button>
         <button
           class="vow-action border border-red-600 font-bold uppercase text-sm rounded py-1 px-4"
-          @click="$store.commit('character/vows/remove', vow.uuid)"
+          @click="characterVowsStore.remove(vow.uuid)"
         >
           Delete Vow
         </button>
@@ -49,33 +49,18 @@
   </CharacterSection>
 </template>
 
-<script>
-import { mapGetters } from "vuex";
-import CharacterSection from "~/components/character/CharacterSection";
-import CharacterArticle from "~/components/character/CharacterArticle";
-import ProgressTrack from "~/components/ProgressTrack.vue";
-
-export default {
-  components: {
-    CharacterSection,
-    CharacterArticle,
-    ProgressTrack,
-  },
-  computed: mapGetters({
-    vows: "character/vows/get",
-  }),
-  methods: {
-    // addVow() {
-    //   console.log("add article handled");
-    //   this.$store.commit("activityLog/addVow");
-    // },
-    // toTitleCase(str) {
-    //   return str.replace(/\w\S*/g, function(txt) {
-    //     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    //   });
-    // },
-  },
-};
+<script setup lang="ts">
+const activityLogStore = useActivityLogStore()
+const characterVowsStore = useCharacterVowsStore()
+// addVow() {
+//   console.log("add article handled");
+//   this.$store.commit("activityLog/addVow");
+// },
+// toTitleCase(str) {
+//   return str.replace(/\w\S*/g, function(txt) {
+//     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+//   });
+// },
 </script>
 
 <style scoped>

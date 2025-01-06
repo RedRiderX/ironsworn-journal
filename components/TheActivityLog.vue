@@ -22,6 +22,12 @@
 </template>
 
 <script setup lang="ts">
+// import ItemText from "~/components/log/ItemText";
+// import ItemRoll from "~/components/log/ItemRoll";
+// import ItemVowNew from "~/components/log/ItemVowNew";
+// import ItemOracleResult from "~/components/log/ItemOracleResult";
+// import ItemPOINew from "~/components/log/ItemPOINew";
+const ItemText = resolveComponent('ItemText')
 const store = useActivityLogStore()
 const root = ref<HTMLElement | null>(null);
 

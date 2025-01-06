@@ -7,7 +7,7 @@
       <TheActivityLog />
       <section class="flex-none w-full max-w-xl p-2">
         <DiceRoller />
-        <LogInput />
+        <!-- <LogInput /> -->
       </section>
     </main>
     <aside
@@ -26,19 +26,19 @@
       <TheMomentumStats />
       <TheDebilities />
       <TheVows />
-      <Assets />
+      <TheAssets />
     </aside>
     <aside
       class="flex-1 lg:block lg:flex-initial lg:max-w-sm bg-gray-200 order-3 overflow-y-scroll"
       :class="{ hidden: activeView !== 'reference' }"
     >
-      <Map />
-      <YourWorld />
-      <Moves />
-      <Bonds />
-      <Oracles />
-      <Rules />
-      <Music />
+      <!-- <TheMap /> -->
+      <TheWorld />
+      <TheMoves />
+      <!-- <TheBonds /> -->
+      <!-- <TheOracles /> -->
+      <TheRules />
+      <TheMusic />
     </aside>
     <nav
       class="mobile-menu flex-none flex justify-center order-4 lg:hidden bg-gray-600 text-white"
@@ -49,7 +49,7 @@
           @click="activeView = 'stats'"
           :class="{ 'bg-gray-500': activeView === 'stats' }"
         >
-          <PersonIcon class="w-6 h-6 fill-current" />
+          <SvgoPerson class="w-6 h-6 fill-current" />
           <span class="uppercase text-xs tracking-wider leading-none"
             >Stats</span
           >
@@ -59,7 +59,7 @@
           @click="activeView = 'log'"
           :class="{ 'bg-gray-500': activeView === 'log' }"
         >
-          <MessagesIcon class="w-6 h-6 fill-current" />
+          <SvgoMessages class="w-6 h-6 fill-current" />
           <span class="uppercase text-xs tracking-wider leading-none">Log</span>
         </button>
         <button
@@ -67,7 +67,7 @@
           @click="activeView = 'reference'"
           :class="{ 'bg-gray-500': activeView === 'reference' }"
         >
-          <BookIcon class="w-6 h-6 fill-current" />
+          <SvgoBook class="w-6 h-6 fill-current" />
           <span class="uppercase text-xs tracking-wider leading-none"
             >Reference</span
           >
@@ -86,13 +86,6 @@ const { logsCount } = storeToRefs(activityLogStore)
 watch(logsCount, () => {
   activeView.value = "log";
 });
-
-useHead({
-  bodyAttrs: {
-    class: 'font-body',
-  },
-})
-
 </script>
 
 <style scoped>

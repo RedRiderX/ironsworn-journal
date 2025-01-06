@@ -5,25 +5,12 @@
   </BaseItem>
 </template>
 
-<script>
-import BaseItem from "~/components/log/BaseItem";
-// import LogEditor from "~/components/editor/LogEditor";
-
-export default {
-  components: {
-    BaseItem,
-    // LogEditor,
-  },
-  props: {
-    uuid: String,
-    html: String,
-  },
-  data() {
-    return {
-      editing: false,
-    };
-  },
-};
+<script setup lang="ts">
+const props = defineProps({
+  uuid: String,
+  html: String,
+})
+const editing = ref(false)
 </script>
 
 <style scoped>

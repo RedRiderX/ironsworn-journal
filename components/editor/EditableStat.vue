@@ -1,14 +1,20 @@
 <template>
   <div
     contenteditable="true"
-    @input="$store.commit('character/updateStat', {name: statName, value: $event.target.innerText})"
-  >{{ this.$store.state.character.stats[statName] }}</div>
+    @input="
+      store.updateStat({
+        name: statName,
+        value: $event.target.innerText,
+      })
+    "
+  >
+    {{ store.stats[statName] }}
+  </div>
 </template>
 
-<script>
-export default {
-  props: {
-    statName: String,
-  },
-};
+<script setup lang="ts">
+const store = useCharacterStore()
+const props = defineProps({
+  statName: String,
+});
 </script>

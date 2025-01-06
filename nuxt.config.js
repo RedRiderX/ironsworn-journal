@@ -34,5 +34,14 @@ export default defineNuxtConfig({
     strict: false,
   },
 
+  components: [
+    {
+      path: "~/components",
+      pathPrefix: false,
+    },
+  ],
+
+  devtools: { enabled: true },
+
   compatibilityDate: "2025-01-05",
 });
