@@ -1,6 +1,17 @@
+export interface Poi {
+  x: number;
+  y: number;
+  title: string;
+  description: string;
+}
+
+interface MapState {
+  mapUrl: string;
+  poi: Poi[];
+}
+
 export const useMapStore = defineStore("map", {
-  // state: (): State => ({
-  state: () => ({
+  state: (): MapState => ({
     mapUrl: "ironlands-map.svg",
     poi: [],
     // [
@@ -21,21 +32,16 @@ export const useMapStore = defineStore("map", {
     // ],
   }),
   actions: {
-    addPOI(payload) {
-      this.poi.push({
-        x: payload.x,
-        y: payload.y,
-        title: payload.title,
-        description: payload.description,
-      });
+    addPOI(payload: Poi) {
+      this.poi.push(payload);
     },
-    updatePOITitle(payload) {
+    updatePOITitle(payload: { index: number; newTitle: string }) {
       this.poi[payload.index].title = payload.newTitle;
     },
-    updatePOIDescription(payload) {
+    updatePOIDescription(payload: { index: number; newDescription: string }) {
       this.poi[payload.index].description = payload.newDescription;
     },
-    removePOI(index) {
+    removePOI(index: number) {
       this.poi.splice(index, 1);
     },
   },

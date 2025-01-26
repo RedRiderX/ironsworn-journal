@@ -98,9 +98,9 @@ export default {
         collapsed: true,
       });
     },
-    setPOIPosition(newPos) {
-      this.x = newPos.x;
-      this.y = newPos.y;
+    setPOIPosition(newPosX, newPosY) {
+      this.x = newPosX;
+      this.y = newPosY;
     },
   },
 };

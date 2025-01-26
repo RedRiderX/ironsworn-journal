@@ -1,7 +1,7 @@
 <template>
   <ReferenceSection class="map" title="Map">
     <template v-slot:headerExtra>
-      <button class="flex gap-1 items-center" @click.stop="storeActivityLog.addPOI()">
+      <button class="flex gap-1 items-center" @click.stop="storeActivityLog.addPOI">
         <span class="leading-none">Add</span>
         <SvgoAdd class="width-4 height-4 fill-current m-0" />
       </button>
