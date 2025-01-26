@@ -16,17 +16,20 @@
 </template>
 
 <script setup>
+// doesn't have complete api implementation, will probably need to switch to https://vue-youtube.github.io/docs/
 import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
 import 'vue-lite-youtube-embed/style.css'
-const musicEmbed = ref(null)
-
-const player = computed(() => this.$refs.musicEmbed.value);
+const iframe = ref(null)
 
 async function toggleMusic() {
-  await musicEmbed.value
-    .getPlayerState()
+  console.log(iframe.value.getPlayerInstance())
+  iframeEl = iframe.value.getPlayerInstance()
+  
+  iframeEl.contentWindow.postMessage(`{"event":"command","func":"getPlayerState","args":""}`, '*')
+
+  await iframeEl.contentWindow.postMessage(`{"event":"command","func":"getPlayerState","args":""}`, '*')
     .then(state =>
-      state === 1 ? musicEmbed.value.pauseVideo() : musicEmbed.value.playVideo()
+      state === 1 ? iframe.value.pauseVideo() : iframe.value.playVideo()
     );
 }
 </script>

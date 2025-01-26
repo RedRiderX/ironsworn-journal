@@ -1,14 +1,14 @@
 <template>
   <ReferenceSection class="map" title="Map">
     <template v-slot:headerExtra>
-      <button @click.stop="$store.commit('activityLog/addPOI')">
-        <span class="align-middle leading-none">Add</span>
-        <AddIcon class="inline-block align-middle" />
+      <button class="flex gap-1 items-center" @click.stop="storeActivityLog.addPOI()">
+        <span class="leading-none">Add</span>
+        <SvgoAdd class="width-4 height-4 fill-current m-0" />
       </button>
     </template>
-    <MapCanvas :poi="$store.state.map.poi" />
+    <MapCanvas :poi="store.poi" />
     <PoiInput
-      v-for="(point, index) in $store.state.map.poi"
+      v-for="(point, index) in store.poi"
       :key="index"
       :index="index"
       :title="point.title"
@@ -17,20 +17,9 @@
   </ReferenceSection>
 </template>
 
-<script>
-import ReferenceSection from "~/components/ReferenceSection";
-import MapCanvas from "~/components/editor/MapCanvas";
-import PoiInput from "~/components/input/PoiInput";
-import AddIcon from "~/assets/icons/add.svg";
-
-export default {
-  components: {
-    AddIcon,
-    ReferenceSection,
-    MapCanvas,
-    PoiInput,
-  },
-};
+<script setup lang="ts">
+const store = useMapStore()
+const storeActivityLog = useActivityLogStore()
 </script>
 
 <style scoped>

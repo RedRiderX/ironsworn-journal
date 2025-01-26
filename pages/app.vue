@@ -32,13 +32,13 @@
       class="flex-1 lg:block lg:flex-initial lg:max-w-sm bg-gray-200 order-3 overflow-y-scroll"
       :class="{ hidden: activeView !== 'reference' }"
     >
-      <!-- <TheMap /> -->
+      <TheMap />
       <TheWorld />
       <TheMoves />
       <!-- <TheBonds /> -->
       <!-- <TheOracles /> -->
       <TheRules />
-      <TheMusic />
+      <!-- <TheMusic /> -->
     </aside>
     <nav
       class="mobile-menu flex-none flex justify-center order-4 lg:hidden bg-gray-600 text-white"
