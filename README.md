@@ -8,17 +8,17 @@ Using Nuxt, tailwind, and [tiptap](https://tiptap.scrumpy.io/) for content editi
 
 ```bash
 # install dependencies
-$ npm install
+$ bun install
 
 # serve with hot reload at localhost:3000
-$ npm run dev
+$ bun --bun run dev
 
 # build for production and launch server
-$ npm run build
-$ npm start
+$ bun --bun run build
+$ bun --bun start
 
 # generate static project
-$ npm run generate
+$ bun --bun run generate
 ```
 
 For a detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
