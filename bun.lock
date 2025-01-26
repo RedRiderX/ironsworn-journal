@@ -4,6 +4,7 @@
     "": {
       "name": "ironsworn-journal-gh",
       "dependencies": {
+        "@datasworn/ironsworn-classic": "^0.0.10",
         "@nuxt/eslint": "^0.7.4",
         "@nuxtjs/tailwindcss": "^6.12.2",
         "@pinia/nuxt": "^0.9.0",
@@ -31,6 +32,9 @@
       },
     },
   },
+  "trustedDependencies": [
+    "@parcel/watcher",
+  ],
   "packages": {
     "@alloc/quick-lru": ["@alloc/quick-lru@5.2.0", "", {}, "sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw=="],
 
@@ -243,6 +247,10 @@
     "@csstools/selector-resolve-nested": ["@csstools/selector-resolve-nested@3.0.0", "", { "peerDependencies": { "postcss-selector-parser": "^7.0.0" } }, "sha512-ZoK24Yku6VJU1gS79a5PFmC8yn3wIapiKmPgun0hZgEI5AOqgH2kiPRsPz1qkGv4HL+wuDLH83yQyk6inMYrJQ=="],
 
     "@csstools/selector-specificity": ["@csstools/selector-specificity@5.0.0", "", { "peerDependencies": { "postcss-selector-parser": "^7.0.0" } }, "sha512-PCqQV3c4CoVm3kdPhyeZ07VmBRdH2EpMFA/pd9OASpOEC3aXNGoqPDAZ80D0cLpMBxnmk0+yNhGsEx31hq7Gtw=="],
+
+    "@datasworn/core": ["@datasworn/core@0.0.10", "", {}, "sha512-MpZHQ87haKJVJlzyo6mhHgfkLUgrwIW+Rj4Pu4k66oEchlg+vmHVTkVSF9oRBitq//eTqx5jZLesmo43Nhnq+w=="],
+
+    "@datasworn/ironsworn-classic": ["@datasworn/ironsworn-classic@0.0.10", "", { "dependencies": { "@datasworn/core": "0.0.10" } }, "sha512-yNoeKcL2qL6I3JH9XfCjMX1u7k83FXnyRzIxQLd32lO9If2Su4Oq6xe4FigQWHsZtkyuYWyj7/B3fMNW24H1xg=="],
 
     "@es-joy/jsdoccomment": ["@es-joy/jsdoccomment@0.49.0", "", { "dependencies": { "comment-parser": "1.4.1", "esquery": "^1.6.0", "jsdoc-type-pratt-parser": "~4.1.0" } }, "sha512-xjZTSFgECpb9Ohuk5yMX5RhUEbfeQcuOp8IF60e+wyzWEF0M5xeSgqsfLtvPEX8BIyOX9saZqzuGPmZ8oWc+5Q=="],
 

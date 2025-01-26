@@ -4,7 +4,7 @@
     @input="
       store.updateMomentum({
         name: statName,
-        value: $event.target.innerText,
+        value: ($event.target as HTMLElement).innerText,
       })
     "
   >

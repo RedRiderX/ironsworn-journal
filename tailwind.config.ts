@@ -1,4 +1,7 @@
+import type { Config } from 'tailwindcss'
+
 export default {
+  content: [],
   theme: {
     fontFamily: {
       display: ['"Inknut Antiqua"', "serif"],
@@ -158,4 +161,4 @@ export default {
     },
   },
   plugins: [],
-};
+} satisfies Config

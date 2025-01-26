@@ -21,7 +21,7 @@
         >
         play
       </h2>
-      <div class="links text-center">
+      <div class="links flex gap-1 justify-center">
         <NuxtLink
           to="/app"
           class="bg-accent-500 text-white font-bold uppercase text-sm rounded py-2 px-4 tracking-wide"

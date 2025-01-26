@@ -1,4 +1,4 @@
-import { v1 as uuidv1 } from "uuid";
+import { v1 as uuidv4 } from "uuid";
 
 interface State {
   list: LogText[];
@@ -122,7 +122,7 @@ export const useActivityLogStore = defineStore("activityLog", {
   actions: {
     addTextLog(html) {
       this.list.push({
-        uuid: uuidv1(),
+        uuid: uuidv4(),
         logType: "ItemText",
         data: {
           html,
@@ -131,7 +131,7 @@ export const useActivityLogStore = defineStore("activityLog", {
     },
     addRoll(data) {
       this.list.push({
-        uuid: uuidv1(),
+        uuid: uuidv4(),
         logType: "ItemRoll",
         data: {
           rollStat: data.rollStat,
@@ -146,7 +146,7 @@ export const useActivityLogStore = defineStore("activityLog", {
     },
     addVow() {
       this.list.push({
-        uuid: uuidv1(),
+        uuid: uuidv4(),
         logType: "ItemVowNew",
         data: {
           name: null,
@@ -158,7 +158,7 @@ export const useActivityLogStore = defineStore("activityLog", {
     },
     addOracleLog(data) {
       this.list.push({
-        uuid: uuidv1(),
+        uuid: uuidv4(),
         logType: "ItemOracleResult",
         data: {
           name: data.name,
@@ -168,7 +168,7 @@ export const useActivityLogStore = defineStore("activityLog", {
     },
     addPOI() {
       this.list.push({
-        uuid: uuidv1(),
+        uuid: uuidv4(),
         logType: "ItemPOINew",
         data: {
           title: null,

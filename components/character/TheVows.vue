@@ -17,7 +17,7 @@
           @input="
             characterVowsStore.updateNotes({
               uuid: vow.uuid,
-              value: $event.target.innerHTML,
+              notes: ($event.target as HTMLElement).innerHTML,
             })
           "
         ></div>
@@ -40,7 +40,7 @@
         </button>
         <button
           class="vow-action border border-red-600 font-bold uppercase text-sm rounded py-1 px-4"
-          @click="characterVowsStore.remove(vow.uuid)"
+          @click="characterVowsStore.removeVow(vow.uuid)"
         >
           Delete Vow
         </button>

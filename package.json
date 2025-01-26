@@ -13,6 +13,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@datasworn/ironsworn-classic": "^0.0.10",
     "@nuxt/eslint": "^0.7.4",
     "@nuxtjs/tailwindcss": "^6.12.2",
     "@pinia/nuxt": "^0.9.0",
@@ -39,5 +40,8 @@
     "@types/bun": "^1.2.0",
     "typescript": "^5.7.2",
     "vue-tsc": "^2.1.10"
-  }
+  },
+  "trustedDependencies": [
+    "@parcel/watcher"
+  ]
 }

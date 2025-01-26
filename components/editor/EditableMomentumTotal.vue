@@ -1,7 +1,7 @@
 <template>
   <div
     contenteditable="true"
-    @input="store.updateMomentumTotal($event.target.innerText)"
+    @input="store.updateMomentumTotal(($event.target as HTMLElement).innerText)"
   >
     {{ formattedTotal }}
   </div>

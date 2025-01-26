@@ -1,23 +1,11 @@
 <template>
-  <transition-group
-    ref="root"
-    tag="section"
-    name="activity-log"
-    @enter="logEnter"
-    class="activity-log flex-auto h-0 overflow-y-scroll p-4 max-w-xl border-b border-gray-400"
-    style="
+  <transition-group ref="root" tag="section" name="activity-log" @enter="logEnter"
+    class="activity-log flex-auto h-0 overflow-y-scroll p-4 max-w-xl border-b border-gray-400" style="
       box-shadow: inset 0 -20px 20px -28px #0000004d,
         inset 0 20px 20px -28px #0000004d;
-    "
-  >
-    <component
-      v-for="log in store.logs"
-      :is="log.logType"
-      :key="log.uuid"
-      :uuid="log.uuid"
-      v-bind="log.data"
-      class="activity-log-item"
-    ></component>
+    ">
+    <component v-for="log in store.logs" :is="log.logType" :key="log.uuid" :uuid="log.uuid" v-bind="log.data"
+      class="activity-log-item"></component>
   </transition-group>
 </template>
 
@@ -29,9 +17,9 @@
 // import ItemPOINew from "~/components/log/ItemPOINew";
 const ItemText = resolveComponent('ItemText')
 const store = useActivityLogStore()
-const root = ref<HTMLElement | null>(null);
+const root = useTemplateRef<HTMLInputElement>('root')
 
-function logEnter(el, done) {
+function logEnter(el: HTMLElement, done: () => void): void {
   // some dumb math here:
   // When a new log is added I want to scroll to the bottom of the log
   // BUT the bottom will shift because of the entrance transition
@@ -49,21 +37,25 @@ function logEnter(el, done) {
   /* transition: opacity 600ms; */
   transition: all 500ms;
 }
+
 .activity-log-enter {
   opacity: 0;
   transform: translateY(100%);
 }
+
 .activity-log-enter-to,
 .activity-log-leave {
   opacity: 1;
   /* transform: translateY(0); */
 }
+
 .activity-log-leave-to {
   opacity: 0;
   /* height: 0; */
   /* padding: 0; */
   /* transform: translateY(0); */
 }
+
 .activity-log-leave-active {
   /* overflow: hidden; */
   /* position: absolute; */
