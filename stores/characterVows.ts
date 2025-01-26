@@ -1,4 +1,4 @@
-import { v1 as uuidv1 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 // Define the types for individual vow items
 interface Vow {
@@ -50,7 +50,7 @@ export const useCharacterVowsStore = defineStore('characterVows', {
     // Add a new vow
     addVow(payload: AddVowPayload): void {
       this.list.push({
-        uuid: uuidv1(),
+        uuid: uuidv4(),
         name: payload.name,
         rank: payload.rank,
         progress: payload.progress,
