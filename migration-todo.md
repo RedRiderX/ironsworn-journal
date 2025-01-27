@@ -1,8 +1,7 @@
 - check vue 3 breaking changes
-- move to vite
 - move to vite-pwa
 - move to pinia
 - move to tailwind 3?
-- check for codesandbox changes
 - move to pinia-plugin-persistedstate
 - update tiptap
+- move to bun

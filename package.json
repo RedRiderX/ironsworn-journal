@@ -31,7 +31,6 @@
     "reqlim": "^0.0.0",
     "uuid": "^11.0.5",
     "vue": "^3.5.13",
-    "vue-lite-youtube-embed": "^1.2.4",
     "vue-router": "^4.5.0"
   },
   "keywords": [],
