@@ -10,32 +10,19 @@
       <h1 class="text-2xl font-bold leading-normal">{{ title }}</h1>
       <slot name="headerExtra"></slot>
       <button class="p-1">
-        <ExpandIcon v-show="isCollapsed" />
-        <CollapseIcon v-show="!isCollapsed" />
+        <SvgoExpandMore v-show="isCollapsed" />
+        <SvgoExpandLess v-show="!isCollapsed" />
       </button>
     </header>
     <slot></slot>
   </section>
 </template>
 
-<script>
-import ExpandIcon from "~/assets/icons/expand_more.svg";
-import CollapseIcon from "~/assets/icons/expand_less.svg";
-
-export default {
-  components: {
-    CollapseIcon,
-    ExpandIcon,
-  },
-  props: {
-    title: String,
-  },
-  data() {
-    return {
-      isCollapsed: true,
-    };
-  },
-};
+<script setup lang="ts">
+const props = defineProps({
+  title: String,
+})
+const isCollapsed = ref(true)
 </script>
 
 <style scoped>

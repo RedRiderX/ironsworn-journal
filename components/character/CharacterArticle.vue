@@ -13,33 +13,20 @@
         </h2>
       </div>
       <button @click="isCollapsed = !isCollapsed" class="p-1 self-start">
-        <ExpandIcon v-show="isCollapsed"/>
-        <CollapseIcon v-show="!isCollapsed"/>
+        <SvgoExpandMore v-show="isCollapsed"/>
+        <SvgoExpandLess v-show="!isCollapsed"/>
       </button>
     </header>
     <slot></slot>
   </article>
 </template>
 
-<script>
-import ExpandIcon from "~/assets/icons/expand_more.svg";
-import CollapseIcon from "~/assets/icons/expand_less.svg";
-
-export default {
-  components: {
-    CollapseIcon,
-    ExpandIcon,
-  },
-  props: {
-    title: String,
-    hideSubtitle: Boolean,
-  },
-  data() {
-    return {
-      isCollapsed: true,
-    };
-  },
-};
+<script setup lang="ts">
+const props = defineProps({
+  title: String,
+  hideSubtitle: Boolean,
+})
+const isCollapsed = ref(true)
 </script>
 
 <style scoped>

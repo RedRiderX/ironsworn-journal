@@ -30,40 +30,23 @@
   </ReferenceSection>
 </template>
 
-<script>
-// import debounce from 'lodash.debounce';
-import ReferenceSection from "~/components/ReferenceSection";
-import ActionOracle from "~/plugins/oracles/action.js";
-import ThemeOracle from "~/plugins/oracles/theme.js";
-import RegionOracle from "~/plugins/oracles/region.js";
-import LocationOracle from "~/plugins/oracles/location.js";
-import BaseButton from "~/components/BaseButton";
+<script setup lang="ts">
+import { ActionOracle, LocationOracle, RegionOracle, ThemeOracle } from '~/utils';
 
-export default {
-  components: {
-    ReferenceSection,
-    BaseButton,
-  },
-  data() {
-    return {
-      // each oracle needs a name, description, and roll function
-      oracles: [ActionOracle, ThemeOracle, RegionOracle, LocationOracle],
-      searchTerm: "",
-    };
-  },
-  computed: {
-    filteredOraclesList() {
-      return this.oracles.filter((oracle) => {
-        return oracle.name.toLowerCase().includes(this.searchTerm);
-      });
-    },
-  },
-  methods: {
-    commitRoll(oracleRollHandler) {
-      this.$store.commit("activityLog/addOracleLog", oracleRollHandler());
-    },
-  },
-};
+// each oracle needs a name, description, and roll function
+const oracles = ref([ActionOracle, ThemeOracle, RegionOracle, LocationOracle])
+const searchTerm = ref("")
+const activityLogStore = useActivityLogStore()
+
+const filteredOraclesList = computed(() => {
+  return oracles.value.filter((oracle) => {
+    return oracle.name.toLowerCase().includes(searchTerm.value);
+  });
+})
+
+function commitRoll(oracleRollHandler) {
+  activityLogStore.addOracleLog(oracleRollHandler());
+}
 </script>
 
 <style lang="postcss">

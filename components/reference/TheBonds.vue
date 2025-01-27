@@ -2,19 +2,19 @@
   <ReferenceSection class="bonds" title="Bonds">
     <ProgressTrack
       class="-mx-2"
-      :progress="$store.state.character.bonds"
+      :progress="characterStore.bonds"
       :rank="'epic'"
     />
     <div class="bonds__actions mt-2">
       <button
         class="bond-action border border-gray-600 font-bold uppercase text-sm rounded py-1 px-4"
-        @click="$store.commit('character/addBond')"
+        @click="characterStore.addBond()"
       >
         Mark Bond
       </button>
       <button
         class="bond-action border border-gray-600 font-bold uppercase text-sm rounded py-1 px-4"
-        @click="$store.commit('character/removeBond')"
+        @click="characterStore.removeBond()"
       >
         Clear Bond
       </button>
@@ -39,16 +39,8 @@
   </ReferenceSection>
 </template>
 
-<script>
-import ReferenceSection from "~/components/ReferenceSection";
-import ProgressTrack from "~/components/ProgressTrack.vue";
-
-export default {
-  components: {
-    ReferenceSection,
-    ProgressTrack,
-  },
-};
+<script setup lang="ts">
+const characterStore = useCharacterStore()
 </script>
 
 <style scoped>

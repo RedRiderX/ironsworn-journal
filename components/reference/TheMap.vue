@@ -3,7 +3,7 @@
     <template v-slot:headerExtra>
       <button class="flex gap-1 items-center" @click.stop="storeActivityLog.addPOI">
         <span class="leading-none">Add</span>
-        <SvgoAdd class="width-4 height-4 fill-current m-0" />
+        <SvgoAdd class="text-[1rem] fill-current m-0" />
       </button>
     </template>
     <MapCanvas :poi="store.poi" />

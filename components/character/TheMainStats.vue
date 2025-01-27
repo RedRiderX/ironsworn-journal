@@ -23,12 +23,5 @@
   </div>
 </template>
 
-<script>
-import EditableStat from "~/components/editor/EditableStat";
-
-export default {
-  components: {
-    EditableStat,
-  },
-};
+<script setup lang="ts">
 </script>
