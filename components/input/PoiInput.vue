@@ -28,7 +28,7 @@
         class="py-1 px-2 order-last"
       >
         <span class="sr-only">More</span>
-        <MoreIcon
+        <SvgoMoreMenu
           class="w-5 h-5 fill-current text-gray-500 inline-block align-middle"
         />
       </button>
@@ -39,7 +39,7 @@
         :class="{ hidden: !menuExpanded }"
       >
         <span class="align-middle">Delete</span>
-        <DeleteIcon
+        <SvgDelete
           class="w-5 h-5 fill-current text-gray-500 inline-block align-middle"
         />
       </button>
@@ -48,18 +48,11 @@
 </template>
 
 <script>
-import DeleteIcon from "~/assets/icons/delete.svg";
-import MoreIcon from "~/assets/icons/more-menu.svg";
-
 export default {
   props: {
     index: Number,
     title: String,
     description: String,
-  },
-  components: {
-    DeleteIcon,
-    MoreIcon,
   },
   data: function () {
     return {

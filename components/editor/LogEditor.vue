@@ -9,7 +9,7 @@
       class="absolute bottom-0 right-0 m-1"
       @click="updateTextLog"
       label="Save"
-      icon="AddPostIcon"
+      icon="SvgoAddPost"
     />
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <LogItem
+  <BaseItem
     class="log-item--meta"
     canReroll
     canDelete
@@ -16,7 +16,7 @@
           >
             <span class="leading-none">{{ actionScore }}</span>
             <div v-show="negativeMomentumActive" class="status status--burn">
-              <BurnIcon class="w-6 h-6 p-1 fill-current text-orange-500" />
+              <SvgoBurn class="w-6 h-6 p-1 fill-current text-orange-500" />
             </div>
           </div>
         </div>
@@ -34,16 +34,16 @@
                 v-show="actionScore > challengeDice[0]"
                 class="status status--hit"
               >
-                <CheckIcon class="w-6 h-6 fill-current text-green-500" />
+                <SvgoCheck class="w-6 h-6 fill-current text-green-500" />
               </div>
               <div
                 v-show="actionScore <= challengeDice[0]"
                 class="status status--miss"
               >
-                <CrossIcon class="w-6 h-6 fill-current text-red-600" />
+                <SvgoCross class="w-6 h-6 fill-current text-red-600" />
               </div>
               <div v-show="challengeDiceBurned[0]" class="status status--burn">
-                <BurnIcon class="w-6 h-6 p-1 fill-current text-orange-500" />
+                <SvgoBurn class="w-6 h-6 p-1 fill-current text-orange-500" />
               </div>
             </div>
             <div
@@ -57,16 +57,16 @@
                 v-show="actionScore > challengeDice[1]"
                 class="status status--hit"
               >
-                <CheckIcon class="w-6 h-6 fill-current text-green-500" />
+                <SvgoCheck class="w-6 h-6 fill-current text-green-500" />
               </div>
               <div
                 v-show="actionScore <= challengeDice[1]"
                 class="status status--miss"
               >
-                <CrossIcon class="w-6 h-6 fill-current text-red-600" />
+                <SvgoCross class="w-6 h-6 fill-current text-red-600" />
               </div>
               <div v-show="challengeDiceBurned[1]" class="status status--burn">
-                <BurnIcon class="w-6 h-6 p-1 fill-current text-orange-500" />
+                <SvgoBurn class="w-6 h-6 p-1 fill-current text-orange-500" />
               </div>
             </div>
           </div>
@@ -88,12 +88,12 @@
         class="dice-roll-result bg-gray-300 text-center uppercase tracking-wide p-1"
       >
         {{ rollResult }}
-        <span v-if="this.challengeDice[0] === this.challengeDice[1]"
+        <span v-if="challengeDice.values[0] === challengeDice.values[1]"
           >(Match)</span
         >
       </div>
       <div
-        v-if="this.challengeDice[0] === this.challengeDice[1]"
+        v-if="challengeDice.values[0] === challengeDice.values[1]"
         class="move-result mt-3 mx-3 border-b p-2"
       >
         <template v-if="rollResult === 'Strong Hit'">
@@ -128,204 +128,191 @@
       >
       <BaseButton @click="burnMomentum" label="Burn" icon="BurnIcon" />
     </div>
-  </LogItem>
+  </BaseItem>
 </template>
 
-<script>
-import LogItem from "~/components/log/BaseItem";
-import CheckIcon from "~/assets/icons/check.svg";
-import CrossIcon from "~/assets/icons/cross.svg";
-import BurnIcon from "~/assets/icons/burn.svg";
-import BaseButton from "~/components/BaseButton";
-import dieRoll from "~/plugins/dice";
+<script setup lang="ts">
+const props = defineProps({
+  uuid: String,
+})
 
-export default {
-  components: {
-    LogItem,
-    CheckIcon,
-    CrossIcon,
-    BurnIcon,
-    BaseButton,
-  },
-  props: {
-    uuid: String,
-  },
-  data() {
-    // Get initial state from store
-    let initialState = this.$store.getters["activityLog/getLog"](this.uuid)
-      .data;
+const activityLogStore = useActivityLogStore()
+const characterStore = useCharacterStore()
 
-    return {
-      rollStat: initialState.rollStat,
-      addNum: initialState.addNum,
-      move: initialState.move,
-      actionDie: initialState.actionDie,
-      actionScore: initialState.actionScore,
-      challengeDice: [
-        initialState.challengeDice[0],
-        initialState.challengeDice[1],
-      ],
-      momentum: this.$store.state.character.momentum.total,
-      challengeDiceBurned: [
-        initialState.challengeDiceBurned[0],
-        initialState.challengeDiceBurned[1],
-      ],
-    };
-  },
-  computed: {
-    rollResult() {
-      let didChallengeDie0Hit = false;
-      let didChallengeDie1Hit = false;
+// Get initial state from store
+let initialState = activityLogStore.getLog(props.uuid).data
+const rollStat = ref(initialState.rollStat)
+const addNum = ref(initialState.addNum)
+const move = ref(initialState.move)
+const actionDie = ref(initialState.actionDie)
+const actionScore = ref(initialState.actionScore)
+const challengeDice = ref([
+  initialState.challengeDice[0],
+  initialState.challengeDice[1],
+])
+const momentum = ref(characterStore.momentum.total)
+const challengeDiceBurned = ref([
+  initialState.challengeDiceBurned[0],
+  initialState.challengeDiceBurned[1],
+])
 
-      if (this.challengeDiceBurned[0]) {
-        didChallengeDie0Hit = true;
-      } else if (this.actionScore > this.challengeDice[0]) {
-        didChallengeDie0Hit = true;
-      }
+const rollResult = computed(() => {
+  let didChallengeDie0Hit = false;
+  let didChallengeDie1Hit = false;
 
-      if (this.challengeDiceBurned[1]) {
-        didChallengeDie1Hit = true;
-      } else if (this.actionScore > this.challengeDice[1]) {
-        didChallengeDie1Hit = true;
-      }
+  if (challengeDiceBurned.value[0]) {
+    didChallengeDie0Hit = true;
+  } else if (actionScore > challengeDice.value[0]) {
+    didChallengeDie0Hit = true;
+  }
 
-      if (didChallengeDie0Hit && didChallengeDie1Hit) {
-        return "Strong Hit";
-      }
+  if (challengeDiceBurned.value[1]) {
+    didChallengeDie1Hit = true;
+  } else if (actionScore > challengeDice[1]) {
+    didChallengeDie1Hit = true;
+  }
 
-      // eslint-disable-next-line eqeqeq -- Mimic XOR
-      if (didChallengeDie0Hit != didChallengeDie1Hit) {
-        return "Weak Hit";
-      }
+  if (didChallengeDie0Hit && didChallengeDie1Hit) {
+    return "Strong Hit";
+  }
+  
+  // eslint-disable-next-line eqeqeq -- Mimic XOR
+  if (didChallengeDie0Hit != didChallengeDie1Hit) {
+    return "Weak Hit";
+  }
 
-      if (!didChallengeDie0Hit && !didChallengeDie1Hit) {
-        return "Miss";
-      }
+  if (!didChallengeDie0Hit && !didChallengeDie1Hit) {
+    return "Miss";
+  }
 
-      // idk how you got here
-      return "Miss";
-    },
-    rollStatNum() {
-      if (this.rollStat === "heart") {
-        return this.$store.state.character.stats.heart;
-      }
-      return null;
-    },
-    moveTitle() {
-      if (this.move) {
-        return "Swear an Iron Vow";
-      } else {
-        return `Roll +${this.rollStat}`;
-      }
-    },
-    moveResult() {
-      if (this.move) {
-        // TODO: Pull this from move reference
-        if (this.rollResult === "Strong Hit") {
-          return `<p>
-              On a <strong>strong hit</strong>, you are emboldened and it is clear what you must do
-              next (<em>Ask the Oracle</em> if unsure). Take +2 momentum.
-            </p>`;
-        } else if (this.rollResult === "Weak Hit") {
-          return `<p>
-              On a
-              <strong>weak hit</strong>, you are determined but begin your quest with more questions than answers. 
-              Take +1 momentum, and envision what you do to find a path forward.
-            </p>`;
-        } else if (this.rollResult === "Miss") {
-          return `<p>
-            On a <strong>miss</strong>, you face a significant obstacle before you can begin your
-            quest. Envision what stands in your way (<em>Ask the Oracle</em> if unsure), and
-            choose one.</p>
-            <ul>
-            <li>You press on: Suffer -2 momentum, and do what you must to
-            overcome this obstacle</li>
-            <li>You give up: <em>Forsake Your Vow</em>.</li></ul>`;
-        }
-      }
-      return null;
-    },
-    negativeMomentumActive() {
-      return this.momentum < 0 && this.actionDie === Math.abs(this.momentum);
-    },
-    burnPotential() {
-      let potential = "";
-      if (
-        this.challengeDice[0] < this.momentum ||
-        this.challengeDice[1] < this.momentum
-      ) {
-        potential = "Weak Hit";
-      }
-      if (
-        this.challengeDice[0] < this.momentum &&
-        this.challengeDice[1] < this.momentum
-      ) {
-        potential = "Strong Hit";
-      }
-      return potential;
-    },
-    momentumBurnPossible() {
-      if (this.challengeDiceBurned[0] || this.challengeDiceBurned[0]) {
-        return false;
-      }
+  // idk how you got here
+  return "Miss";
+})
 
-      if (
-        (this.challengeDice[0] < this.momentum &&
-          this.challengeDice[0] > this.actionScore) ||
-        (this.challengeDice[1] < this.momentum &&
-          this.challengeDice[1] > this.actionScore)
-      ) {
-        return true;
-      }
-      return false;
-    },
-  },
-  created() {
-    // if it doesn't already have a state roll it?
-    if (this.actionScore === null) {
-      this.reroll();
+const rollStatNum = computed(() => {
+  if (rollStat.value === "heart") {
+    return characterStore.stats.heart;
+  }
+  return null;
+})
+
+const moveTitle = computed(() => {
+  if (move) {
+    return "Swear an Iron Vow";
+  } else {
+    return `Roll +${rollStat.value}`;
+  }
+})
+
+const moveResult = computed(() => {
+  if (move.value) {
+    // TODO: Pull this from move reference
+    if (rollResult.value === "Strong Hit") {
+      return `<p>
+          On a <strong>strong hit</strong>, you are emboldened and it is clear what you must do
+          next (<em>Ask the Oracle</em> if unsure). Take +2 momentum.
+        </p>`;
+    } else if (rollResult.value === "Weak Hit") {
+      return `<p>
+          On a
+          <strong>weak hit</strong>, you are determined but begin your quest with more questions than answers. 
+          Take +1 momentum, and envision what you do to find a path forward.
+        </p>`;
+    } else if (rollResult.value === "Miss") {
+      return `<p>
+        On a <strong>miss</strong>, you face a significant obstacle before you can begin your
+        quest. Envision what stands in your way (<em>Ask the Oracle</em> if unsure), and
+        choose one.</p>
+        <ul>
+        <li>You press on: Suffer -2 momentum, and do what you must to
+        overcome this obstacle</li>
+        <li>You give up: <em>Forsake Your Vow</em>.</li></ul>`;
     }
-  },
-  methods: {
-    rollActionScore() {
-      // d6 + stat + mod
-      this.actionDie = dieRoll();
-      if (this.negativeMomentumActive) {
-        this.actionScore = this.rollStatNum + this.addNum;
-      } else {
-        this.actionScore = this.actionDie + this.rollStatNum + this.addNum;
-      }
-    },
-    rollChallengeDice() {
-      this.challengeDice = [dieRoll(10), dieRoll(10)];
-      this.challengeDiceBurned = [false, false];
-    },
-    reroll() {
-      this.rollActionScore();
-      this.rollChallengeDice();
-      this.$store.commit("activityLog/updateRollResult", {
-        uuid: this.uuid,
-        actionScore: this.actionScore,
-        challengeDice: this.challengeDice,
-        challengeDiceBurned: this.challengeDiceBurned,
-      });
-    },
-    burnMomentum() {
-      // arrays are a little wierd reactivity-wise, be sure to set the whole array at once
-      this.challengeDiceBurned = [
-        this.challengeDice[0] < this.momentum,
-        this.challengeDice[1] < this.momentum,
-      ];
-      this.$store.commit("activityLog/updateRollResult", {
-        uuid: this.uuid,
-        actionScore: this.actionScore,
-        challengeDice: this.challengeDice,
-        challengeDiceBurned: this.challengeDiceBurned,
-      });
-      this.$store.commit("character/resetMomentum");
-    },
-  },
-};
+  }
+  return null;
+})
+
+const negativeMomentumActive = computed(() => {
+  return momentum.value < 0 && actionDie.value === Math.abs(momentum.value);
+})
+
+const burnPotential = computed(() => {
+  let potential = "";
+  if (
+    challengeDice.value[0] < momentum.value ||
+    challengeDice.value[1] < momentum.value
+  ) {
+    potential = "Weak Hit";
+  }
+  if (
+    challengeDice.value[0] < momentum.value &&
+    challengeDice.value[1] < momentum.value
+  ) {
+    potential = "Strong Hit";
+  }
+  return potential
+})
+
+const momentumBurnPossible = computed(() => {
+  if (challengeDiceBurned.value[0] || challengeDiceBurned.value[0]) {
+    return false;
+  }
+
+  if (
+    (challengeDice.value[0] < momentum.value &&
+      challengeDice.value[0] > actionScore.value) ||
+    (challengeDice.value[1] < momentum.value &&
+      challengeDice.value[1] > actionScore.value)
+  ) {
+    return true;
+  }
+  return false;
+})
+
+// onCreated(() => {
+//   // if it doesn't already have a state roll it?
+//   if (actionScore.value === null) {
+//     reroll();
+//   }
+// })
+
+function rollActionScore() {
+  // d6 + stat + mod
+  actionDie.value = rollDie()
+  if (negativeMomentumActive.value) {
+    actionScore.value = rollStatNum.value + addNum.value
+  } else {
+    actionScore.value = actionDie.value + rollStatNum.value + addNum.value
+  }
+}
+function rollChallengeDice() {
+  challengeDice.value = [rollDie(10), rollDie(10)]
+  challengeDiceBurned.value = [false, false]
+}
+function reroll() {
+  rollActionScore();
+  rollChallengeDice();
+  activityLogStore.updateRollResult({
+    uuid: props.uuid,
+    actionScore: actionScore.value,
+    challengeDice: challengeDice.value,
+    challengeDiceBurned: challengeDiceBurned.value,
+  })
+}
+function burnMomentum() {
+  // arrays are a little wierd reactivity-wise, be sure to set the whole array at once
+  challengeDiceBurned.value = [
+    challengeDice.value[0] < momentum.value,
+    challengeDice.value[1] < momentum.value,
+  ];
+  activityLogStore.updateRollResult({
+    uuid: props.uuid,
+    actionScore: actionScore.value,
+    challengeDice: challengeDice.value,
+    challengeDiceBurned: challengeDiceBurned.value,
+  })
+  characterStore.resetMomentum()
+}
 </script>
 
 <style lang="postcss" scoped>

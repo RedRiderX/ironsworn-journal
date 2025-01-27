@@ -1,23 +1,13 @@
 <template>
-  <LogItem class="log-item--meta" canReroll canDelete :uuid="uuid" @reroll-log="reroll">
+  <BaseItem class="log-item--meta" canReroll canDelete :uuid="uuid" @reroll-log="reroll">
     <div class="log-item__wrapper mx-auto">
       <h1 class="text-xl font-display text-center mb-2">Meta Log</h1>
     </div>
-  </LogItem>
+  </BaseItem>
 </template>
 
 <script>
-import LogItem from "~/components/log/BaseItem";
-import CheckIcon from "~/assets/icons/check.svg";
-import CrossIcon from "~/assets/icons/cross.svg";
-import dieRoll from "~/plugins/dice";
-
 export default {
-  components: {
-    LogItem,
-    CheckIcon,
-    CrossIcon,
-  },
   props: {
     uuid: String,
   },
@@ -88,10 +78,10 @@ export default {
   methods: {
     rollActionScore() {
       // d6 + stat + mod
-      this.actionScore = dieRoll() + this.rollStatNum + this.addNum;
+      this.actionScore = rollDie() + this.rollStatNum + this.addNum;
     },
     rollChallengeDice() {
-      this.challengeDice = [dieRoll(10), dieRoll(10)];
+      this.challengeDice = [rollDie(10), rollDie(10)];
     },
     reroll() {
       this.rollActionScore();

@@ -8,20 +8,10 @@
   </button>
 </template>
 
-<script>
-import RollIcon from "~/assets/icons/die.svg";
-import AddPostIcon from "~/assets/icons/add-post.svg";
-import BurnIcon from "~/assets/icons/burn.svg";
-
-export default {
-  components: {
-    RollIcon,
-    AddPostIcon,
-    BurnIcon,
-  },
-  props: {
-    label: String,
-    icon: String,
-  },
-};
+<script setup lang="ts">
+const props = defineProps({
+  label: String,
+  icon: String,
+})
+const emit = defineEmits(['click'])
 </script>

@@ -15,7 +15,7 @@
 // import ItemVowNew from "~/components/log/ItemVowNew";
 // import ItemOracleResult from "~/components/log/ItemOracleResult";
 // import ItemPOINew from "~/components/log/ItemPOINew";
-const ItemText = resolveComponent('ItemText')
+// const ItemText = resolveComponent('ItemText')
 const store = useActivityLogStore()
 const root = useTemplateRef<HTMLInputElement>('root')
 

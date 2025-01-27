@@ -7,7 +7,7 @@
       <TheActivityLog />
       <section class="flex-none w-full max-w-xl p-2">
         <DiceRoller />
-        <!-- <LogInput /> -->
+        <LogInput />
       </section>
     </main>
     <aside

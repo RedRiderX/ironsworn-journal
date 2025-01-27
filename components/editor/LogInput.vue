@@ -2,8 +2,7 @@
   <div class="log-input relative">
     <client-only>
       <editor-content
-        class="basic-editor rich-text bg-white border border-gray-400 p-2 main-editor pr-24 focus:border-black"
-        style="min-height: 2rem"
+        class="basic-editor rich-text bg-white border border-gray-400 p-2 main-editor pr-24 focus:border-black min-h-[2rem]"
         :editor="editor"
       />
     </client-only>
@@ -11,84 +10,66 @@
       class="absolute bottom-0 right-0 m-1"
       @click="makeTextLog"
       label="Post"
-      icon="AddPostIcon"
+      icon="SvgoAddPost"
     />
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 // Import the basic building blocks
 import { Editor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
-// import Document from '@tiptap/extension-document'
-// import Paragraph from '@tiptap/extension-paragraph'
-// import Text from '@tiptap/extension-text'
-// import {
-//   Blockquote,
-//   Heading,
-//   Bold,
-//   Italic,
-//   History,
-//   Placeholder,
-// } from "tiptap-extensions";
-import BaseButton from "~/components/BaseButton";
+import Placeholder from '@tiptap/extension-placeholder'
 
-export default {
-  components: {
-    EditorContent,
-    BaseButton,
-  },
-  data() {
-    return {
-      editor: null,
-      htmlDoc: null,
-    };
-  },
-  methods: {
-    makeTextLog() {
-      this.$store.commit("activityLog/addTextLog", this.htmlDoc);
-      this.editor.clearContent(true);
+const activityLogStore = useActivityLogStore()
+const editor = ref(null)
+const htmlDoc = ref(null)
+
+function makeTextLog() {
+  activityLogStore.addTextLog(htmlDoc)
+  editor.value.clearContent(true)
+}
+
+onMounted(() => {
+  // Create an `Editor` instance with some default content. The editor is
+  // then passed to the `EditorContent` component as a `prop`
+  editor.value = new Editor({
+    extensions: [
+      StarterKit.configure({
+        // Disable an included extension
+        codeBlock: false,
+        horizontalRule: false,
+        listItem: false,
+        orderedList: false,
+        bulletList: false,
+        code: false,
+
+        // Configure an included extension
+        heading: {
+          levels: [1],
+        },
+      }),
+      Placeholder.configure({
+        // Use a placeholder:
+        placeholder: 'Describe Your Journey …',
+      }),
+    ],
+    onUpdate: () => {
+      htmlDoc.value = editor.value.getHTML();
     },
-  },
-  mounted() {
-    // Create an `Editor` instance with some default content. The editor is
-    // then passed to the `EditorContent` component as a `prop`
-    this.editor = new Editor({
-      extensions: [
-        StarterKit,
-        // Document,
-        // Paragraph,
-        // Text,
-        // new Blockquote(),
-        // new Heading({ levels: [1] }),
-        // new Bold(),
-        // new Italic(),
-        // new History(),
-        // new Placeholder({
-        //   emptyEditorClass: "is-editor-empty",
-        //   emptyNodeClass: "is-empty",
-        //   emptyNodeText: "Describe Your Journey ...",
-        //   showOnlyWhenEditable: true,
-        //   showOnlyCurrent: true,
-        // }),
-      ],
-      onUpdate: ({ getJSON, getHTML }) => {
-        this.htmlDoc = getHTML();
-      },
-      // content: "<h1>Pariatur laudantium </h1><p class="">totam et exercitationem id. Animi sint tempore aliquam sint. Et incidunt est ut quidem. </p><blockquote><p>foo bar qum quat</p><p><em>- Fibtu</em></p></blockquote><h1>Sequi assumenda </h1><p>doloribus ut dolorem sed sed.</p>"
-    });
-  },
-  beforeDestroy() {
-    // Always destroy your editor instance when it's no longer needed
-    this.editor.destroy();
-  },
-};
+    content: `<h1>Pariatur laudantium </h1><p class="">totam et exercitationem id. Animi sint tempore aliquam sint. Et incidunt est ut quidem. </p><blockquote><p>foo bar qum quat</p><p><em>- Fibtu</em></p></blockquote><h1>Sequi assumenda </h1><p>doloribus ut dolorem sed sed.</p>`
+  });
+})
+onUnmounted(() => {
+  // Always destroy your editor instance when it's no longer needed
+  editor.value.destroy();
+})
 </script>
 
 <style lang="postcss">
 .main-editor {
   & p.is-editor-empty:first-child::before {
-    content: attr(data-empty-text);
+    content: attr(data-placeholder);
     float: left;
     color: #aaa;
     pointer-events: none;

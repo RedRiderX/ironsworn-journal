@@ -1,4 +1,4 @@
-import rollDie from "../dice";
+import rollDie from "../rollDie";
 
 export default class Oracle {
   #outcomes;

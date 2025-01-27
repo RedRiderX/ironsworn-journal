@@ -22,39 +22,29 @@
       </label>
     </div>
 
-    <BaseButton @click="makeRoll" label="Roll" icon="RollIcon" />
+    <BaseButton @click="makeRoll" label="Roll" icon="SvgoDie" />
   </div>
 </template>
 
-<script>
-import BaseButton from "~/components/BaseButton";
+<script setup lang="ts">
+const props = defineProps({
+  move: {
+    type: Object,
+    default: null,
+  },
+})
+const activityLogStore = useActivityLogStore()
 
-export default {
-  components: {
-    BaseButton,
-  },
-  props: {
-    move: {
-      type: Object,
-      default: null,
-    },
-  },
-  data() {
-    return {
-      rollStat: "heart",
-      addNum: 0,
-    };
-  },
-  methods: {
-    makeRoll() {
-      this.$store.commit("activityLog/addRoll", {
-        rollStat: this.rollStat,
-        addNum: this.addNum,
-        move: this.move,
-      });
-    },
-  },
-};
+const rollStat = ref("heart")
+const addNum = ref(0)
+
+function makeRoll() {
+  activityLogStore.addRoll({
+    rollStat,
+    addNum,
+    move: props.move,
+  });
+}
 </script>
 
 <style scoped>
