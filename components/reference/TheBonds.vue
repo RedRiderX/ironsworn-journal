@@ -5,7 +5,7 @@
       :progress="characterStore.bonds"
       :rank="'epic'"
     />
-    <div class="bonds__actions mt-2">
+    <div class="bonds__actions mt-2 flex gap-1">
       <button
         class="bond-action border border-gray-600 font-bold uppercase text-sm rounded py-1 px-4"
         @click="characterStore.addBond()"

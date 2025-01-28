@@ -12,6 +12,18 @@
   --color-accent-700: rgba(55, 79, 83, 1);
 }
 
+@layer base {
+  .icon {
+    height: 1em;
+    width: 1em;
+    vertical-align: middle;
+  }
+
+  .icon--fill {
+    fill: currentColor;
+  }
+}
+
 @layer components {
   .main-editor {
     & p.is-editor-empty:first-child::before {

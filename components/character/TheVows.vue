@@ -22,7 +22,7 @@
           "
         ></div>
       </div>
-      <div class="vow__actions mt-2">
+      <div class="vow__actions mt-2 flex gap-1 flex-wrap">
         <button
           class="vow-action border border-gray-600 font-bold uppercase text-sm rounded py-1 px-4"
         >

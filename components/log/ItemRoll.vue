@@ -10,18 +10,18 @@
       <h1 class="text-xl font-display text-center mb-2">{{ moveTitle }}</h1>
       <div class="dice-roll bg-gray-500 flex justify-around p-2">
         <div class="action-score flex flex-none flex-col items-center">
-          <h2 class="text-center font-bold">Action Score</h2>
+          <h2 class="text-center font-bold text-white">Action Score</h2>
           <div
             class="action-score__value relative bg-gray-100 font-display text-3xl w-16 h-16 m-1 flex items-center justify-center border-gray-800 border-4 rounded-full"
           >
             <span class="leading-none">{{ actionScore }}</span>
             <div v-show="negativeMomentumActive" class="status status--burn">
-              <SvgoBurn class="text-[1.5rem] p-1 text-orange-500" />
+              <SvgoBurn class="text-[1.5rem] p-1 text-orange-500 m-0" />
             </div>
           </div>
         </div>
         <div class="challenge-dice flex-none">
-          <h2 class="text-center font-bold">Challenge Dice</h2>
+          <h2 class="text-center font-bold text-white">Challenge Dice</h2>
           <div class="challenge-dice__rolls flex justify-center mt-1">
             <div
               class="challenge-dice-roll transform rotate-45 flex-shrink relative bg-gray-100 font-display text-3xl m-1 flex items-center justify-center border-gray-800 border-4 rounded-lg"
@@ -34,16 +34,16 @@
                 v-show="actionScore > challengeDice[0]"
                 class="status status--hit"
               >
-                <SvgoCheck class="text-[1.5rem] text-green-500" />
+                <SvgoCheck class="text-[1.5rem] text-green-500 m-0" />
               </div>
               <div
                 v-show="actionScore <= challengeDice[0]"
                 class="status status--miss"
               >
-                <SvgoCross class="text-[1.5rem] text-red-600" />
+                <SvgoCross class="text-[1.5rem] text-red-600 m-0" />
               </div>
               <div v-show="challengeDiceBurned[0]" class="status status--burn">
-                <SvgoBurn class="text-[1.5rem] p-1 text-orange-500" />
+                <SvgoBurn class="text-[1.5rem] p-1 text-orange-500 m-0" />
               </div>
             </div>
             <div
@@ -57,16 +57,16 @@
                 v-show="actionScore > challengeDice[1]"
                 class="status status--hit"
               >
-                <SvgoCheck class="text-[1.5rem] text-green-500" />
+                <SvgoCheck class="text-[1.5rem] text-green-500 m-0" />
               </div>
               <div
                 v-show="actionScore <= challengeDice[1]"
                 class="status status--miss"
               >
-                <SvgoCross class="text-[1.5rem] text-red-600" />
+                <SvgoCross class="text-[1.5rem] text-red-600 m-0" />
               </div>
               <div v-show="challengeDiceBurned[1]" class="status status--burn">
-                <SvgoBurn class="text-[1.5rem] p-1 text-orange-500" />
+                <SvgoBurn class="text-[1.5rem] p-1 text-orange-500 m-0" />
               </div>
             </div>
           </div>
