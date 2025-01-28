@@ -1,5 +1,5 @@
 <template>
-  <LogItem class="log-item--meta" canDelete :uuid="uuid">
+  <BaseItem class="log-item--meta" canDelete :uuid="uuid">
     <div class="log-item__wrapper w-80 mx-auto">
       <h1 class="text-lg font-display text-center">
         {{ name }} Oracle Consulted
@@ -52,25 +52,15 @@
         </div>
       </div>
     </div>
-  </LogItem>
+  </BaseItem>
 </template>
 
-<script>
-import LogItem from "~/components/log/BaseItem";
+<script setup lang="ts">
+const props = defineProps({
+  uuid: String,
+  name: String,
+  result: String,
+})
 
-export default {
-  components: {
-    LogItem,
-  },
-  props: {
-    uuid: String,
-    name: String,
-    result: String,
-  },
-  data: function () {
-    return {
-      showAlternateOracles: false,
-    };
-  },
-};
+const showAlternateOracles = ref(false)
 </script>

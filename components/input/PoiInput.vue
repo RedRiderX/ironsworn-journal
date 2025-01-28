@@ -39,7 +39,7 @@
         :class="{ hidden: !menuExpanded }"
       >
         <span class="align-middle">Delete</span>
-        <SvgDelete
+        <SvgoDelete
           class="w-5 h-5 fill-current text-gray-500 inline-block align-middle"
         />
       </button>
@@ -47,42 +47,45 @@
   </article>
 </template>
 
-<script>
-export default {
-  props: {
-    index: Number,
-    title: String,
-    description: String,
-  },
-  data: function () {
-    return {
-      menuExpanded: false,
-    };
-  },
-  mounted() {
-    this.$refs.title.innerText = this.title;
-    this.$refs.description.innerHTML = this.description;
-  },
-  methods: {
-    remove(index) {
-      this.menuExpanded = false;
-      this.$emit(`delete-poi`);
-      this.$store.commit("map/removePOI", index);
-    },
-    updatePOITitle: function (event) {
-      this.$store.commit("map/updatePOITitle", {
-        index: this.index,
-        newTitle: event.target.innerText,
-      });
-    },
-    updatePOIDescription: function (event) {
-      this.$store.commit("map/updatePOIDescription", {
-        index: this.index,
-        newDescription: event.target.innerHTML,
-      });
-    },
-  },
-};
+<script setup lang="ts">
+const props = defineProps<{
+  index: number,
+  title: String,
+  description: String,
+}>()
+
+const emit = defineEmits(['delete-poi'])
+
+const mapStore = useMapStore()
+
+const menuExpanded = ref(false)
+const title = ref(null)
+const description = ref(null)
+
+onMounted(() => {
+  title.value.innerText = props.title;
+  description.value.innerHTML = props.description;
+})
+
+function remove(index) {
+  menuExpanded.value = false;
+  emit('delete-poi');
+  mapStore.removePOI(index);
+}
+
+function updatePOITitle(event) {
+  mapStore.updatePOITitle({
+    index: props.index,
+    newTitle: event.target.innerText,
+  })
+}
+
+function updatePOIDescription(event) {
+  mapStore.updatePOIDescription({
+    index: props.index,
+    newDescription: event.target.innerHTML,
+  })
+}
 </script>
 
 <style scoped>

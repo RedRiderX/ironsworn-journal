@@ -4,25 +4,27 @@
       box-shadow: inset 0 -20px 20px -28px #0000004d,
         inset 0 20px 20px -28px #0000004d;
     ">
-    <component v-for="log in store.logs" :is="stringToLogItem(log.logType)" :key="log.uuid" :uuid="log.uuid" v-bind="log.data" class="activity-log-item"></component>
+    <component v-for="log in store.logs" :is="allowedLogTypes[log.logType]" :key="log.uuid" :uuid="log.uuid" v-bind="log.data" class="activity-log-item"></component>
   </transition-group>
 </template>
 
 <script setup lang="ts">
-import { ItemText } from '#components';
-// import ItemText from "~/components/log/ItemText";
-// import ItemRoll from "~/components/log/ItemRoll";
-// import ItemVowNew from "~/components/log/ItemVowNew";
-// import ItemOracleResult from "~/components/log/ItemOracleResult";
-// import ItemPOINew from "~/components/log/ItemPOINew";
-// const ItemText = resolveComponent('ItemText')
+import { 
+  ItemText,
+  ItemRoll,
+  ItemVowNew,
+  ItemOracleResult,
+  ItemPOINew,
+} from '#components';
+const allowedLogTypes = {
+  ItemText,
+  ItemRoll,
+  ItemVowNew,
+  ItemOracleResult,
+  ItemPOINew,
+}
 const store = useActivityLogStore()
 const root = useTemplateRef<HTMLInputElement>('root')
-
-function stringToLogItem(name: string) {
-  console.log(typeof ItemText)
-  return ItemText
-}
 
 function logEnter(el: HTMLElement, done: () => void): void {
   // some dumb math here:

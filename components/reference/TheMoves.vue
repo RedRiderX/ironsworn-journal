@@ -36,7 +36,7 @@
           <header class="flex justify-between items-center mb-1">
             <h1 class="uppercase text-sm">Move Results</h1>
             <button>
-              <CollapseIcon />
+              <SvgoExpandLess />
             </button>
           </header>
           <p>
@@ -73,20 +73,3 @@
     </section>
   </ReferenceSection>
 </template>
-
-<script>
-import ReferenceSection from "~/components/ReferenceSection";
-import DiceRoller from "~/components/editor/DiceRoller.vue";
-import CollapseIcon from "~/assets/icons/expand_less.svg";
-
-export default {
-  components: {
-    ReferenceSection,
-    DiceRoller,
-    CollapseIcon,
-  },
-};
-</script>
-
-<style scoped>
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <LogItem class="log-item--meta" canDelete :uuid="uuid">
+  <BaseItem class="log-item--meta" canDelete :uuid="uuid">
     <div class="log-item__wrapper mx-auto">
       <div class="expanded-view" v-show="!collapsed">
         <h1 class="text-xl font-display text-center mb-2">New Vow</h1>
@@ -78,7 +78,7 @@
           <BaseButton
             @click="makeRoll"
             label="Swear an Iron Vow"
-            icon="RollIcon"
+            icon="SvgoDie"
           />
         </div>
       </div>
@@ -90,58 +90,48 @@
         </h1>
       </div>
     </div>
-  </LogItem>
+  </BaseItem>
 </template>
 
-<script>
-import LogItem from "~/components/log/BaseItem";
-import BaseButton from "~/components/BaseButton";
+<script setup lang="ts">
+const props = defineProps({
+  uuid: String,
+})
 
-export default {
-  components: {
-    LogItem,
-    BaseButton,
-  },
-  props: {
-    uuid: String,
-  },
-  data() {
-    // Get initial state from store
-    let initialState = this.$store.getters["activityLog/getLog"](this.uuid)
-      .data;
+const activityLogStore = useActivityLogStore()
+const characterVowsStore = useCharacterVowsStore()
 
-    return {
-      name: initialState.name,
-      rank: initialState.rank,
-      bond: initialState.bond,
-      notes: "",
-      collapsed: initialState.collapsed,
-    };
-  },
-  methods: {
-    makeRoll() {
-      this.$store.commit("character/vows/add", {
-        name: this.name,
-        rank: this.rank,
-        progress: 0,
-        notes: this.notes,
-      });
-      this.$store.commit("activityLog/addRoll", {
-        rollStat: "heart",
-        addNum: this.bond ? 1 : 0,
-        move: "swear-an-iron-vow",
-      });
-      // And then collapse it I guess?
-      this.collapsed = true;
-      this.$store.commit("activityLog/updateNewVow", {
-        uuid: this.uuid,
-        name: this.name,
-        rank: this.rank,
-        collapsed: true,
-      });
-    },
-  },
-};
+// Get initial state from store
+let initialState = activityLogStore.getLog(props.uuid).data
+const name = ref(initialState.name)
+const rank = ref(initialState.rank)
+const bond = ref(initialState.bond)
+const notes = ref("")
+const collapsed = ref(initialState.collapsed)
+
+function makeRoll() {
+  characterVowsStore.addVow({
+    name: name.value,
+    rank: rank.value,
+    progress: 0,
+    notes: notes.value,
+  })
+
+  activityLogStore.addRoll({
+    rollStat: "heart",
+    addNum: bond.value ? 1 : 0,
+    move: "swear-an-iron-vow",
+  })
+
+  // And then collapse it I guess?
+  collapsed.value = true;
+  activityLogStore.updateNewVow({
+    uuid: props.uuid,
+    name: name.value,
+    rank: rank.value,
+    collapsed: true,
+  })
+}
 </script>
 
 <style scoped>

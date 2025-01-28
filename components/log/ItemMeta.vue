@@ -6,94 +6,92 @@
   </BaseItem>
 </template>
 
-<script>
-export default {
-  props: {
-    uuid: String,
-  },
-  data() {
-    // Get initial state from store
-    let initialState = this.$store.getters["activityLog/getLog"](this.uuid)
-      .data;
+<script setup lang="ts">
+const props = defineProps({
+  uuid: String
+})
 
-    return {
-      rollStat: initialState.rollStat,
-      addNum: initialState.addNum,
-      move: initialState.move,
-      actionScore: initialState.actionScore,
-      challengeDice: [
-        initialState.challengeDice[0],
-        initialState.challengeDice[1],
-      ],
-    };
-  },
-  computed: {
-    rollResult() {
-      if (this.actionScore > this.challengeDice[0]) {
-        if (this.actionScore > this.challengeDice[1]) {
-          return "Strong Hit";
-        } else {
-          return "Weak Hit";
-        }
-      } else {
-        if (this.actionScore > this.challengeDice[1]) {
-          return "Weak Hit";
-        } else {
-          return "Miss";
-        }
-      }
-    },
-    rollStatNum() {
-      if (this.rollStat === "heart") {
-        return this.$store.state.character.stats.heart;
-      }
-      return null;
-    },
-    moveTitle() {
-      if (this.move) {
-        return "Swear an Iron Vow";
-      } else {
-        return `Roll +${this.rollStat}`;
-      }
-    },
-    moveResult() {
-      if (this.move) {
-        // TODO: Pull this from move reference
-        return `<p>
-            On a
-            <strong>weak hit</strong>, you are determined but begin your quest with more questions than answers. 
-            Take +1 momentum, and envision what you do to find a path forward.
-          </p>`;
-      } else {
-        return null;
-      }
-    },
-  },
-  created() {
-    // if it doesn't already have a state roll it?
-    if (this.actionScore === null) {
-      this.reroll();
+const activityLogStore = useActivityLogStore()
+const characterStore = useCharacterStore()
+
+// Get initial state from store
+let initialState = activityLogStore.getLog(props.uuid).data
+const rollStat = ref(initialState.rollStat)
+const addNum = ref(initialState.addNum)
+const move = ref(initialState.move)
+const actionScore = ref(initialState.actionScore)
+const challengeDice = ref([
+  initialState.challengeDice[0],
+  initialState.challengeDice[1],
+])
+
+const rollResult = computed(() => {
+  if (actionScore.value > challengeDice.value[0]) {
+    if (actionScore.value > challengeDice.value[1]) {
+      return "Strong Hit";
+    } else {
+      return "Weak Hit";
     }
-  },
-  methods: {
-    rollActionScore() {
-      // d6 + stat + mod
-      this.actionScore = rollDie() + this.rollStatNum + this.addNum;
-    },
-    rollChallengeDice() {
-      this.challengeDice = [rollDie(10), rollDie(10)];
-    },
-    reroll() {
-      this.rollActionScore();
-      this.rollChallengeDice();
-      this.$store.commit("activityLog/updateRollResult", {
-        uuid: this.uuid,
-        actionScore: this.actionScore,
-        challengeDice: this.challengeDice,
-      });
-    },
-  },
-};
+  } else {
+    if (actionScore.value > challengeDice.value[1]) {
+      return "Weak Hit";
+    } else {
+      return "Miss";
+    }
+  }
+})
+
+const rollStatNum = computed(() => {
+  if (rollStat.value === "heart") {
+    return characterStore.stats.heart;
+  }
+  return null;
+})
+
+const moveTitle = computed(() => {
+  if (move.value) {
+    return "Swear an Iron Vow";
+  } else {
+    return `Roll +${rollStat.value}`;
+  }
+})
+
+const moveResult = computed(() => {
+  if (move.value) {
+    // TODO: Pull this from move reference
+    return `<p>
+        On a
+        <strong>weak hit</strong>, you are determined but begin your quest with more questions than answers. 
+        Take +1 momentum, and envision what you do to find a path forward.
+      </p>`;
+  } else {
+    return null;
+  }
+})
+
+// if it doesn't already have a state roll it?
+if (actionScore.value === null) {
+  reroll()
+}
+
+function rollActionScore() {
+  // d6 + stat + mod
+  actionScore.value = rollDie() + rollStatNum.value + addNum.value;
+}
+
+function rollChallengeDice() {
+  challengeDice.value = [rollDie(10), rollDie(10)];
+}
+
+function reroll() {
+  rollActionScore()
+  rollChallengeDice()
+  activityLogStore.updateRollResult({
+    uuid: props.uuid,
+    actionScore: actionScore.value,
+    challengeDice: challengeDice.value,
+  })
+}
 </script>
 
 <style scoped>

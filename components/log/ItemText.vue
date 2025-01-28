@@ -12,6 +12,3 @@ const props = defineProps({
 })
 const editing = ref(false)
 </script>
-
-<style scoped>
-</style>

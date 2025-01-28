@@ -23,7 +23,7 @@
         <BaseButton
           @click="commitRoll(oracle.roll)"
           :label="'Roll ' + oracle.name"
-          icon="RollIcon"
+          icon="SvgoDie"
         />
       </div>
     </article>

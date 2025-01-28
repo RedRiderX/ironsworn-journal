@@ -126,7 +126,7 @@
         <strong>{{ burnPotential }}</strong
         >?</span
       >
-      <BaseButton @click="burnMomentum" label="Burn" icon="BurnIcon" />
+      <BaseButton @click="burnMomentum" label="Burn" icon="SvgoBurn" />
     </div>
   </BaseItem>
 </template>
@@ -269,12 +269,10 @@ const momentumBurnPossible = computed(() => {
   return false;
 })
 
-// onCreated(() => {
-//   // if it doesn't already have a state roll it?
-//   if (actionScore.value === null) {
-//     reroll();
-//   }
-// })
+// if it doesn't already have a state roll it?
+if (actionScore.value === null) {
+  reroll();
+}
 
 function rollActionScore() {
   // d6 + stat + mod

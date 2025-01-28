@@ -23,10 +23,12 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   poi: Poi[],
   canPreview?: Boolean,
 }>()
+
+const canPreview = !(props.canPreview === undefined)
 
 const emit = defineEmits<{
   'update-poi-position': [x: number, y: number]

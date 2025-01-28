@@ -26,8 +26,8 @@ const editor = ref(null)
 const htmlDoc = ref(null)
 
 function makeTextLog() {
-  activityLogStore.addTextLog(htmlDoc)
-  editor.value.clearContent(true)
+  activityLogStore.addTextLog(htmlDoc.value)
+  editor.value.commands.clearContent(true)
 }
 
 onMounted(() => {
@@ -57,7 +57,7 @@ onMounted(() => {
     onUpdate: () => {
       htmlDoc.value = editor.value.getHTML();
     },
-    content: `<h1>Pariatur laudantium </h1><p class="">totam et exercitationem id. Animi sint tempore aliquam sint. Et incidunt est ut quidem. </p><blockquote><p>foo bar qum quat</p><p><em>- Fibtu</em></p></blockquote><h1>Sequi assumenda </h1><p>doloribus ut dolorem sed sed.</p>`
+    // content: `<h1>Pariatur laudantium </h1><p class="">totam et exercitationem id. Animi sint tempore aliquam sint. Et incidunt est ut quidem. </p><blockquote><p>foo bar qum quat</p><p><em>- Fibtu</em></p></blockquote><h1>Sequi assumenda </h1><p>doloribus ut dolorem sed sed.</p>`
   });
 })
 onUnmounted(() => {
