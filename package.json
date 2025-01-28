@@ -28,7 +28,6 @@
     "nuxt-svgo": "^4.0.11",
     "pinia": "^2.3.0",
     "pinia-plugin-persistedstate": "^4.2.0",
-    "postcss": "8.3.5",
     "reqlim": "^0.0.0",
     "tailwindcss": "^4.0.0",
     "uuid": "^11.0.5",

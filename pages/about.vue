@@ -27,9 +27,9 @@
         </p>
         <p class="mb-2">
           This work is based on
-          <a href="https://www.ironswornrpg.com" target="_blank">Ironsworn</a>,
+          <a href="https://www.ironswornrpg.com" target="_blank" class="underline">Ironsworn</a>,
           created by Shawn Tomkin, and licensed for our use under the
-          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/Creative"
+          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/Creative"  class="underline"
             >Commons Attribution-NonCommercial-ShareAlike 4.0 International
             license</a
           >.
@@ -46,9 +46,3 @@
     </div>
   </div>
 </template>
-
-<style lang="postcss" scoped>
-.credits a {
-  @apply underline;
-}
-</style>

@@ -315,7 +315,9 @@ function burnMomentum() {
 }
 </script>
 
-<style lang="postcss" scoped>
+<style>
+@reference "tailwindcss";
+
 .log-item__wrapper {
   width: 18rem;
 }

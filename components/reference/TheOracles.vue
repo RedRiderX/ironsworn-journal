@@ -49,7 +49,9 @@ function commitRoll(oracleRollHandler) {
 }
 </script>
 
-<style lang="postcss">
+<style>
+@reference "tailwindcss";
+
 .oracle__description {
   & * + * {
     @apply mt-2;
