@@ -3,5 +3,3 @@
 - move to pinia
 - move to tailwind 3?
 - move to pinia-plugin-persistedstate
-- update tiptap
-- move to bun

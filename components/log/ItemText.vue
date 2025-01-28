@@ -1,7 +1,7 @@
 <template>
   <BaseItem class="log-item--text" canEdit canDelete :uuid="uuid" @edit-log="editing = true">
     <div class="rich-text" v-html="html" v-show="!editing"></div>
-    <!-- <LogEditor v-if="editing" :uuid="uuid" @update-done="editing = false"/> -->
+    <LogEditor v-if="editing" :uuid="uuid" @update-done="editing = false"/>
   </BaseItem>
 </template>
 
