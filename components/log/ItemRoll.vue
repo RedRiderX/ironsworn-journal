@@ -16,7 +16,7 @@
           >
             <span class="leading-none">{{ actionScore }}</span>
             <div v-show="negativeMomentumActive" class="status status--burn">
-              <SvgoBurn class="w-6 h-6 p-1 fill-current text-orange-500" />
+              <SvgoBurn class="text-[1.5rem] p-1 text-orange-500" />
             </div>
           </div>
         </div>
@@ -34,16 +34,16 @@
                 v-show="actionScore > challengeDice[0]"
                 class="status status--hit"
               >
-                <SvgoCheck class="w-6 h-6 fill-current text-green-500" />
+                <SvgoCheck class="text-[1.5rem] text-green-500" />
               </div>
               <div
                 v-show="actionScore <= challengeDice[0]"
                 class="status status--miss"
               >
-                <SvgoCross class="w-6 h-6 fill-current text-red-600" />
+                <SvgoCross class="text-[1.5rem] text-red-600" />
               </div>
               <div v-show="challengeDiceBurned[0]" class="status status--burn">
-                <SvgoBurn class="w-6 h-6 p-1 fill-current text-orange-500" />
+                <SvgoBurn class="text-[1.5rem] p-1 text-orange-500" />
               </div>
             </div>
             <div
@@ -57,16 +57,16 @@
                 v-show="actionScore > challengeDice[1]"
                 class="status status--hit"
               >
-                <SvgoCheck class="w-6 h-6 fill-current text-green-500" />
+                <SvgoCheck class="text-[1.5rem] text-green-500" />
               </div>
               <div
                 v-show="actionScore <= challengeDice[1]"
                 class="status status--miss"
               >
-                <SvgoCross class="w-6 h-6 fill-current text-red-600" />
+                <SvgoCross class="text-[1.5rem] text-red-600" />
               </div>
               <div v-show="challengeDiceBurned[1]" class="status status--burn">
-                <SvgoBurn class="w-6 h-6 p-1 fill-current text-orange-500" />
+                <SvgoBurn class="text-[1.5rem] p-1 text-orange-500" />
               </div>
             </div>
           </div>

@@ -13,8 +13,8 @@
         </h2>
       </div>
       <button @click="isCollapsed = !isCollapsed" class="p-1 self-start">
-        <SvgoExpandMore v-show="isCollapsed"/>
-        <SvgoExpandLess v-show="!isCollapsed"/>
+        <SvgoExpandMore v-show="isCollapsed" class="text-[1.4rem]" />
+        <SvgoExpandLess v-show="!isCollapsed" class="text-[1.4rem]" />
       </button>
     </header>
     <slot></slot>

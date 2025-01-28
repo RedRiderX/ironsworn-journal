@@ -2,7 +2,7 @@
   <div class="log-input relative">
     <client-only>
       <editor-content
-        class="basic-editor rich-text bg-white border border-gray-400 p-2 main-editor pr-24 focus:border-black min-h-[2rem]"
+        class="basic-editor rich-text bg-white border border-gray-400 p-2 main-editor pr-24 focus:border-black min-h-[5rem]"
         :editor="editor"
       />
     </client-only>

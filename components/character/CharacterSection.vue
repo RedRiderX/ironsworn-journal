@@ -4,10 +4,10 @@
       <h1 class="text-lg font-bold">{{ title }}</h1>
       <slot name="headerExtra"></slot>
 
-      <button @click="$emit('add-article')">
+      <button @click="$emit('add-article')" class="flex gap-1">
         <!-- <button @click="handleAdd"> -->
-        <span class="align-middle leading-none">Add</span>
-        <SvgoAdd class="inline-block align-middle"/>
+        <span class=" leading-none">Add</span>
+        <SvgoAdd class=""/>
       </button>
     </header>
     <slot></slot>

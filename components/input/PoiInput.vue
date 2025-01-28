@@ -25,22 +25,22 @@
     >
       <button
         @click="menuExpanded = !menuExpanded"
-        class="py-1 px-2 order-last"
+        class="py-1 px-2 order-last flex gap-1 items-center"
       >
         <span class="sr-only">More</span>
         <SvgoMoreMenu
-          class="w-5 h-5 fill-current text-gray-500 inline-block align-middle"
+          class="text-[1.25rem] text-gray-500"
         />
       </button>
 
       <button
         @click="remove(index)"
-        class="py-1 px-2"
+        class="py-1 px-2 flex gap-1 items-center"
         :class="{ hidden: !menuExpanded }"
       >
-        <span class="align-middle">Delete</span>
+        <span class="leading-0">Delete</span>
         <SvgoDelete
-          class="w-5 h-5 fill-current text-gray-500 inline-block align-middle"
+          class="text-[1.25rem] text-gray-500"
         />
       </button>
     </div>

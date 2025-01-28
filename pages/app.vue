@@ -49,7 +49,7 @@
           @click="activeView = 'stats'"
           :class="{ 'bg-gray-500': activeView === 'stats' }"
         >
-          <SvgoPerson class="text-[1.5rem] fill-current" />
+          <SvgoPerson class="text-[1.5rem]" />
           <span class="uppercase text-xs tracking-wider leading-none"
             >Stats</span
           >
@@ -59,7 +59,7 @@
           @click="activeView = 'log'"
           :class="{ 'bg-gray-500': activeView === 'log' }"
         >
-          <SvgoMessages class="text-[1.5rem] fill-current" />
+          <SvgoMessages class="text-[1.5rem]" />
           <span class="uppercase text-xs tracking-wider leading-none">Log</span>
         </button>
         <button
@@ -67,7 +67,7 @@
           @click="activeView = 'reference'"
           :class="{ 'bg-gray-500': activeView === 'reference' }"
         >
-          <SvgoBook class="text-[1.5rem] fill-current" />
+          <SvgoBook class="text-[1.5rem]" />
           <span class="uppercase text-xs tracking-wider leading-none"
             >Reference</span
           >

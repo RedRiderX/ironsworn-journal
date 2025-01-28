@@ -1,10 +1,10 @@
 <template>
   <button
-    class="bg-gray-600 py-1 px-2 text-white font-bold uppercase text-sm rounded self-center flex items-center"
+    class="bg-gray-600 py-1 px-3 text-white font-semibold uppercase rounded self-center flex gap-1 items-center"
     @click="$emit('click')"
   >
-    <span class="leading-none mx-1 inline-block">{{ label }}</span>
-    <component v-if="icon.length" :is="icon" class="w-5 h-5 fill-current" />
+    <span class="leading-none">{{ label }}</span>
+    <component v-if="icon.length" :is="icon" class="text-[1.25rem]" />
   </button>
 </template>
 

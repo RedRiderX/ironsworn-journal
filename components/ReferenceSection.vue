@@ -10,8 +10,8 @@
       <h1 class="text-2xl font-bold leading-normal">{{ title }}</h1>
       <slot name="headerExtra"></slot>
       <button class="p-1">
-        <SvgoExpandMore v-show="isCollapsed" />
-        <SvgoExpandLess v-show="!isCollapsed" />
+        <SvgoExpandMore v-show="isCollapsed" class="text-[1.4rem]" />
+        <SvgoExpandLess v-show="!isCollapsed" class="text-[1.4rem]" />
       </button>
     </header>
     <slot></slot>

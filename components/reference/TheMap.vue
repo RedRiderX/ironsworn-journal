@@ -2,8 +2,8 @@
   <ReferenceSection class="map" title="Map">
     <template v-slot:headerExtra>
       <button class="flex gap-1 items-center" @click.stop="storeActivityLog.addPOI">
-        <span class="leading-none">Add</span>
-        <SvgoAdd class="text-[1rem] fill-current m-0" />
+        <span class="leading-0">Add</span>
+        <SvgoAdd class="text-[1rem]" />
       </button>
     </template>
     <MapCanvas :poi="store.poi" />

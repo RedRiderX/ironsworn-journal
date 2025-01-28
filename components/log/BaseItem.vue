@@ -5,21 +5,21 @@
       class="log-item__meta absolute top-0 right-0 bg-gray-200 flex flex-col items-end overflow-hidden md:hidden md:group-hover:flex"
       :class="{expanded: menuExpanded}"
     >
-      <button @click="menuExpanded = !menuExpanded" class="py-1 px-2">
+      <button @click="menuExpanded = !menuExpanded" class="py-1 px-2 flex gap-1 items-center">
         <span class="sr-only">More</span>
-        <SvgoMoreMenu class="w-5 h-5 fill-current text-gray-500 inline-block align-middle"/>
+        <SvgoMoreMenu class="text-[1.25rem] text-gray-500"/>
       </button>
-      <button v-if="canEdit" @click="action('edit')" class="py-1 px-2">
-        <span class="align-middle">Edit</span>
-        <SvgoEdit class="w-5 h-5 fill-current text-gray-500 inline-block align-middle"/>
+      <button v-if="canEdit" @click="action('edit')" class="py-1 px-2 flex gap-1 items-center">
+        <span class="leading-0">Edit</span>
+        <SvgoEdit class="text-[1.25rem] text-gray-500"/>
       </button>
-      <button v-if="canReroll" @click="action('reroll')" class="py-1 px-2">
-        <span class="align-middle">Reroll</span>
-        <SvgoDie class="w-5 h-5 fill-current text-gray-500 inline-block align-middle"/>
+      <button v-if="canReroll" @click="action('reroll')" class="py-1 px-2 flex gap-1 items-center">
+        <span class="leading-0">Reroll</span>
+        <SvgoDie class="text-[1.25rem] text-gray-500"/>
       </button>
-      <button v-if="canDelete" @click="remove" class="py-1 px-2">
-        <span class="align-middle">Delete</span>
-        <SvgoDelete class="w-5 h-5 fill-current text-gray-500 inline-block align-middle"/>
+      <button v-if="canDelete" @click="remove" class="py-1 px-2 flex gap-1 items-center">
+        <span class="leading-0">Delete</span>
+        <SvgoDelete class="text-[1.25rem] text-gray-500"/>
       </button>
     </div>
   </article>
