@@ -4,9 +4,6 @@ export default defineNuxtConfig({
    ** Doc: https://nuxtjs.org/guide/modules
    */
   modules: [
-    // TODO: Remove it if you want to eject from codeSandbox
-    // "./codesandbox",
-    "@nuxtjs/tailwindcss",
     "@pinia/nuxt",
     "pinia-plugin-persistedstate/nuxt",
     "@vite-pwa/nuxt",
