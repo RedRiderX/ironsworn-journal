@@ -74,6 +74,6 @@ export default {
   top: 50%;
   left: 0.5rem;
   right: 0.5rem;
-  border-bottom: 1px solid theme("colors.gray.600");
+  border-bottom: 1px solid var(--color-gray-600);
 }
 </style>

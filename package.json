@@ -16,6 +16,7 @@
     "@datasworn/ironsworn-classic": "^0.0.10",
     "@nuxt/eslint": "^0.7.4",
     "@pinia/nuxt": "^0.9.0",
+    "@tailwindcss/vite": "^4.0.0",
     "@tiptap/extension-placeholder": "^2.11.3",
     "@tiptap/pm": "^2.11.0",
     "@tiptap/starter-kit": "^2.11.0",
@@ -29,6 +30,7 @@
     "pinia-plugin-persistedstate": "^4.2.0",
     "postcss": "8.3.5",
     "reqlim": "^0.0.0",
+    "tailwindcss": "^4.0.0",
     "uuid": "^11.0.5",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"

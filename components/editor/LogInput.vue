@@ -65,28 +65,3 @@ onUnmounted(() => {
   editor.value.destroy();
 })
 </script>
-
-<style lang="postcss">
-.main-editor {
-  & p.is-editor-empty:first-child::before {
-    content: attr(data-placeholder);
-    float: left;
-    color: #aaa;
-    pointer-events: none;
-    height: 0;
-    font-style: italic;
-  }
-}
-.rich-text {
-  & h1 {
-    @apply text-lg font-bold mt-1;
-  }
-  & blockquote {
-    @apply border-l-2 border-accent-300 my-1 pl-2;
-  }
-
-  & p {
-    @apply mb-2;
-  }
-}
-</style>
