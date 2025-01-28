@@ -3,7 +3,7 @@
     class="dice-roller flex items-center justify-between border border-gray-400 p-1 bg-gray-200 mb-2"
   >
     <h1
-      class="flex-shrink uppercase bg-gray-400 text-sm self-stretch -ml-1 -my-1 mr-2 px-2 flex items-center"
+      class="flex-shrink uppercase bg-gray-400 text-white text-sm self-stretch -ml-1 -my-1 mr-2 px-2 flex items-center"
     >
       <span class="tracking-wide">Make A Roll</span>
     </h1>
