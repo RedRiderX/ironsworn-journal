@@ -1,3 +1,5 @@
+<img width="1560" height="877" alt="firefox_idwizapeua" src="https://github.com/user-attachments/assets/9ccf6f27-3ec8-478c-bca3-73a8826a2c57" />
+
 # A Journey into the Ironlands
 
 A Journal for Solo Ironsworn play
